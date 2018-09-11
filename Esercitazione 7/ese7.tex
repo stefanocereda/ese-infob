@@ -1,0 +1,67 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[handout]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+\usetheme{metropolis}
+
+\usepackage{listings}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\tikzstyle{startstop} = [ellipse, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=bg, text=structure, text width=5em, text centered]
+\tikzstyle{decision} = [diamond, aspect=2, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{input} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle east arc=none]
+\tikzstyle{output} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle west arc=none]
+
+\tikzstyle{line} = [draw, -latex']
+
+
+\title{Informatica B - Esercitazione 7}
+\subtitle{Matlab}
+
+\author{Stefano Cereda\\
+		stefano1.cereda@mail.polimi.it
+	}
+\date{21/11/2017}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\linewidth]{./logopolimi}}
+%\logo{\includegraphics[width=15mm]{./logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Esercizio 1 - Ricerca per bisezione}
+Implementare, in C ed in Matlab, l'algoritmo di ricerca dicotomica.
+\end{frame}
+
+\begin{frame}{Esercizio 2 - Aggiunta colonna}
+Scrivere uno script Matlab che, data una matrice $Q$ ed un valore $v$, stampi una
+matrice corrispondente a $Q$, alla quale è stata aggiunta una nuova prima
+colonna contenente $v$.
+\end{frame}
+
+\begin{frame}{Esercizio 3 - Ordinamento matrice}
+Porre in ordine crescente gli elementi di una matrice qualsiasi
+\end{frame}
+
+\begin{frame}{Esercizio 4  - Coppie per somme}
+Scrivere uno script MATLAB che riceve in ingresso un intero positivo n e stampa due vettori x e y, contenenti tutte le coppie di interi (x,y) la cui somma è pari ad n.
+\end{frame}
+
+\begin{frame}{Esercizio 5 - Soglia intorno}
+Si scriva in linguaggio MATLAB uno script che riceva in ingresso una matrice, un numero di riga, un numero di colonna e un valore di soglia. Lo script stampa true se tutti i valori delle celle della matrice nell’intorno della cella della riga e della colonna date sono minori del valore di soglia. Le celle nell’intorno della cella identificata dalla riga e dalla colonna date sono quelle immediatamente adiacenti a questa cella.
+\end{frame}
+
+
+\end{document}

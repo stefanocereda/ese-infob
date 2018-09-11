@@ -1,0 +1,215 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[handout]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+\usetheme{metropolis}
+\usepackage{forest}
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},
+	tabsize=2,
+}
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\tikzstyle{startstop} = [ellipse, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=bg, text=structure, text width=5em, text centered]
+\tikzstyle{decision} = [diamond, aspect=2, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{input} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle east arc=none]
+\tikzstyle{output} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle west arc=none]
+
+\tikzstyle{line} = [draw, -latex']
+
+
+\title{Informatica B - Esercitazione 10}
+\subtitle{Matlab - Diagrammi e ripasso}
+
+\author{Stefano Cereda\\
+		stefano1.cereda@mail.polimi.it
+	}
+\date{12/12/2017}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\linewidth]{./logopolimi}}
+%\logo{\includegraphics[width=15mm]{./logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Esercizio 1 - Caldaia}
+	In un cinema di Milano la temperatura nella sala è regolata in modo
+	automatico; un sensore monitora la temperatura rilevando un valore ogni
+	minuto. I valori letti vengono inseriti in un array temp.
+	
+	La caldaia si accende solo quando la temperatura rilevata é inferiore ad una
+	certa soglia e si spegne non appena viene raggiunta tale soglia.
+	\begin{enumerate}
+		\item  Scrivere in Matlab uno script che:
+		\begin{enumerate}
+			\item Generi in maniera random un vettore di temperature e che chieda
+			in ingresso un valore soglia ed un parametro ``costoAlMinuto''
+			indicante il costo al minuto del gas consumato dalla caldaia;
+			\item Calcoli e stampi il costo totale del gas consumato ed un vettore
+			contenenti gli indici dell’array temp corrispondenti ai minuti nei
+			quali la caldaia é rimasta accesa.
+			
+			Per il calcolo del costo totale del gas consumato si consideri che se il
+			totale dei minuti nei quali la caldaia ha funzionato supera i 30 minuti,
+			allora il costo al minuto va diminuito del 20\%.
+		\end{enumerate}
+		\item Disegnare il grafico della temperatura al variare del tempo, evidenziando
+		sul grafico stesso:
+		\begin{enumerate}
+			\item Il valore soglia con una retta orizzontale nera a doppio spessore
+			\item I minuti nei quali la caldaia ha funzionato, marcandoli con il simbolo
+			‘X’ rosso (senza congiungerli).
+		\end{enumerate}
+	\end{enumerate}
+\end{frame} 
+
+\begin{frame}[allowframebreaks, fragile]{Esercizio 2 - Roulette}
+	Nel gioco della roulette si ha una ruota raffigurante 37
+	numeri da 0 a 36. Ad ogni turno un giocatore può
+	scommettere su un numero o su particolari combinazioni
+	degli stessi. Alla fine delle puntate la ruota selezionerà il
+	numero vincente.
+	
+	\begin{enumerate}
+		\item Si scriva una funzione che simuli la ruota e generi il
+		numero vincente utilizzando la funzione \emph{rand}.
+		\item Si scriva una funzione che provi ad eseguire N giri e salvi
+		i risultati delle frequenze di ogni numero in un array di
+		37 elementi (il primo elemento per lo zero, il secondo per
+		l'uno e così via).
+		\item Si tracci il grafico delle frequenze prima utilizzando
+		\emph{rand} come generatore e poi utilizzando la funzione
+		\emph{rand\_truccata} mostrata di seguito e commentare il
+		risultato.
+		\item Qual è la probabilità di vincere se si scommette
+		sull'uscita di un numero dispari? Scrivere una funzione
+		che calcoli questa probabilità effettuando 100000
+		simulazioni di giocate.
+	\end{enumerate}
+	
+	\framebreak
+	\begin{lstlisting}
+function [n]=rand_truccata()
+	r=rand();
+	if r<0.02	
+		n=0;
+	else
+		n=rand();
+	end
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Esercizio 3 - Dado - Lasciare da fare}
+	Nel gioco dei dadi ad ogni faccia del dado è associato un
+	numero da 1 a 6.
+	
+	\begin{enumerate}
+		\item Si scriva una funzione che simuli il dado e generi il
+		numero vincente utilizzando la funzione rand.
+		\item Si scriva una funzione che provi ad eseguire N lanci e
+		salvi i risultati delle frequenze di ogni numero in un array
+		di 6 elementi (il primo elemento per l’uno, il secondo per
+		il due e così via).
+		\item Qual è la probabilità di vincere se si scommette
+		sull'uscita di un numero? Scrivere una funzione che
+		calcoli questa probabilità effettuando 100000 simulazioni
+		di lanci.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Esercizio 4 - Prova in itinere 2014}
+	Un vettore x si definisce vettore triplo di un altro vettore y quando x e
+	y sono di uguale lunghezza e ogni elemento di x è maggiore del triplo
+	del corrispondente elemento di y.
+	
+	Scrivere in Matlab/Octave una funzione \alert{ricorsiva} \emph{vettoreTriplo} che
+	riceve in ingresso due vettori \alert{colonna} \emph{a} e \emph{b}. La funzione
+	vettoreTriplo:
+	\begin{enumerate}
+		\item Restituisce -1 se \emph{a} e \emph{b} hanno lunghezza diversa, o se non sono due vettori colonna.
+		\item Restituisce 0 se \emph{a} e \emph{b} sono due vettori colonna di uguale
+		lunghezza, ma non è vero che ogni elemento di \emph{a} è maggiore
+		del triplo del corrispondente elemento di \emph{b}.
+		\item Restituisce 1 se \emph{a} e \emph{b} sono due vettori colonna di uguale
+		lunghezza e ogni elemento di \emph{a} è maggiore
+		del triplo del corrispondente elemento di \emph{b}.
+	\end{enumerate}
+
+	Esempi:
+	\begin{itemize}
+		\item vettoreTriplo ([1; 2; 3; 4], [2 5 1 10]) restituisce -1
+		\item vettoreTriplo ( [1 2 3 4; 5 3 5 5], [2; 2; 3; 9]) restituisce -1
+		\item vettoreTriplo ([7; 2; 4; 4], [2; 5; 1; 10]) restituisce 0
+		\item vettoreTriplo([7; 16; 40; 31], [2; 5; 13; 10]) restituisce 1
+	\end{itemize}
+
+	Nell’implementazione \alert{non} è consentito utilizzare cicli, e quindi \alert{non} si possono usare le istruzioni \emph{while} e \emph{for}. Inoltre, \alert{non} è possibile utilizzare alcuna funzione di libreria disponibile in Matlab/Octave ad eccezione di \emph{length} e \emph{size}.
+\end{frame}
+
+\begin{frame}[fragile]{Esercizio 5 - Paraboloide}
+	Si disegni la superficie del paraboloide iperbolico dato dalla seguente
+	equazione:
+	\begin{lstlisting}
+z=x.^2-y.^2
+	\end{lstlisting}
+
+	per valori di x e y nell'intervallo [-5,+5].\\
+	Impostare titoli ed etichette.
+\end{frame}
+
+\begin{frame}[fragile, allowframebreaks]{Esercizio 6 - Funzione misteriosa TDE 17/09/2012}
+	Si consideri la seguente funzione ricorsiva in linguaggio MATLAB:
+	\begin{lstlisting}
+function n = calcola(x)
+	if (floor(x/10) == 0)
+		n = 1;
+	else
+		n = 1 + calcola(floor(x/10));
+end
+\end{lstlisting}
+	
+	Rispondere ai seguenti quesiti.
+	\begin{enumerate}
+		\item Simulare l'esecuzione della funzione e indicare il valore restituito in corrispondenza di ciascuna delle
+		chiamate: calcola(4) e calcola(123)
+		\item 
+		Assumendo che la funzione calcola riceva come parametro un qualsiasi numero intero positivo n , dire qual
+		è il risultato dell'esecuzione di calcola(n) al variare di n. Motivare adeguatamente la risposta.
+	\end{enumerate}
+
+\alert{Nota:} assieme all'esercizio sulle fantasquadre (esercitazione 5, 10 punti) e all'esercizio sugli iban (esercitazione 8, 10 punti) questo esercizio da 6 punti completa il tema d'esame del 17 Settembre 2012.
+\end{frame}
+
+\end{document}

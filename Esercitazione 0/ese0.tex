@@ -1,0 +1,276 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[handout]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+
+\title{Informatica B - Esercitazione 0}
+\subtitle{Codifica binaria}
+
+\author{Stefano Cereda\\
+		stefano1.cereda@mail.polimi.it
+	}
+\date{26/09/2017}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\linewidth]{./logopolimi}}
+%\logo{\includegraphics[width=15mm]{./logopolimi}}
+
+%\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\section{Introduzione}
+\begin{frame}{Esercitazioni}
+\begin{itemize}[<+->]
+	\item stefano1.cereda@mail.polimi.it
+	\item Esercitazioni = esercizi simili all'esame (teoria, esempi, esercizi)
+	\item Approccio = teoria, esercitazioni, laboratorio
+	\item Partecipare
+	\item Consiglio carta e penna
+	\item Dubbi: lezione, forum, mail, appuntamento
+	\item Materiale online dopo esercitazioni
+	\item Chi programma già?	
+\end{itemize}
+\end{frame}
+
+\section{Alfabeti e codifiche}
+\begin{frame}
+\frametitle{Alfabeto}
+\begin{itemize}[<+->]
+	\item Alfabeto = insieme di simboli utilizzato (\alert{\{0,1\}} nella codifica binaria)
+	\item L'informazione viene codificata da una sequenza di simboli (detti \emph{bit} nella codifica binaria)
+	\item 8 \emph{bit} formano un \emph{byte}. I \emph{byte} vengono a loro volta raggruppati in \emph{word}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Alfabeti: numero di sequenze possibili}
+Dato un alfabeto con 2 simboli, quante possibili sequenze di lunghezza \emph{N} possiamo rappresentare?
+\pause
+
+\iffalse
+%\begin{table}[h]
+%\begin{tabular}{cc}
+%	\emph{N=2}&\\
+%	0&0\\
+%	0&1\\
+%	1&0\\
+%	1&1\\
+%\end{tabular}
+%\end{table}
+
+%\begin{table}[h]
+%\begin{tabular}{ccc}
+%	\emph{N=3}&\\
+%	0&0&0\\
+%	0&0&1\\
+%	0&1&0\\
+%	0&1&1\\
+%	1&0&0\\
+%	1&0&1\\
+%	1&1&0\\
+%	1&1&1
+%\end{tabular}
+%\end{table}
+
+\fi 
+
+Le possibili combinazioni binarie di lunghezza \emph{N} sono $M = 2^N$
+
+La lunghezza minima per rappresentare \emph{M} combinazioni è $N = \ceil{\log_2M}$ (arrotondamento per eccesso)
+\end{frame}
+
+\begin{frame}
+\frametitle{Codifica}
+\begin{itemize}[<+->]
+	\item Il calcolatore deve rappresentare diversi tipi di dati.
+	\item Codifica = \alert{regola} per mettere in corrispondenza i \emph{valori del dato} da codificare con una \emph{sequenza di simboli} dell'alfabeto.
+	\item È una regola arbitraria che deve essere nota e rispettata da chi genere e da chi utilizza le informazioni (\emph{standard}).
+	\item L'arbitrarietà consente di ottenere particolari \emph{proprietà}, decise in base all'uso che si farà delle informazioni.
+\end{itemize}
+\end{frame}
+
+\section{Codifica binaria di numeri ed enumerazioni}
+
+\subsection{Numeri naturali}
+\begin{frame}
+\frametitle{Codifica binaria di numeri naturali}
+Questa codifica (\emph{binaria pura}) è simile a quella di tutti i giorni (posizionale in base 10).
+
+\pause
+\vskip .7cm
+$N_b = a_n\cdot b^n + a_{n-1} \cdot b^{n-1} \dots a_1 \cdot p^1 + a_0 \cdot p^0 = \sum_{i=0}^n {a_i \cdot b^i}$
+
+\pause\vskip .5cm
+$1234_{10} = 1\cdot10^3 + 2\cdot10^2 + 3\cdot10^1 + 4\cdot10^0 = 1234_{10}$
+\pause\vskip.3cm
+$1010_{2} = 1\cdot2^3 + 0\cdot2^2 + 1\cdot2^1 + 0\cdot2^0 = 10_{10}$
+\pause\vskip.3cm
+$147_8 = 1\cdot8^2 + 4\cdot8^1 + 7\cdot8^0 = 103_{10}$
+\pause\vskip.3cm
+$B2A_{16} = 11\cdot16^2 + 2\cdot16^1 + 10\cdot16^0 = 2858_{10} $
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Conversione da decimale a binario}
+Per convertire un numero decimale in binario puro, si utilizza il metodo delle \alert{divisioni successive}. Si divide ripetutamente il numero per 2 fino ad arrivare a zero. La codifica binaria è data dai resti delle divisioni (letti al contrario).
+
+\begin{table}[h]
+	\begin{tabular}{c|c}
+		123 & 1 \\
+		61  & 1 \\
+		30  & 0 \\
+		15  & 1 \\
+		7   & 1 \\
+		3   & 1 \\
+		1	& 1	\\
+		0   &  \\
+	\end{tabular}
+\end{table}
+$123_{10} = 1111011_2$
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizi conversioni decimale-binario}
+Da fare:
+
+$78_{10} = ?_{2}$
+
+$135_{10} = ?_{2}$
+
+$296_{10} = ?_{2}$
+
+$17_{10} = 1000?_{2}$
+
+$16_{10} = 1000?_{2}$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizi conversioni decimale-binario}
+Risolti:
+
+$78_{10} = 1001110_{2} = 1*2+1*4+1*8+1*64 = 78_{10}$
+
+$135_{10} = 10000111_{2} = 1+2+4+128 = 135_{10}$
+
+$296_{10} = 100101000_{2} = 8+32+256 = 296_{10}$
+
+$17_{10} = 10001_{2}$
+
+$16_{10} = 10000_{2}$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Operazioni aritmetiche in binario puro}
+\begin{table}[h]
+	\begin{tabular}{c|c}
+		0+0 & =0 \\
+		0+1 & =1 \\
+		1+0 & =1 \\
+		1+1 & =0 con riporto di 1
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\begin{tabular}{c|c}
+		0-0 & =0 \\
+		1-0 & =1 \\
+		1-1 & =0 \\
+		0-1 & =1 con prestito di 1
+	\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Somme, riporti, overflow e padding}
+\begin{itemize}
+	\item 10 + 01 = 11
+	\item 01 + 01 = 10
+	\item 11 + 01 = 00 con overflow
+	\item 011 + 01 $\rightarrow$ 011 + 001 = 100
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Esercizi somma}
+Da fare:
+
+1010 + 0011 = ?
+
+1011 + 0001 = ?
+
+1011 + 1001 = ?
+
+0100 + 111 = ?
+\end{frame}
+
+\begin{frame}{Esercizi somma}
+Fatti:
+
+1010 + 0011 = 1101 (10+3=13)
+
+1011 + 0001 = 1100 (11+1=12)
+
+1011 + 1001 = 0100 con overflow (11+10=8 ovf)
+
+0100 + 111 = 1011 (4+7=11)
+\end{frame}
+
+
+\subsection{Enumerazioni}
+\begin{frame}
+\frametitle{Rappresentazione di enumerazioni}
+Tramite una opportuna codifica possiamo rappresentare delle enumerazioni tramite cifre binarie.
+\pause
+
+Ad esempio, consideriamo l'insieme dei giorni della settimana. Dati $M=7$ valori distinti da rappresentare, abbiamo bisogno di $N=\ceil{\log_2 7}=\ceil{2.83}=3$ bit. 
+\pause
+
+\begin{table}[h]
+	\begin{tabular}{cccc}
+		lun&0&0&0\\
+		mar&0&0&1\\
+		mer&0&1&0\\
+		gio&0&1&1\\
+		ven&1&0&0\\
+		sab&1&0&1\\
+		dom&1&1&0
+	\end{tabular}
+\end{table}
+
+Rimane una sequenza non utilizzata (111).
+\end{frame}
+
+\begin{frame}
+\frametitle{ASCII}
+Una delle codifiche per enumerazione più importanti è quella ASCII.
+
+\href{https://it.wikipedia.org/wiki/ASCII}{https://it.wikipedia.org/wiki/ASCII} (notare la colonna CEC)
+
+\begin{itemize}
+	\item 128 caratteri (256 ASCII esteso)
+	\item Caratteri di \emph{comando}, \emph{alfanumerici} e \emph{simboli}
+	\item Proprietà interessanti
+\end{itemize}
+
+\end{frame}
+
+\subsection{Numeri interi}
+\begin{frame}
+\frametitle{Numeri interi}
+Settimana prossima!
+\end{frame}
+
+\end{document}

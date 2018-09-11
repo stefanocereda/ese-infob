@@ -1,0 +1,168 @@
+% !TeX spellcheck = it_IT
+
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+\usetheme{metropolis}
+
+\usepackage{listings}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\tikzstyle{startstop} = [ellipse, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=bg, text=structure, text width=5em, text centered]
+\tikzstyle{decision} = [diamond, aspect=2, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{input} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle east arc=none]
+\tikzstyle{output} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle west arc=none]
+
+\tikzstyle{line} = [draw, -latex']
+
+
+\title{Informatica B - Esercitazione 2}
+\subtitle{Introduzione al C e costrutto while}
+
+\author{Stefano Cereda\\
+		stefano1.cereda@mail.polimi.it
+	}
+\date{10/10/2017}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\linewidth]{./logopolimi}}
+%\logo{\includegraphics[width=15mm]{./logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Indice}
+\tableofcontents
+\end{frame}
+
+\section{Introduzione al C}
+\begin{frame}
+\frametitle{Esercizio 1 - Calcolatrice}
+Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi ed un operatore matematico, stampi il risultato dell'operazione. Le operazioni da supportare sono: addizione, sottrazione, divisione, moltiplicazione e resto della divisione. Se l'utente inserisce un'operazione non supportata stampare un errore.
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizio 2 - Statistiche}
+Scrivere un programma che legga da tastiera 5 numeri e stampi a video il maggiore, la media, e la radice quadrata della somma.
+
+Per calcolare la radice quadrata si utilizzi la funzione \emph{sqrt} definita in \emph{math.h} (se utilizzate gcc aggiungete l'opzione \texttt{-lm})
+
+Successivamente, si ripeta l'esercizio utilizzando il costrutto while.
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizio 3 - Equazioni di secondo grado}
+Scrivere un programma che, ricevuti tre numeri reali \emph{a,b,c}, calcoli e visualizzi le eventuali radici dell'equazione di secondo grado $a x^2 + b x +c = 0$
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Esercizio 4 - Espressioni logiche}
+\tiny
+\alert{Tratto dal tema d'esame del 18/11/2008}
+Si dica se le espressioni di seguito sono vere o false. Si dica inoltre se le espressioni sono sempre vere o sempre false nel caso in cui le variabili fossero inizializzate diversamente.
+
+\begin{lstlisting}[basicstyle=\tiny]
+void main()
+{
+int x=8,y=11;
+char z='t';
+// ESPRESSIONE 1
+if ((y<7 && x>8) && (z>'a' || z<'z' ))
+	printf("Espressione 1 vera\n");
+else
+	printf("Espressione 1 falsa\n");
+// ESPRESSIONE 2
+if ((-y==y) && (y >= 0))
+	printf("Espressione 2 vera\n");
+else
+	printf("Espressione 2 falsa\n");
+// ESPRESSIONE 3
+if ((y>=10 || x<7) && (z=='c'))
+{
+	printf("Espressione 3 vera\n");
+	// ESPRESSIONE 4
+	if ((y>=10 || x<7) && (z<'c'))
+		printf("Espressione 4 vera\n");
+	else
+		printf("Espressione 4 falsa\n");
+	}
+	else
+		printf("Espressione 3 falsa\n");
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizio 4 - Soluzione}
+\begin{enumerate}
+\item L'espressione è falsa per i valori dati a causa del valore di \emph{x}. Sarebbe però vera per \emph{x=9}, quindi non è sempre falsa.
+
+\item L'espressione è falsa per i valori dati, ma sarebbe vera per \emph{y=0}.
+
+\item L'espressione è falsa per i valori dati, ma sarebbe vera per \emph{x=6, z='c'}.
+
+\item L'espressione 4, considerata l'espressione 3, sarà sempre falsa a causa di \emph{z}.
+\end{enumerate}
+\end{frame}
+
+
+\iffalse
+\begin{frame}
+\frametitle{Esercizio 6 - Simulazione codice}
+Dire cosa stampa il seguente codice:
+
+TODO: LE ENUM NON LE HANNO ANCORA FATTE
+%#include<stdio.h>
+%const enum Alpha{
+%	X,
+%	Y=5,
+%	Z
+%}p=10;
+%int main(){
+%	enum Alpha a,b;
+%	a= X;
+%	b= Z;
+%	printf("%d",a+b-p);
+%	return 0;
+%}
+\end{frame}
+\fi
+
+
+\section{Costrutto while}
+\begin{frame}
+\frametitle{Esercizio 5 - Media di n numeri}
+Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad ogni numero inserito il programma calcola e stampa la media dell'intera sequenza. La sequenza termina quando viene inserito un numero negativo.
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizio 6 - Sottrazione ripetuta}
+Si scriva un programma che legga da tastiera un numero intero \emph{n}, lo riduca ad un valore compreso fra 0 e 127 \emph{mediante sottrazione ripetuta} del valore 128, lo interpreti come carattere ASCII e lo stampi a video.
+\end{frame}
+
+\iffalse
+\begin{frame}
+\frametitle{Esercizio 7 - Maiuscolo}
+
+Scrivere un programma che legga una sequenza di caratteri terminata da '0' e trasformi tutte le lettere alfabetiche minuscole nelle corrispondenti lettere maiuscole.
+
+Si ricordi che la codifica ASCII mette in corrispondenza i caratteri con dei numeri.
+\end{frame}
+\fi
+
+\section{Array}
+\begin{frame}{Esercizio 7 - Copia Array}
+Scrivere un programma che, ricevuto un array A di interi (con lunghezza nota N), lo copi in valore assoluto in un nuovo array B.
+
+\end{frame}
+\end{document}

@@ -1,0 +1,311 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[handout]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+\usetheme{metropolis}
+\usepackage{forest}
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\lstset{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},
+	tabsize=2,
+}
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+
+\tikzstyle{startstop} = [ellipse, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=bg, text=structure, text width=5em, text centered]
+\tikzstyle{decision} = [diamond, aspect=2, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
+\tikzstyle{input} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle east arc=none]
+\tikzstyle{output} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle west arc=none]
+
+\tikzstyle{line} = [draw, -latex']
+
+
+\title{Informatica B - Esercitazione 11}
+\subtitle{Riepilogo}
+
+\author{Stefano Cereda\\
+		stefano1.cereda@mail.polimi.it
+	}
+\date{19/12/2017}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\linewidth]{./logopolimi}}
+%\logo{\includegraphics[width=15mm]{./logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Binario - TdE 26 Giugno 2017}
+	Si  dica  e  si  motivi  qual  è  il  minimo  numero  di  bit  che  permette  di  rappresentare  in  
+	complemento  a  due  (CP2)  tutti  i  numeri  seguenti:  
+	\begin{enumerate}
+	\item A  =  +  255  
+	\item B  =  -­  42  
+	\item C  =  +  7  
+	\item D  =  -­  257  
+\end{enumerate}
+
+	\framebreak
+	Se  si  volessero  eseguire  tutte  le  possibili  somme  e  sottrazioni  tra  le  coppie  di  numeri  A,  B,  
+	C,  D,  qual  è  il  minimo  numero  di  bit  in  cui  dovrebbero  essere  rappresentati  i  numeri?  Si  
+	motivi  la  risposta
+
+	Si  calcoli  il  risultato  dell’operazione  7  -­  255  utilizzando  la  rappresentazione  in  CP2  con  il  
+	numero  di  bit  stabilito  nel  punto  (a).  Si  mostrino  tutti  i  passaggi  eseguiti  e  si  indichino  i  bit  di  
+	carry  e  di  overflow.
+	
+	\framebreak
+	Scrivere  una  funzione  Matlab  controllaCP2  che  prende  in  ingresso  una  stringa  (ad  
+	esempio ‘0101001’)  corrispondente  ad  un  numero  codificato  in  CP2  e  restituisce  due  
+	valori: 
+	\begin{enumerate}
+		\item par  che  vale  true  se  il  numero  è  pari  e  false  altrimenti  
+		\item    pos  che  vale  true  se  il  numero  è  positivo  e  false  altrimenti  
+	\end{enumerate}
+	(L’esecuzione  della  funzione  nel  caso  dell’esempio  darebbe  par = false  e  pos =
+	true)
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{Binario - TdE 26 Giugno 2017 - Soluzione}
+	In CP2 con $n$ bit posso rappresentare da $-2^{n-1}$ a $2^{n-1}-1$.
+	
+	Dato un numero negativo $x$ mi serviranno dunque $n = \log_2{-x}+1$ bit per rappresentarlo e dato un numero positivo $y$ me ne serviranno $n = \log_2(y+1)+1$
+	
+	Le potenze di 2 sono: 1 2 4 8 16 32 64 128 256 512 ...
+	
+	I due numeri che devo controllare sono A e D:
+	\begin{itemize}
+		\item A=255 $\rightarrow$ $n_A = \log_2{256}+1 = 9$
+		\item D=-257 $\rightarrow$ $n_B = \log_2{257}+1 = 10$
+	\end{itemize}
+
+	Dunque mi servono \alert{10 bit} per rappresentare tutti i valori.
+	
+	\framebreak
+	
+	Le operazioni che possono dare problemi sono le sottrazioni che coinvolgono A e D. In particolare, A-D darà un numero positivo, mentre D-A darà un numero negativo. Le due operazioni avranno risultato uguale in valore assoluto. Dato che con $n$ bit posso rappresentare da $-2^{n-1}$ a $2^{n-1}\alert{-1}$ controllo solo A-D che dando un risultato positivo è l'operazione più problematica a causa del \alert{-1}.
+	
+	$A-D=255-(-257) = 255+257 = 256+256 = 512 = 2^9$ e per rappresentarlo mi servono $n = \log_2(2^9+1)+1 = 10+1 = 11$.
+	
+	Mi servono dunque 11 bit per eseguire tutte le possibili somme e sottrazioni.
+	
+	\framebreak
+	
+	Converto +7 in CPL2. Inizio a convertirlo in base 2:
+	\begin{tabular}{c|c}
+		7 & 1\\
+		3 & 1\\
+		1 & 1\\
+		0 & 
+	\end{tabular}\\
+	La rappresentazione è dunque 111. Essendo un numero positivo la notazione in CPL2 è 0111. Dovendo usare 10 bit aggiungo degli zeri a sinistra: 0000000111
+
+	\framebreak
+	Inizio a convertire +255 in base 2:
+	\begin{tabular}{c|c}
+		255 & 1\\
+		127 & 1\\
+		63 & 1\\
+		31 & 1\\
+		15 & 1\\
+		7 & 1\\
+		3 & 1\\
+		1 & 1\\
+		0 & 
+	\end{tabular}\\
+\small
+	La rappresentazione di +255 è dunque 11111111. Aggiungo uno 0 a sinistra per avere la rappresentazione in CPL2: 011111111. Noi siamo interessati a -255, dunque copiamo da sx verso dx fino al primo 1 compreso, poi complementiamo: 100000001 e aggiungiamo degli 1 a sinistra per ottenere 10 bit: 1100000001
+	
+	\framebreak
+	
+	\begin{tabular}{cc|c}
+		7			& 0000000111 & + \\
+	    -255		& 1100000001 & = \\
+		riporti		& \ \ \ \ \ \ \ \ 111\ &  \\
+		\hline
+		risultato	& 1100001000 &  \\
+	\end{tabular}
+
+	Operandi discordi non possono dare overflow.
+	
+	Controllo il risultato: 1100001000 è negativo, l'opposto è 0011111000, che vale $8+16+32+64+128 = 248 \rightarrow -248 = -255+7$
+	
+	\framebreak
+	
+	La funzione matlab deve semplicemente controllare il bit a sinistra per sapere se il numero è positivo, ed il bit a destra per sapere se è pari (ragionate sul perché un numero positivo pari mantiene il primo bit=0 quando passo al negativo).
+	\begin{lstlisting}
+function [par, pos] = controllaCP2(stringa)
+	if stringa(1) == '0'
+		pos = true;
+	else
+		pos = false;
+	end
+	% versione equivalente:
+	% pos = stringa(1) == '0';
+	
+	par = stringa(end) == '0';
+end
+\end{lstlisting}
+	
+
+\end{frame}
+
+\begin{frame}{Binario}
+	Si considerino $A_{10} = +77$ e $B_{CPL2} = 101110$ (già in complemento a 2). Li si rappresenti entrambi in base 2 notazione complemento a 2, sul numero \alert{minimo} di bit per rappresentare \alert{entrambi} gli operandi. Si effettuino quindi, sul numero di bit prima individuato, le
+	operazioni A+B e A–B in complemento a 2, indicando se si verifica overflow oppure no.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Binario - soluzione}
+	\begin{tabular}{c|c}
+		77 & 1\\
+		38 & 0\\
+		19 & 1\\
+		9 & 1\\
+		4 & 0\\
+		2 & 0\\
+		1 & 1\\
+		0 &
+	\end{tabular}
+	$77_{10} = 1001101_2 = 01001101_{CPL2}$
+	
+	Ho rappresentato $A$ con 8 bit, devo aggiungere 2 bit a B. Essendo B negativo (inizia con 1) aggiungo degli 1: $B=11101110_{CPL2}$
+	
+	Noto anche che B vale -18, in quanto: $-B=010010_2=16+2=18_{10}$
+	
+	\framebreak
+	Eseguo A+B
+	
+	\begin{tabular}{cc|c}
+		A			& 01001101 & + \\
+		B			& 11101110 & = \\
+		\hline
+		risultato	&\hspace{-0.5cm}(1)00111011 &  \\
+	\end{tabular}
+
+	Ignoro il riporto. Il risultato è 00111011. Operandi discordi non possono dare overflow.
+	$00111011 = 1+2+8+16+32=59=77-18$
+	
+	\framebreak
+	
+	Eseguo A-B = A+(-B).\\
+	$-B = 00010010_{CPL2}$
+	
+	\begin{tabular}{cc|c}
+		A			& 01001101 & + \\
+		-B			& 00010010 & = \\
+		\hline
+		risultato	& 01011111 &  \\
+	\end{tabular}
+	
+	Operandi concordi hanno dato un risultato ad essi concorde, quindi non si è verificato overflow.
+	
+	$01011111 = 1+2+4+8+16+64=95=75-(-18)$
+	
+\end{frame}
+
+
+\begin{frame}{C - Struct}
+	Vedi esercizio 2 TdE 26 Giugno 2017
+	
+	La difficoltà dell'esercizio è più nella comprensione del testo che nella sua risoluzione, abbiamo visto come affrontandolo un punto alla volta sia di facile risoluzione.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{C -Struct e Array}
+Un supermercato ha memorizzato il proprio archivio di scontrini nell'array \emph{archivio}, in cui ogni è una struttura dati di tipo \emph{scontrino} con le  seguenti informazioni:
+\begin{itemize}
+	\item IDcliente: stringa di 10 caratteri che identifica univocamente il cliente
+	\item totale: totale della spesa in Euro
+	\item punti: punti premio associati alla spesa
+\end{itemize}
+Ad ogni spesa, vengono assegnati ad ogni cliente un quantitativo di punti premio pari alla somma dei punti raccolti più un ulteriore punto premio per ogni 10 euro spesi.
+
+\begin{enumerate}
+\item  Definire il tipo $scontrino$ e l'array $archivio$
+\item Scrivere il frammento di codice C che, dato il codice identificativo di un cliente, calcoli la somma dei suoi punti premio.
+\item Scrivere il frammento di codice C che ordina l'array \emph{archivio} secondo il totale della spesa in ordine decrescente.
+\end{enumerate}
+Nota: Si faccia attenzione al fatto che un cliente può comparire in più di uno scontrino.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Matlab - Ricorsione}
+	Un metodo per calcolare il valore approssimato della radice quadrata di un
+	numero reale non negativo z, detto metodo babilonese, utilizza la seguente
+	relazione ricorsiva:
+	\[x(n) = \frac{1}{2}(x(n-1)+\frac{z}{x(n-1)})\]
+	\[x(0)=1\]
+	
+	Dove $n$ è un intero non-negativo arbitrario, mentre $x(n)$ rappresenta un'approssimazione della radice quadrata del numero $z$. Per esempio, se $z$ è pari a 2 e $n$ è pari a 3 il valore di $x(n)$ ottenuto applicando la formula indicata sopra è 1.4142 (che è una buona approssimazione della radice di 2).
+	
+	\framebreak
+	
+	L'errore di approssimazione associato a $x(n)$ è definito come segue:
+	\[errore(n) = | x(n) - x(n-1)|\]
+	e decresce al crescere di $n$. Per esempio, se si calcola la radice di 2 con $n$ pari a 1 si ottiene il valore 1.5000 con errore 0.5000. Se invece si calcola la radice dello stesso valore con $n$ pari a 2 si ottiene il valore 1.4167 con errore 0.0833.
+	
+	\framebreak
+	
+	\begin{enumerate}
+		\item Si scriva una funzione ricorsiva \emph{sqrt1(z,n)} per MATLAB/Octave che
+		restituisca un'approssimazione della radice quadrata di $z$ e il relativo errore utilizzando il metodo babilonese. Quando $n$ è pari a zero, si assuma un valore dell’errore pari a inf.
+		\item Si scriva una funzione \emph{sqrt2(z,err)} per MATLAB/Octave che, utilizzando la funzione \emph{sqrt1}, restituisca un valore approssimato della radice quadrata di $z$ con errore non superiore al valore $err$ fornito come parametro.
+	\end{enumerate}
+	
+	Nella soluzione di entrambi i quesiti non è permesso utilizzare alcuna funzione di
+	libreria di MATLAB/Octave a parte la funzione \emph{abs(x)} per il calcolo del valore
+	assoluto di x.
+\end{frame}
+
+\begin{frame}{Matlab - Grafici}
+	Scrivere una funzione Octave con parametri $a$, $b$ e $p$ che esegue le seguenti operazioni:
+	\begin{enumerate}
+	\item  calcola i valori $\cos(x^2)$ per valori di x compresi fra a e b, con passo p, e li memorizza in un vettore y
+	\item visualizza su un grafico l'andamento di y;
+	\item restituisce al chiamante il massimo valore di $\cos(x^2)$ per $a \leq x \leq b$ ed il valore di x corrispondente. Per effettuare il
+	calcolo in questione si può utilizzare la funzione max che, quando prende come parametro un vettore, restituisce due
+	valori di cui il primo è il valore massimo trovato nel vettore ed il secondo è l’indice della posizione del vettore in cui tale
+	valore è contenuto.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Matlab - Scomposizione in fattori}
+	Scrivere una funzione che scomponga in fattori primi un numero.
+	Il risultato dovrà composto da due vettori: il primo conterrà le basi dei fattori, il secondo conterrà gli esponenti dei fattori, cioè quante volte essi sono ripetuti.
+	
+	Esempio: il numero 100 è uguale a $2^2 * 5^2$, per cui il vettore delle basi sarà [2 5] mentre quello degli esponenti corrispondenti sarà [2 2].
+	
+	Un modo semplice per fattorizzare un numero consiste nel dividerlo ripetutamente per tutti i numeri che gli sono inferiori fino ad ottenere 1. 
+\end{frame}
+
+\end{document}
