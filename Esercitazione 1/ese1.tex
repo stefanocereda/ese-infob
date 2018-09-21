@@ -114,10 +114,14 @@
 	\frametitle{Esempio 1 - Soluzione in pseudocodice}
 	\begin{enumerate}
 		\item Leggo due numeri \emph{a} e \emph{b}
-		\item Se \emph{a} è minore di \emph{b} vai a 3, altrimenti vai a 5
-		\item Stampa su schermo \emph{a} e \emph{b}
-		\item Vai a 6
-		\item Stampa su schermo \emph{b} e \emph{a}
+		\item Se \emph{a} è minore di \emph{b}:
+		\begin{enumerate}
+			\item Stampa su schermo \emph{a} e \emph{b}
+		\end{enumerate}
+		\item Altrimenti:
+		\begin{enumerate}
+			\item Stampa su schermo \emph{b} e \emph{a}
+		\end{enumerate}
 		\item Fine
 	\end{enumerate}
 \end{frame}
@@ -158,7 +162,7 @@
 \frametitle{Esercizio 1 - Soluzione in pseudocodice}
 \begin{enumerate}
 	\item Leggo due numeri \emph{a} e \emph{b}
-	\item Se \emph{b} è uguale a zero vado a 6
+	\item Se \emph{b} è uguale a zero termino
 	\item Assegno a \emph{div} il risultato della divisione intera tra \emph{a} e \emph{b}
 	\item Assegno a \emph{mod} il resto della divisione intera tra \emph{a} e \emph{b}
 	\item Stampo su schermo \emph{div} e \emph{mod}
@@ -262,6 +266,8 @@ TODO: ma qui non conviene fare un esempio di conversione binaria?
 
 \begin{frame}
 \frametitle{Esercizio 2 - Conversione in binario}
+\alert{Da fare dopo aver visto il binario.}
+
 Scrivere un programma che, ricevuto in ingresso un numero positivo \emph{n}, lo stampi in binario. Si utilizzi il metodo delle divisioni ripetute.
 
 Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltre il risultato in ordine inverso.
@@ -293,10 +299,11 @@ Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltr
 \frametitle{Esercizio 2 - soluzione in pseudocodice}
 \begin{enumerate}
 	\item Leggi \emph{n}
-	\item Se n è inferiore o uguale a zero vai a 6
-	\item Stampa il resto della divisione n/2
-	\item Assegna ad \emph{n} la parte intera della divisione n/2
-	\item Vai a 2
+	\item Ripeti finché n è maggiore di 0:
+	\begin{enumerate}
+		\item Stampa il resto della divisione n/2
+		\item Assegna ad \emph{n} la parte intera della divisione n/2
+	\end{enumerate}
 	\item Fine
 \end{enumerate}
 \end{frame}
@@ -344,10 +351,11 @@ Si ricorda che il fattoriale di \emph{n} è definito come il prodotto di tutti i
 	\item Leggi \emph{n}
 	\item Assegna 1 alla variabile \emph{i}
 	\item Assegna 1 alla variabile \emph{ris}
-	\item Se $i \geq n$ vai a 8
-	\item Incrementa \emph{i} di 1
-	\item Assegna a \emph{ris} il risultato di $ris \cdot i$
-	\item Vai a 4
+	\item Ripeti finché $i < n$:
+	\begin{enumerate}
+		\item Incrementa \emph{i} di 1
+		\item Assegna a \emph{ris} il risultato di $ris \cdot i$
+	\end{enumerate}
 	\item Stampa il valore di \emph{ris}
 	\item Fine
 \end{enumerate}
@@ -400,9 +408,12 @@ Si ricorda che il minimo comune multiplo è definito come il più piccolo intero
 \begin{enumerate}
 	\item Leggi \emph{a} e \emph{b}
 	\item Inizializza \emph{mulA} e \emph{mulB} rispettivamente con \emph{a} e \emph{b}
-	\item Se \emph{mulA} è uguale a \emph{mulB} stampali ed esci
-	\item Incrementa il minore fra \emph{mulA} e \emph{mulB} del rispettivo valore (\emph{a} o \emph{b})
-	\item Vai a 3
+	\item Ripeti finché $mulA != mulB$:
+	\begin{enumerate}
+		\item Incrementa il minore fra \emph{mulA} e \emph{mulB} del rispettivo valore (\emph{a} o \emph{b})
+	\end{enumerate}
+	\item Stampa $mulA, mulB$
+	\item Fine
 \end{enumerate}
 \end{frame}
 
@@ -418,10 +429,14 @@ Si assuma che $n$ sia sempre un numero positivo maggiore di 1.
 Cerchiamo un divisore di \emph{n}:
 \begin{enumerate}
 	\item Leggi \emph{n}
+	\item Supponi che $n$ sia primo
 	\item Inizializza \emph{d} a 2
-	\item Se \emph{d} è maggiore di \emph{n} il numero è primo ed esci
-	\item Se \emph{d} è divisore di \emph{n} il numero non è primo ed esci
-	\item Incrementa {d} di 1 e vai a 3
+	\item Ripeti finché $d < n$:
+	\begin{enumerate}
+		\item Se \emph{d} è	divisore di \emph{n} il numero non è primo
+		\item Incrementa {d} di 1
+	\end{enumerate}
+	\item Fine	
 \end{enumerate}
 Tip: non è necessario controllare fino ad \emph{n}
 \end{frame}
