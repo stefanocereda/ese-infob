@@ -1,0 +1,13 @@
+*.ycm_extra_conf.py
+*.dvi
+*.vrb
+*.pdf
+*.zip
+*.out
+*.aux
+*.idx
+*.log
+*.nav
+*.snm
+*.gz
+*.toc
