@@ -9,7 +9,7 @@ void main(){
 
     if (b != 0){
         /* Il simbolo / ritorna la parte intera della divisione (quando usato fra interi)
-         * ritorna il resto */
+         * % ritorna il resto */
         printf("Div e mod sono: %d %d\n", a/b, a%b);
     }
 }
