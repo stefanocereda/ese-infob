@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[handout]{beamer}
+\documentclass[]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -578,14 +578,99 @@ Un anno è bisestile quando è multiplo di 4. Se è multiplo di 100 non è bises
 }}
 \end{frame}
 
-\begin{frame}
-\frametitle{Esercizio 7 - Ricerca per bisezione}
-Risolvere, solo in pseudocodice, il problema posto a lezione (ricerca efficiente in una sequenza ordinata di elementi).
+\begin{frame}[allowframebreaks]
+\frametitle{Esercizio 7 - Linguaggio macchina - TdE 23/11/2016}
+Si consideri il seguente frammento di programma scritto in un linguaggio macchina.
+All'interno di ciascuna cella di memoria c'è un'istruzione il cui significato è riportato a destra.
+L'indirizzo di ciascuna cella è riportato a sinistra. 
 
-Idee???
+\includegraphics[width=0.6\linewidth]{./codice_macchina}
+\pause
+
+Si risponda alle seguenti domande:
+\begin{enumerate}
+\item Si descriva il comportamento dell'unità di elaborazione durante l'esecuzione dell'istruzione che si trova nella cella di indirizzo 0101.
+\item Si costruisca lo schema a blocchi (anche chiamato diagramma di flusso) corrispondente al programma riportato sopra.
+\item Si scriva un programma in linguaggio C che sia equivalente a quello dato.
+\end{enumerate}
 \end{frame}
 
-\begin{frame}{Esercizio 7 - Soluzione in pseudocodice}
+\begin{frame}
+\frametitle{Esercizio 7 - Soluzione 1}
+All'inizio dell'esecuzione dell'istruzione, il PC contiene il valore 0101.
+
+Nella fase di fetch l'unità di elaborazione acquisisce dalla memoria l'istruzione che si trova in questa cella di memoria e la copia nel Current Instruction Register (CIR). Il PC assume valore 0110.
+
+Nella fase di interpretazione l'unità di controllo riconosce l'istruzione.
+
+Nella fase di esecuzione l'unità di elaborazione verifica se il valore contenuto nel registro A è pari a 0. In caso affermativo, il valore del PC viene posto al valore dell'operando dell'istruzione e diventa quindi pari a 0000. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizio 7 - Soluzione 2}
+\centering
+\makebox[\textwidth]{\resizebox{.8\linewidth}{!}{
+		\begin{tikzpicture}[auto]
+		\node [startstop] (start) {Inizio};
+		\node [input, below = of start] (i0000) {X};
+		\node [input, below = of i0000] (i0001) {Y};
+		\node [block, below = of i0001] (i0010) {regA = Y};
+		\node [decision, below = of i0010] (i0011) {regA == 0};
+		\node [block, right = of i0011] (i0100) {regA = X};
+		\node [decision, below = of i0100] (i0111) {regA == 0};
+		\node [output, right = of i0111] (i1000) {X, Y};
+		\node [startstop, below = of i1000] (stop) {Fine};
+		
+		\path [line] (start) -- (i0000);
+		\path [line] (i0000) -- (i0001);
+		\path [line] (i0001) -- (i0010);
+		\path [line] (i0010) -- (i0011);
+		
+		\path [line] (i0011) -- +(-2,0) |- (i0000) node [near start] {true};
+		\path [line] (i0011) -- (i0100) node [near start] {false};
+		
+		\path [line] (i0100) -- (i0111);
+		\path [line] (i0111) -- +(-7,0) |- (i0000) node [near start] {true};
+		\path [line] (i0111) -- (i1000) node [near start] {false};
+		\path [line] (i1000) -- (stop);
+		\end{tikzpicture}
+	}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Esercizio 8 - Moltiplicazione per somme ripetute con numeri negativi}
+Scrivere lo pseudocodice per eseguire la moltiplicazione di numeri negativi tramite somme ripetute.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Esercizio 8 - Ricerca per bisezione}
+\begin{enumerate}
+	\item Leggi $op1$ e $op2$
+	\item Se $abs(op1) \leq abs(op2)$:
+	\begin{enumerate}
+		\item $num=abs(op2), min=abs(op1)$
+		\item Altrimenti: $num=abs(op1), min=abs(op2)$
+	\end{enumerate}
+	
+	\item Se $(op1 < 0 \wedge op2 \geq 0) \vee (op1 \geq 0 \wedge op2 < 0)$:
+	\begin{enumerate}%
+		\item $num = -num$
+	\end{enumerate}
+
+	\item $ris = 0$
+	\item Ripeti finché $min > 0$:
+	\begin{enumerate}
+		\item $ris = ris + num$
+		\item $min = min - 1$
+	\end{enumerate}
+	\item Stampa $ris$ e termina
+\end{enumerate}
+\end{frame}
+
+\iffalse
+
+\begin{frame}{Esercizio 9 - Soluzione in pseudocodice}
 \begin{enumerate}
 	\item Ricevo una sequenza \emph{s} di lunghezza \emph{l} e l'elemento cercato $c$
 	\item Se $l == 1$ controllo l'unico elemento della lista $e$:
@@ -600,14 +685,13 @@ Idee???
 		\item Altrimenti torno ad 1 utilizzando la seconda metà di $s$ (incluso $e$) come nuova sequenza
 	\end{enumerate}
 \end{enumerate}
-
-Posso aggiungere una condizione 3.4 che controlla direttamente se $e == c$
-
+Posso aggiungere una condizione 3.4 che controlla direttamente se $e == c$.
 Se la stringa è di lunghezza pari posso prendere l'elemento immediatamente successivo (o precedente) alla metà esatta.
 \end{frame}
 
 \begin{frame}{Introduzione al C}
-Risolvere in C l'esempio 1 e gli esercizi 1 e 6.
+Risolvere in C i precedenti esercizi.
 \end{frame}
 
+\fi
 \end{document}
