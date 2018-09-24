@@ -13,8 +13,8 @@
 \tikzstyle{startstop} = [ellipse, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
 \tikzstyle{block} = [rectangle, draw, fill=bg, text=structure, text width=5em, text centered]
 \tikzstyle{decision} = [diamond, aspect=3, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
-\tikzstyle{input} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle east arc=none]
-\tikzstyle{output} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle west arc=none]
+\tikzstyle{input} = [trapezium, draw, fill=bg, text=structure, text width=5em, text centered, trapezium right angle=120]
+\tikzstyle{output} = [trapezium, draw, fill=bg, text=structure, text width=5em, text centered, trapezium right angle=120]
 
 \tikzstyle{line} = [draw, -latex']
 
@@ -54,17 +54,19 @@
 	\begin{tikzpicture}[node distance = 1cm, auto]
 		\node [startstop] (start) {Inizio};
 		\node [input, below = of start] (in) {Leggi};
+		\node [inner sep=0pt, right = 5.5 of in] (imgIN) {\includegraphics[width=.15\textwidth]{blocco_in}};
 		\node [block, below = of in] (increment) {Fai};
 		\node [decision, below = of increment] (decision) {?};
 		\node [output, below left = of decision] (outpos) {Scrivi};
 		\node [output, below right = of decision] (outneg) {Scrivi};
+		\node [inner sep=0pt, below = 3.5 of imgIN] (imgOUT) {\includegraphics[width=.15\textwidth]{blocco_out}};
 		\node [startstop, below = 1.5 of decision] (stop) {Fine};
 		
 		\path [line] (start) -- (in);
 		\path [line] (in) -- (increment);
 		\path [line] (increment) -- (decision);
-		\path [line] (decision) -| node [near start] {vero} (outpos);
-		\path [line] (decision) -| node [near start] {falso} (outneg);
+		\path [line] (decision) -| node [near end] {vero} (outpos);
+		\path [line] (decision) -| node [near end] {falso} (outneg);
 		\path [line] (outpos) -- (stop);
 		\path [line] (outneg) -- (stop);
 		
@@ -274,7 +276,7 @@ Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltr
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 2 - soluzione con schema a blocchi}
+\frametitle{Esercizio 2 - Soluzione con schema a blocchi}
 \centering
 \begin{tikzpicture}[node distance = 1cm, auto]
 \node [startstop] (start) {Inizio};
@@ -290,13 +292,13 @@ Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltr
 \path [line] (input) -- (while);
 \path [line] (while) -| (out) node[near start] {true};
 \path [line] (out) -- (divide);
-\path [line] (divide) -- +(-2,0) -| (while);
+\path [line] (divide) -| (while);
 \path [line] (while) -- +(-2,0) node[near start] {false} |- (stop);
 \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 2 - soluzione in pseudocodice}
+\frametitle{Esercizio 2 - Soluzione in pseudocodice}
 \begin{enumerate}
 	\item Leggi \emph{n}
 	\item Ripeti finché n è maggiore di 0:
@@ -309,7 +311,7 @@ Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltr
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 3 - calcolo del fattoriale}
+\frametitle{Esercizio 3 - Calcolo del fattoriale}
 Scrivere un programma che, ricevuto in ingresso un numero \emph{n}, ne calcoli e visualizzi il fattoriale.
 
 Si assuma che l'utente non inserisca mai numeri minori di 1.
@@ -318,7 +320,7 @@ Si ricorda che il fattoriale di \emph{n} è definito come il prodotto di tutti i
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 3 - soluzione con schema a blocchi}
+\frametitle{Esercizio 3 - Soluzione con schema a blocchi}
 		\centering
 \begin{tikzpicture}[node distance = .5cm, auto]
 \node [startstop] (start) {Inizio};
@@ -346,7 +348,7 @@ Si ricorda che il fattoriale di \emph{n} è definito come il prodotto di tutti i
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 3 - soluzione in pseudocodice}
+\frametitle{Esercizio 3 - Soluzione in pseudocodice}
 \begin{enumerate}
 	\item Leggi \emph{n}
 	\item Assegna 1 alla variabile \emph{i}
@@ -612,13 +614,13 @@ Nella fase di esecuzione l'unità di elaborazione verifica se il valore contenut
 \makebox[\textwidth]{\resizebox{.8\linewidth}{!}{
 		\begin{tikzpicture}[auto]
 		\node [startstop] (start) {Inizio};
-		\node [input, below = of start] (i0000) {X};
-		\node [input, below = of i0000] (i0001) {Y};
+		\node [input, below = of start] (i0000) {Leggi X};
+		\node [input, below = of i0000] (i0001) {Leggi Y};
 		\node [block, below = of i0001] (i0010) {regA = Y};
 		\node [decision, below = of i0010] (i0011) {regA == 0};
 		\node [block, right = of i0011] (i0100) {regA = X};
 		\node [decision, below = of i0100] (i0111) {regA == 0};
-		\node [output, right = of i0111] (i1000) {X, Y};
+		\node [output, right = of i0111] (i1000) {Stampa X, Y};
 		\node [startstop, below = of i1000] (stop) {Fine};
 		
 		\path [line] (start) -- (i0000);
@@ -668,7 +670,10 @@ Scrivere lo pseudocodice per eseguire la moltiplicazione di numeri negativi tram
 \end{enumerate}
 \end{frame}
 
-\iffalse
+\begin{frame}
+\frametitle{Esercizio 9 - Ricerca in sequenza ordinata}
+Scrivere lo pseudocodice per cercare un valore all'interno di una sequenza, sfruttando il fatto che la sequenza è ordinata.
+\end{frame}
 
 \begin{frame}{Esercizio 9 - Soluzione in pseudocodice}
 \begin{enumerate}
@@ -693,5 +698,5 @@ Se la stringa è di lunghezza pari posso prendere l'elemento immediatamente succ
 Risolvere in C i precedenti esercizi.
 \end{frame}
 
-\fi
+
 \end{document}
