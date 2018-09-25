@@ -1,0 +1,16 @@
+[notes]
+### 2
+Prima di tutto devono capire il problema: dati in ingresso e cosa vuole in uscita
+Poi lo si scompone in sottoparti
+Ogni sottoparte viene raffinata fino ad avere uno pseudocodice
+Si scrive il programma
+Lo si testa
+### 3
+A sinistra notazione standard, a destra quella del corso
+### 5
+Dobbiamo chiedere due numeri e stamparli entrambi ordinati
+acquisizione / capire chi stampare prima / stampare
+                    se a<b stampo a, b e viceversa
+### 8
+Ricevo a,b / controllo che la divisione sia fattibile / stamo div e mod
+                  b != 0

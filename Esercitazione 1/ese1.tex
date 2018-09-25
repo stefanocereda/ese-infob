@@ -54,7 +54,7 @@
 	\begin{tikzpicture}[node distance = 1cm, auto]
 		\node [startstop] (start) {Inizio};
 		\node [input, below = of start] (in) {Leggi};
-		\node [inner sep=0pt, right = 5.5 of in] (imgIN) {\includegraphics[width=.15\textwidth]{blocco_in}};
+		\node [inner sep=0pt, right = 5.7 of in] (imgIN) {\includegraphics[width=.15\textwidth]{blocco_in}};
 		\node [block, below = of in] (increment) {Fai};
 		\node [decision, below = of increment] (decision) {?};
 		\node [output, below left = of decision] (outpos) {Scrivi};
@@ -278,7 +278,7 @@ Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltr
 \begin{frame}
 \frametitle{Esercizio 2 - Soluzione con schema a blocchi}
 \centering
-\begin{tikzpicture}[node distance = 1cm, auto]
+\begin{tikzpicture}
 \node [startstop] (start) {Inizio};
 \node [input, below = of start] (input) {Leggi n};
 \node [decision, below = of input] (while) {n $>$ 0};
@@ -286,14 +286,14 @@ Per semplificare, si stampi separatamente ogni cifra del resto. Si stampi inoltr
 \node [output, below right = of while] (out) {Stampa n\%2};
 \node [block, below = of out] (divide) {n = n/2};
 
-\node [startstop, below = 3.5 of while] (stop) {Fine};
+\node [startstop, left = 2 of divide] (stop) {Fine};
 
 \path [line] (start) -- (input);
 \path [line] (input) -- (while);
 \path [line] (while) -| (out) node[near start] {true};
 \path [line] (out) -- (divide);
 \path [line] (divide) -| (while);
-\path [line] (while) -- +(-2,0) node[near start] {false} |- (stop);
+\path [line] (while) -| (stop)  node[near start] {false};
 \end{tikzpicture}
 \end{frame}
 
@@ -675,7 +675,7 @@ Scrivere lo pseudocodice per eseguire la moltiplicazione di numeri negativi tram
 Scrivere lo pseudocodice per cercare un valore all'interno di una sequenza, sfruttando il fatto che la sequenza è ordinata.
 \end{frame}
 
-\begin{frame}{Esercizio 9 - Soluzione in pseudocodice}
+\begin{frame}[allowframebreaks]{Esercizio 9 - Soluzione in pseudocodice}
 \begin{enumerate}
 	\item Ricevo una sequenza \emph{s} di lunghezza \emph{l} e l'elemento cercato $c$
 	\item Se $l == 1$ controllo l'unico elemento della lista $e$:
@@ -686,11 +686,13 @@ Scrivere lo pseudocodice per cercare un valore all'interno di una sequenza, sfru
 	\item Altrimenti:
 	\begin{enumerate}
 		\item Considero l'elemento \emph{e} a metà di \emph{s}
-		\item Se $e > c$ vado ad 1 utilizzando la prima metà di $s$ come nuova sequenza
-		\item Altrimenti torno ad 1 utilizzando la seconda metà di $s$ (incluso $e$) come nuova sequenza
+		\item Se $e > c$ vado a 2 utilizzando la prima metà di $s$ come nuova sequenza
+		\item Altrimenti torno a 2 utilizzando la seconda metà di $s$ (incluso $e$) come nuova sequenza
 	\end{enumerate}
 \end{enumerate}
+
 Posso aggiungere una condizione 3.4 che controlla direttamente se $e == c$.
+
 Se la stringa è di lunghezza pari posso prendere l'elemento immediatamente successivo (o precedente) alla metà esatta.
 \end{frame}
 
