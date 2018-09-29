@@ -10,3 +10,5 @@
 *.snm
 *.gz
 *.toc
+*.bbl
+*.blg
