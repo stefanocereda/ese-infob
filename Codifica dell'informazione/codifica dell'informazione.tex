@@ -86,6 +86,14 @@ Utilizzando la formula precedente è molto semplice ricavare il valore nella bas
 \[B2A_{16} = 11\cdot16^2 + 2\cdot16^1 + 10\cdot16^0 = 2858_{10}\]
 \end{frame}
 
+\begin{frame}{Esempi conversione da base 2 a base 10}
+Ricordando le potenze di 2 (1,2,4,8,16,32,64,128,...) la conversione diventa molto più facile. Basta sommare le potenze in corrispondenza degli uni:
+
+$01101101_2 = 1+4+8+32+64 = 109_{10}$
+
+$10010010_2 = 2+16+128 = 146_{10}$
+\end{frame}
+
 
 \begin{frame}{Codifica in base 2}
 La codifica in base 2 (o binaria pura) è molto utilizzata in informatica perché può essere rappresentata tramite presenza o assenza di tensione elettrica.
@@ -147,7 +155,8 @@ Infatti, è molto semplice passare da base 2 a base 8 (o 16), basta tradurre a g
 	1111 & F \\
 \end{tabular}
 
-$10100101_2 = 215_8 = 55_{16}$ 
+\[10100101_2 = 010\ 100\ 101_2 = 245_8 \]
+\[10100101_2 = 1010\ 0101_2 = A5_{16} \]
 \end{frame}
 
 \begin{frame}
@@ -206,6 +215,115 @@ Una delle codifiche per enumerazione più importanti è quella ASCII.
 		 11 + 01 & =00 con \alert{overflow} \\
 		 011 + 01 & =100 dopo il \alert{padding}
  	\end{tabular}
+\end{frame}
+
+\begin{frame}{Esercizi di somma}
+Le somme si eseguono come in base 10. Se alla fine dell'operazione ``avanza'' un riporto, \alert{non possiamo} inserire un nuovo bit per tenerne conto, ma dobbiamo segnalare che si è verificato un \alert{overflow}, ovvero una condizione di errore.
+
+\begin{tabular}{lr|l}
+	primo operando   & 1001 & + \\
+	secondo operando & 0101 & = \\
+	riporti          &      &  \\
+	\hline
+	risultato        &   & \\
+\end{tabular}
+$\rightarrow$
+\begin{tabular}{r|l}
+	1001 & + \\
+	0101 & = \\
+	1\_   &   \\
+	\hline
+	0    &  \\
+\end{tabular}
+$\rightarrow$
+\begin{tabular}{r|l}
+	1001 & + \\
+	0101 & = \\
+	01\_ &   \\
+	\hline
+	10   &  \\
+\end{tabular}
+
+$\rightarrow$
+\begin{tabular}{r|l}
+	1001 & + \\
+	0101 & = \\
+	001\_ &   \\
+	\hline
+	110&  \\
+\end{tabular}
+$\rightarrow$
+\begin{tabular}{r|l}
+	1001 & + \\
+	0101 & = \\
+	001\_&   \\
+	\hline
+	1110&  \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Esercizi di somma}
+\begin{tabular}{r|l}
+	1101 & + \\
+	0101 & = \\
+	\alert{1}101\_ &   \\
+	\hline
+	0010& \alert{OVF}\\
+\end{tabular}
+\hskip 1.5cm
+\begin{tabular}{r|l}
+	0110 & + \\
+	1010 & = \\
+	\alert{1}110\_ &   \\
+	\hline
+	0000& \alert{OVF}\\
+\end{tabular}
+\hskip 1.5cm
+\begin{tabular}{r|l}
+	0110 & + \\
+	0111 & = \\
+	110\_ &   \\
+	\hline
+	1101& \\
+\end{tabular}
+
+\vskip 1cm
+\begin{tabular}{r|l}
+	10011 & + \\
+	01101 & = \\
+	\alert{1}1111\_ &   \\
+	\hline
+	00000& \alert{OVF} \\
+\end{tabular}
+\hskip 1.5cm
+\begin{tabular}{r|l}
+	010101 & + \\
+	001010 & = \\
+	00000\_ &   \\
+	\hline
+	011111& \\
+\end{tabular}
+\hskip 1.5cm
+\begin{tabular}{r|l}
+	010101 & + \\
+	001111 & = \\
+	11111\_ &   \\
+	\hline
+	100100& \\
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Controllo esercizi di somma}
+Convertiamo le somme in base 10 per trovare eventuali errori:
+
+\begin{itemize}
+\item $1+4+16 \ \ + \ \ 1+4 = 21+5 = 26 > 2^4 \rightarrow$ \alert{OVF}
+\item $2+4 \ \ + \ \ 2+8 = 6+10 = 16 = 2^4 \rightarrow$ \alert{OVF} (con 4 bit rappresentiamo 16 valori, ma considerando lo zero 16 diventa il \emph{diciassettesimo})
+\item $2+4 \ \ + \ \ 1+2+4 = 6+7 = 13 = 1+4+8$
+\item $1+2+16 \ \ + \ \ 1+4+8 = 19+13 = 32 = 2^5 \rightarrow$ \alert{OVF}
+\item $1+4+16 \ \ + \ \ 2+8 = 21+10 = 31 = 1+2+4+8+16$
+\item $1+4+16 \ \ + \ \ 1+2+4+8 = 21+15 = 36 = 4+32$
+\end{itemize}
 \end{frame}
 
 \section{Numeri interi}
@@ -318,6 +436,29 @@ $N=4; -6 \rightarrow +6_{10} = 0110_2 \rightarrow 1010$
 
 \pause
 Controlliamo l'ultimo risultato utilizzando la definizione di cpl2: $1010_2 = 2^N - |x| = 2^N+x \rightarrow x=1010_2-2^N = 10-16 = -6$
+
+Gli stessi 3 metodi possono essere usati per convertire un numero negativo da cpl2 a base 10.
+\end{frame}
+
+\begin{frame}{Esempi di conversione da base 10 a cpl2}
+Se vogliamo convertire un numero positivo lo possiamo semplicemente convertire in binario puro e poi aggiungere zeri a sinistra (padding) fino a raggiungere il numero di bit desiderati (almeno uno per il segno):
+\[ 18_{10} = (16+2)_{10} = 10010_2 = 010010_2 \]
+
+\pause
+Se vogliamo convertire un numero negativo dobbiamo passare all'opposto e convertirlo in cpl2 (come sopra).
+Infine dovremo complementare il risultato e sommare uno. 
+Il padding verrà fatto con degli uni:
+\[ -15_{10} = -(8+4+2+1)_{10} = -(1111_2) = -(01111_{cpl2}) = 10001_{cpl2} = 1110001_{cpl2} \]
+\end{frame}
+
+\begin{frame}{Esempi di conversione da cpl2 a base 10}
+Se vogliamo convertire un numero da cpl2 a base 10 guardiamo il primo bit.
+Se vale zero abbiamo un numero positivo e lo convertiamo come se fossimo in binario puro:
+\[ 010110_{cpl2} = 2+4+16 = 22_{10} \]
+
+\pause
+Se il primo bit vale uno abbiamo invece un numero negativo, dobbiamo quindi passare all'opposto (complementando e sommando uno) e convertire in base 10 per po i passare di nuovo all'opposto:
+\[1001001_{cpl2} = -(0110111_{cpl2}) = -(1+2+4+16+32) = -55_{10}\]
 \end{frame}
 
 \section{Aritmetica in complemento alla base}
@@ -331,16 +472,20 @@ Dati due numeri in base 10 da sommare algebricamente, dobbiamo innanzitutto cont
 \end{frame}
 
 \begin{frame}{Somma senza riporto ne overflow}
-$(-7) + (+2) = -5$ con $N=4$
+Calcoliamo $-7 + 2 = -5$ con $N=4$ bit.
 
 \pause
-$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti
+$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ 4 bit sono sufficienti per rappresentare sia gli operandi che il risultato.
 
 \pause
-$-7 \rightarrow 7_{10} = 0111_2 \rightarrow 1001_{cpl2}$\\
-$+2 \rightarrow 2_{10} = 0010_2 \rightarrow 0010_{cpl2}$
+-7 è negativo, dunque convertiamo l'opposto (+7) in binario, poi complementiamo e sommiamo 1:
+$-7 \rightarrow 7_{10} = 0111_2 \rightarrow 1001_{cpl2} = -7$
+
++2 è positivo, quindi lo convertiamo direttamente (con padding per avere 4 bit):
+$+2 = 10_2 = 0010_{cpl2}$
 
 \pause
+Calcoliamo quindi la somma di -7 e +2:
 \begin{tabular}{c|c}
 $1001$ & + \\
 $0010$ & = \\
@@ -348,17 +493,22 @@ $0010$ & = \\
 $1011$& \\
 \end{tabular}
 
+Operandi discordi non possono dare overflow.
+
 \pause
+Il risultato è negativo, dunque complementiamo, sommiamo 1 e convertiamo in base 10, poi passiamo all'opposto:
 $1011 < 0 \rightarrow 0101 = 5 \rightarrow -5$
+
+$-5 = -7+2$ dunque non abbiamo fatto errori.
 \end{frame}
 
 \begin{frame}{Somma con riporto ma senza overflow}
-$(+7) + (-2) = +5$ con $N=4$
+Calcoliamo $7 - 2 = 7 + (-2) = +5$ con $N=4$ bit.
 
-$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti
+$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti sia per gli operandi che per il risultato.
 
-$+7 \rightarrow 7_{10} = 0111_2 \rightarrow 0111_{cpl2}$\\
-$-2 \rightarrow 2_{10} = 0010_2 \rightarrow 1110_{cpl2}$
+$+7 = 0111_2 = 0111_{cpl2}$\\
+$-2 \rightarrow 2_{10} = 010_2 \rightarrow 110_{cpl2} = 1110_{cpl2} = -2$ 
 
 \begin{tabular}{c|c}
 $0111$ & + \\
@@ -367,19 +517,22 @@ $1110$ & = \\
 \hskip-0.15cm\alert{1}$0101$& \\
 \end{tabular}
 
+Operandi discordi non possono dare overflow.
+
 Ignoriamo il riporto:\\
-$0101 > 0 \rightarrow 0101 = 5 \rightarrow +5$
-Il risultato è corretto
+$0101_{cpl2} = +5$
+Il risultato è corretto. Quando eseguiamo operazioni in cpl2 dobbiamo sempre ignorare l'ultimo riporto.
 \end{frame}
 
 \begin{frame}{Somma senza riporto ma con overflow}
-$(+7) + (+2) = +9$ con $N=4$
+Calcoliamo $7 + 2 = +9$ con $N=4$ bit.
 
-$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti per gli operandi, ma avremo una situazione di overflow
+$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti per gli operandi, ma non per il risultato: ci aspettiamo una situazione di overflow.
 
-$+7 \rightarrow 7_{10} = 0111_2 \rightarrow 0111_{cpl2}$\\
-$+2 \rightarrow 2_{10} = 0010_2 \rightarrow 0010_{cpl2}$
+$+7 = 0111_2 = 0111_{cpl2}$\\
+$+2 = 0010_2 = 0010_{cpl2}$
 
+\pause
 \begin{tabular}{c|c}
 $0111$ & + \\
 $0010$ & = \\
@@ -387,15 +540,18 @@ $0010$ & = \\
 $1001$& \\
 \end{tabular}
 
-$1001 < 0 \rightarrow 0111 = 7 \rightarrow -7$
+\pause
+$1001_2$ è un numero negativo, dunque passiamo all'opposto $0111_{cpl2}$, che convertito in base 10 vale $1+2+4=7$, dunque il risultato vale -7 ed è sbagliato (coerentemente con la situazione di overflow).
 
 Non abbiamo riporto, cosa ci indica la presenza di overflow?
+\pause
+Gli operandi sono concordi fra loro ma discordi dal risultato, dunque si è verificato overflow.
 \end{frame}
 
 \begin{frame}{Somma con riporto e overflow}
-$(-7) + (-2) = -9$ con $N=4$
+Calcoliamo $(-7) + (-2) = -9$ con $N=4$ bit.
 
-$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti per gli operandi, ma avremo una situazione di overflow
+$-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti per gli operandi, ma non per il risultato e avremo una situazione di overflow.
 
 $-7 \rightarrow 7_{10} = 0111_2 \rightarrow 1001_{cpl2}$\\
 $-2 \rightarrow 2_{10} = 0010_2 \rightarrow 1110_{cpl2}$
@@ -499,7 +655,7 @@ $A-B = A + (-B)$ dunque troviamo $-B = 111011110_{cpl2}$
 	000 011 100 & + \\
 	111 011 110 & = \\
 	\hline
-	000 111 000	&	riporti\\
+	000 111 00\_&	riporti\\
 	111 111 010	& risultato
 \end{tabular}
 
@@ -520,7 +676,7 @@ Dunque il risultato vale -6, che è corretto: $A-B = 28-34 = -6$
 	000 100 010 & + \\
 	000 011 011 &	=	\\
 	\hline
-	001 000 110	&	riporti\\
+	001 000 11\_&	riporti\\
 	011 011 110	& risultato
 \end{tabular}
 
@@ -529,6 +685,29 @@ Gli operandi sono concordi con il risultato, dunque non si è verificato overflo
 
 \pause
 Convertiamo il risultato in base 10: $011011110_2 = 2+4+8+16+64+128 = 222_{10} = 161+34+27$
+\end{frame}
+
+\begin{frame}{Esercizio a 10 bit}
+Calcoliamo il risultato di -413 + 324.
+
+\pause
+$-413_{10} = -(110011101_2) = -(0110011101_{cpl2}) = 1001100011_{cpl2}$\\
+$324_{10} = 101000100_2 = 0101000100_{cpl2}        = 0101000100_{cpl2}$
+
+\pause
+\begin{tabular}{r|l}
+	1 001 100 011 & + \\
+	0 101 000 100 & = \\
+	\hline
+	0 010 000 00\_&	riporti\\
+    1 110 100 111 & risultato
+\end{tabular}
+
+\pause
+Risultati discordi non danno overflow.
+
+\pause
+$1110100111_{cpl2} = -(0001011001_{cpl2}) = -(1+8+16+64)_{10} = -89_{10} = -413+324$
 \end{frame}
 
 \end{document}
