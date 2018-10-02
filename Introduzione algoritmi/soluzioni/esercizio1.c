@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/* 	Scrivere un programma che, ricevuti in ingresso due numeri a e b, stampi il risultato della divisione a/b ed il relativo resto.
+	Se l'operazione non è possibile, il programma termina senza stampare alcun messaggio.
+	Utilizzare l'operatore modulo % per calcolare il resto della divisione.
+*/
+
 void main(){
     int a,b;
 
