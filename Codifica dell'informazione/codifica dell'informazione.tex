@@ -11,13 +11,13 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
-\title{Informatica B - Esercitazione 1}
+\title{Esercitazioni di Informatica B}
 \subtitle{Codifica dell'informazione}
 
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{02/10/2018}
+\date{02/10/2018 e 08/10/2018}
 \institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
 	\includegraphics[width=0.2\textwidth]{../logopolimi}}
 
@@ -30,6 +30,10 @@
 	\maketitle
 	\end{frame}
 
+%		\begin{frame}{}
+%		\Huge{Settimana prossima ci sarà solamente esercitazione il lunedì mattina.}
+%		\end{frame}
+
 	\begin{frame}{Argomenti}
 	\tableofcontents
 	\end{frame}
@@ -41,11 +45,12 @@ Una codifica è una regola arbitraria che consente di dare un significato a dei 
 
 L'insieme di simboli (e.g. cifre) utilizzabili definisce l'alfabeto.
 
+\pause
 Dato un alfabeto con $S$ simboli, le possibili combinazioni di lunghezza $L$ sono $C = S^L$.
 
 Viceversa, per rappresentare $C$ combinazioni tramite un alfabeto di $S$ simboli avremo bisogno di combinazioni di lunghezza $L = \ceil{\log_S C}$ (arrotondamento per eccesso).
 
-In informatica si usano alfabeti di 2 caratteri, ogni carattere viene detto \alert{bit}. 8 bit vengono chiamati \alert{byte}.
+In informatica si usano alfabeti di 2 simboli, ogni simbolo viene detto \alert{bit}. 8 bit vengono chiamati \alert{byte}.
 \end{frame}
 
 \begin{frame}{Sistemi di numerazione}
@@ -328,7 +333,7 @@ Convertiamo le somme in base 10 per trovare eventuali errori:
 
 \section{Numeri interi}
 \begin{frame}{Notazione in modulo e segno}
-Utilizzando la codifica binaria vista fin'ora, con $N$ bit possiamo utilizzare $2^N$ valori: da 0 a $2^N - 1$
+Utilizzando la codifica binaria vista fin'ora, con $N$ bit possiamo rappresentare $2^N$ valori: da 0 a $2^N - 1$
 
 Come possiamo rappresentare numeri negativi?
 
@@ -688,7 +693,7 @@ Convertiamo il risultato in base 10: $011011110_2 = 2+4+8+16+64+128 = 222_{10} =
 \end{frame}
 
 \begin{frame}{Esercizio a 10 bit}
-Calcoliamo il risultato di -413 + 324.
+Calcoliamo il risultato di 324 - 413.
 
 \pause
 $-413_{10} = -(110011101_2) = -(0110011101_{cpl2}) = 1001100011_{cpl2}$\\
@@ -707,7 +712,7 @@ $324_{10} = 101000100_2 = 0101000100_{cpl2}        = 0101000100_{cpl2}$
 Risultati discordi non danno overflow.
 
 \pause
-$1110100111_{cpl2} = -(0001011001_{cpl2}) = -(1+8+16+64)_{10} = -89_{10} = -413+324$
+$1110100111_{cpl2} = -(0001011001_{cpl2}) = -(1+8+16+64)_{10} = -89_{10} = 324-413$
 \end{frame}
 
 \end{document}
