@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[9pt, handout]{beamer}
+\documentclass[9pt, format=169]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -30,9 +30,9 @@
 	\maketitle
 	\end{frame}
 
-%		\begin{frame}{}
-%		\Huge{Settimana prossima ci sarà solamente esercitazione il lunedì mattina.}
-%		\end{frame}
+	\begin{frame}<handout:0>{}
+		\Huge{Settimana prossima ci sarà solamente esercitazione il lunedì mattina.}
+	\end{frame}
 
 	\begin{frame}{Argomenti}
 	\tableofcontents
@@ -63,7 +63,7 @@ Nel 1202 Leonardo Fibonacci introduce in Europa, con il \emph{Liber abaci}, il s
 \end{frame}
 
 \begin{frame}{Sistema di numerazione posizionale in base 10}
-Il sistema di numerazioni di tutti i giorni è un sistema \alert{posizionale} in \alert{base 10}.
+Il sistema di numerazione di tutti i giorni è un sistema \alert{posizionale} in \alert{base 10}.
 
 Un sistema di numerazione è \alert{posizionale} quando ogni simbolo (cifra) utilizzato assume un significato diverso a seconda della posizione che occupa nella notazione.
 
@@ -339,7 +339,7 @@ Come possiamo rappresentare numeri negativi?
 
 \pause
 
-La notifica in modulo e segno utilizza il \alert{MSB} (most significant bit) per indicare il segno:
+La notazione in modulo e segno utilizza il \alert{MSB} (most significant bit) per indicare il segno:
 \[0101_2 = +101_2 = +(1+4)_{10} = +5_{10}\]
 \[1101_2 = -101_2 = -(1+4)_{10} = -5_{10}\]
 
@@ -400,22 +400,22 @@ Notare che msb \alert{non è il segno}: cambiandolo non si ottiene il numero opp
 \end{frame}
 
 \begin{frame}{Proprietà cpl2}
-Rappresentiamo un numero negativo $-x$ con $N=4$ bit:\\ $-x \rightarrow (2^N-|-x|)_2 = 10000_2 - x_2 = 1111_2+1_2-x_2$
+Rappresentiamo un numero negativo $-x = -5$ con $N=4$ bit:\\ $-x \rightarrow (2^N-|-x|)_2 = 10000_2 - x_2 = 1111_2+1_2-x_2$
 
 \pause
 $1111-x$ possiamo ottenerlo semplicemente invertendo tutti i bit di $x$:
-\begin{tabular}{c|c}
-$1111$ & - \\
-$0101$ & = \\
+\begin{tabular}{r|l}
+1111 & - \\
+0101 & = \\
 \hline
-$1010$& \\
+1010& \\
 \end{tabular}
 \hspace{2cm}
-\begin{tabular}{c|c}
-	$1010$ & + \\
-	$0001$ & = \\
+\begin{tabular}{r|l}
+	1010 & + \\
+	0001 & = \\
 	\hline
-	$1011$& \\
+	1011& \\
 \end{tabular}
 
 \pause
