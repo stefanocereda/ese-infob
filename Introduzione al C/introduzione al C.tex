@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass{beamer}
+\documentclass[format=169]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -9,27 +9,16 @@
 
 \usepackage{listings}
 
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows,positioning}
 
-\tikzstyle{startstop} = [ellipse, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
-\tikzstyle{block} = [rectangle, draw, fill=bg, text=structure, text width=5em, text centered]
-\tikzstyle{decision} = [diamond, aspect=2, draw, fill=bg, text=structure, text width=3em, text badly centered, inner sep=0pt]
-\tikzstyle{input} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle east arc=none]
-\tikzstyle{output} = [rectangle, draw, fill=bg, text=structure, text width=4em, text centered, rounded rectangle, rounded rectangle west arc=none]
-
-\tikzstyle{line} = [draw, -latex']
-
-
-\title{Informatica B - Esercitazione 2}
+\title{Esercitazioni di Informatica B}
 \subtitle{Introduzione al C e costrutto while}
 
 \author{Stefano Cereda\\
-		stefano1.cereda@mail.polimi.it
+		stefano.cereda@polimi.it
 	}
-\date{10/10/2017}
+\date{8/10/2017}
 \institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
-	\includegraphics[width=0.2\linewidth]{./logopolimi}}
+	\includegraphics[width=0.2\linewidth]{../logopolimi}}
 %\logo{\includegraphics[width=15mm]{./logopolimi}}
 
 \setbeamercovered{invisible}
@@ -46,6 +35,11 @@
 \end{frame}
 
 \section{Introduzione al C}
+
+\begin{frame}{Esercizi di introduzione al C}
+Si risolvano in C gli esercizi 1 e 6 di 'Introduzione agli algoritmi'.
+\end{frame}
+
 \begin{frame}
 \frametitle{Esercizio 1 - Calcolatrice}
 Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi ed un operatore matematico, stampi il risultato dell'operazione. Le operazioni da supportare sono: addizione, sottrazione, divisione, moltiplicazione e resto della divisione. Se l'utente inserisce un'operazione non supportata stampare un errore.
@@ -53,7 +47,7 @@ Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi ed u
 
 \begin{frame}
 \frametitle{Esercizio 2 - Statistiche}
-Scrivere un programma che legga da tastiera 5 numeri e stampi a video il maggiore, la media, e la radice quadrata della somma.
+Scrivere un programma che legga da tastiera 5 numeri e stampi a video il maggiore, la media e la radice quadrata della somma.
 
 Per calcolare la radice quadrata si utilizzi la funzione \emph{sqrt} definita in \emph{math.h} (se utilizzate gcc aggiungete l'opzione \texttt{-lm})
 
@@ -150,19 +144,8 @@ Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad o
 Si scriva un programma che legga da tastiera un numero intero \emph{n}, lo riduca ad un valore compreso fra 0 e 127 \emph{mediante sottrazione ripetuta} del valore 128, lo interpreti come carattere ASCII e lo stampi a video.
 \end{frame}
 
-\iffalse
-\begin{frame}
-\frametitle{Esercizio 7 - Maiuscolo}
-
-Scrivere un programma che legga una sequenza di caratteri terminata da '0' e trasformi tutte le lettere alfabetiche minuscole nelle corrispondenti lettere maiuscole.
-
-Si ricordi che la codifica ASCII mette in corrispondenza i caratteri con dei numeri.
+\begin{frame}{Altri esercizi sul while}
+Risolvere in C i rimanenti esercizi di 'Introduzione agli algoritmi'.
 \end{frame}
-\fi
 
-\section{Array}
-\begin{frame}{Esercizio 7 - Copia Array}
-Scrivere un programma che, ricevuto un array A di interi (con lunghezza nota N), lo copi in valore assoluto in un nuovo array B.
-
-\end{frame}
 \end{document}
