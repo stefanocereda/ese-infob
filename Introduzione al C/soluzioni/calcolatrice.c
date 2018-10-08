@@ -15,6 +15,7 @@ int main(){
     int x,y,ris;
     char op;
 
+    /* Ad esercitazione abbiamo usato un int per lo stesso scopo*/
     controllo errore = ok;
 
     /* Leggiamo l'operatore e gli operandi */
@@ -36,12 +37,12 @@ int main(){
         ris = x*y;
     else if (op == '/')
         /* Devo controllare che y sia diverso da zero*/
-        if (y)
+        if (y != 0)
             ris = x/y;
         else
             errore = divisoreNullo;
     else if (op == '%')
-        if (y)
+        if (y != 0)
             ris = x%y;
         else
             errore = divisoreNullo;

@@ -7,7 +7,33 @@
 \usepackage{multicol}
 \usetheme{metropolis}
 
+\usepackage{xcolor}
 \usepackage{listings}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{CStyle}{
+	backgroundcolor=\color{backgroundColour},   
+	commentstyle=\color{mGreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{mGray},
+	stringstyle=\color{mPurple},
+	basicstyle=\tiny,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	language=C
+}
 
 
 \title{Esercitazioni di Informatica B}
@@ -36,68 +62,59 @@
 
 \section{Introduzione al C}
 
-\begin{frame}{Esercizi di introduzione al C}
-Si risolvano in C gli esercizi 1 e 6 di 'Introduzione agli algoritmi'.
-\end{frame}
-
 \begin{frame}
-\frametitle{Esercizio 1 - Calcolatrice}
+\frametitle{Calcolatrice}
 Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi ed un operatore matematico, stampi il risultato dell'operazione. Le operazioni da supportare sono: addizione, sottrazione, divisione, moltiplicazione e resto della divisione. Se l'utente inserisce un'operazione non supportata stampare un errore.
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 2 - Statistiche}
-Scrivere un programma che legga da tastiera 5 numeri e stampi a video il maggiore, la media e la radice quadrata della somma.
-
-Per calcolare la radice quadrata si utilizzi la funzione \emph{sqrt} definita in \emph{math.h} (se utilizzate gcc aggiungete l'opzione \texttt{-lm})
-
-Successivamente, si ripeta l'esercizio utilizzando il costrutto while.
-\end{frame}
-
-\begin{frame}
-\frametitle{Esercizio 3 - Equazioni di secondo grado}
+\frametitle{Equazioni di secondo grado}
 Scrivere un programma che, ricevuti tre numeri reali \emph{a,b,c}, calcoli e visualizzi le eventuali radici dell'equazione di secondo grado $a x^2 + b x +c = 0$
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Esercizio 4 - Espressioni logiche}
-\tiny
-\alert{Tratto dal tema d'esame del 18/11/2008}
-Si dica se le espressioni di seguito sono vere o false. Si dica inoltre se le espressioni sono sempre vere o sempre false nel caso in cui le variabili fossero inizializzate diversamente.
-
-\begin{lstlisting}[basicstyle=\tiny]
-void main()
-{
-int x=8,y=11;
-char z='t';
-// ESPRESSIONE 1
-if ((y<7 && x>8) && (z>'a' || z<'z' ))
-	printf("Espressione 1 vera\n");
-else
-	printf("Espressione 1 falsa\n");
-// ESPRESSIONE 2
-if ((-y==y) && (y >= 0))
-	printf("Espressione 2 vera\n");
-else
-	printf("Espressione 2 falsa\n");
-// ESPRESSIONE 3
-if ((y>=10 || x<7) && (z=='c'))
-{
-	printf("Espressione 3 vera\n");
-	// ESPRESSIONE 4
-	if ((y>=10 || x<7) && (z<'c'))
-		printf("Espressione 4 vera\n");
-	else
-		printf("Espressione 4 falsa\n");
-	}
-	else
-		printf("Espressione 3 falsa\n");
+\frametitle{Espressioni logiche}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{lstlisting}[style=CStyle]
+void main(){
+  int x=8,y=11;
+  char z='t';
+  // ESPRESSIONE 1
+  if ((y<7 && x>8) && (z>'a' || z<'z'))
+    printf("Espressione 1 vera\n");
+  else
+    printf("Espressione 1 falsa\n");
+  // ESPRESSIONE 2
+  if ((-y==y) && (y >= 0))
+    printf("Espressione 2 vera\n");
+  else
+    printf("Espressione 2 falsa\n");
+  // ESPRESSIONE 3
+  if ((y>=10 || x<7) && (z=='c')){
+    printf("Espressione 3 vera\n");
+    // ESPRESSIONE 4
+    if ((y>=10 || x<7) && (z<'c'))
+      printf("Espressione 4 vera\n");
+    else
+      printf("Espressione 4 falsa\n");
+  }
+  else
+    printf("Espressione 3 falsa\n");
 }
 \end{lstlisting}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\alert{Tratto dal tema d'esame del 18/11/2008}
+
+Si dica se le espressioni a lato sono vere o false. Si dica inoltre se le espressioni sono sempre vere o sempre false nel caso in cui le variabili fossero inizializzate diversamente.
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
-\frametitle{Esercizio 4 - Soluzione}
+\frametitle{Espressioni logiche - soluzione}
 \begin{enumerate}
 \item L'espressione è falsa per i valori dati a causa del valore di \emph{x}. Sarebbe però vera per \emph{x=9}, quindi non è sempre falsa.
 
@@ -112,7 +129,7 @@ if ((y>=10 || x<7) && (z=='c'))
 
 \iffalse
 \begin{frame}
-\frametitle{Esercizio 6 - Simulazione codice}
+\frametitle{ Simulazione codice}
 Dire cosa stampa il seguente codice:
 
 TODO: LE ENUM NON LE HANNO ANCORA FATTE
@@ -132,20 +149,52 @@ TODO: LE ENUM NON LE HANNO ANCORA FATTE
 \end{frame}
 \fi
 
-
-\section{Costrutto while}
 \begin{frame}
-\frametitle{Esercizio 5 - Media di n numeri}
-Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad ogni numero inserito il programma calcola e stampa la media dell'intera sequenza. La sequenza termina quando viene inserito un numero negativo.
+\frametitle{Statistiche}
+Scrivere un programma che legga da tastiera 5 numeri e stampi a video il maggiore, la media e la radice quadrata della somma.
+
+Per calcolare la radice quadrata si utilizzi la funzione \emph{sqrt} definita in \emph{math.h} (se utilizzate gcc aggiungete l'opzione \texttt{-lm})
+
+Si risolva il problema senza utilizzare il costrutto while, vedremo in seguito come affrontare lo stesso problema usando il while.
 \end{frame}
 
+\section{Costrutto while}
+%\begin{frame} Ne ha fatto uno simile a laboratorio
+%\frametitle{Media di n numeri}
+%Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad ogni numero inserito il programma calcola e stampa la media dell'intera sequenza. La sequenza termina quando viene inserito un numero negativo.
+%\end{frame}
+
 \begin{frame}
-\frametitle{Esercizio 6 - Sottrazione ripetuta}
+\frametitle{Sottrazione ripetuta}
+%Iterazione controllata da un valore sentinella
 Si scriva un programma che legga da tastiera un numero intero \emph{n}, lo riduca ad un valore compreso fra 0 e 127 \emph{mediante sottrazione ripetuta} del valore 128, lo interpreti come carattere ASCII e lo stampi a video.
 \end{frame}
 
-\begin{frame}{Altri esercizi sul while}
-Risolvere in C i rimanenti esercizi di 'Introduzione agli algoritmi'.
+\begin{frame}{Calcolo di $\pi$}
+%Iterazione controllata da un contatore
+Scrivere un programma che calcoli il valore di $\pi$ usando la serie:
+\[ \pi = 4 - \frac{4}{3} + \frac{4}{5} - \frac{4}{7} + \frac{4}{9} - \frac{4}{11} + \dots \]
+
+Calcolare la serie fino a 500 termini, visualizzando il valore di $\pi$ ogni 10 iterazioni.
 \end{frame}
 
+\begin{frame}{Statistiche con while}
+Scrivere un programma che legga da tastiera una sequenza di numeri terminata da -1 e stampi a video il maggiore, la media e la radice quadrata della somma.
+\end{frame}
+
+\begin{frame}{Da binario a decimale}
+	Scrivere un programma che riceva in ingresso un numero intero contenente solo uni e zeri (cioè un intero in
+	binario) e visualizzi il suo equivalente in base dieci.
+
+	A differenza dell'esercizio di conversione da base 10 a base 2, il numero binario NON sarà in ordine opposto.
+\end{frame}
+
+\begin{frame}{Calcolo di $\mathrm{e}$}
+	Modificate il programma per il calcolo del fattoriale \footnote{visto al primo laboratorio ed in pseudocodice alla prima esercitazione} per calcolare la costante $\mathrm{e}$ tramite la formula:
+	\[ \mathrm{e} = \sum_{n=0}^{\infty} \frac{1}{n!} = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} +
+	\frac{1}{4!} + \dots \]
+
+	Calcolare i primi 10 termini della somma e visualizzare il risultato, cosa accade quando cerchiamo di calcolare
+	un numero maggiore di termini?
+\end{frame}
 \end{document}

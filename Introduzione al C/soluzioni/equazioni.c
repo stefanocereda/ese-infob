@@ -1,5 +1,5 @@
-/* Scrivere un programma che, ricevuti tre numeri reali \emph{a,b,c}, calcoli
- * e visualizzi le eventuali radici dell'equazione di secondo grado $a x^2 + b x +c = 0$*/
+/* Scrivere un programma che, ricevuti tre numeri reali a,b,c, calcoli
+ * e visualizzi le eventuali radici dell'equazione di secondo grado ax^2 + bx + c = 0 */
 #include<stdio.h>
 #include<math.h>
 
@@ -8,6 +8,8 @@ int main(){
     float a,b,c;
     /* Il discriminante e le soluzioni */
     float delta, x1, x2;
+    /* Per le soluzioni complesse, potremmo anche riciclare x1 ed x2 */
+    float re, im;
 
     printf("\nInserisci a,b e c: ");
     scanf("%f %f %f", &a, &b, &c);
@@ -32,8 +34,8 @@ int main(){
             printf("Soluzione: x1,2=%lf\n",
                     -b/(2*a));
         }else{
-            double re = -b/(2*a);
-            double im = sqrt(-delta)/(2*a);
+            re = -b/(2*a);
+            im = sqrt(-delta)/(2*a);
             printf("Soluzioni: x1=%lf-i%lf x2=%lf+i%lf\n",
                     re,im,re,im);
         }

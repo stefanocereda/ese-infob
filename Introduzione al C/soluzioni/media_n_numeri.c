@@ -1,3 +1,5 @@
+/* Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad ogni numero inserito il programma
+ * calcola e stampa la media dell'intera sequenza. La sequenza termina quando viene inserito un numero negativo. */
 #include <stdio.h>
 
 int main(){
