@@ -23,10 +23,12 @@ int main(){
     int i;
 
 
-    /* Acquisiamo l'array con un for */
-    for (i=0; i < MAX_N; i++){
+    /* Acquisiamo l'array */
+    i = 0;
+    while (i < MAX_N){
         printf("Inserisci l'elemento in posizione %d: ", i);
         scanf("%d", &V[i]);
+        i++;
     }
 
     /* Chiediamo il numero da cercare */

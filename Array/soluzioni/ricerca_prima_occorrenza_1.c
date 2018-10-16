@@ -15,9 +15,11 @@ int main(){
     bool trovato = false;
 
     /* Leggo il vettore */
-    for (i = 0; i < MAX_N; i++){
+    i = 0;
+    while (i < MAX_N){
         printf("Inserisci l'elemento nella posizione %d: ", i);
         scanf("%d", &V[i]);
+        i++;
     }
 
     /* Leggo l'elemento da cercare */
@@ -25,11 +27,13 @@ int main(){
     scanf("%d", &n);
 
     /* Cerco e stampo*/
-    for (i = 0; i < MAX_N; i++){
+    i = 0;
+    while (i < MAX_N){
         if (V[i] == n){
             trovato = true;
             printf("L'elemento cercato si trova all'indice %d\n", i);
         }
+        i++;
     }
 
     if (trovato == false)

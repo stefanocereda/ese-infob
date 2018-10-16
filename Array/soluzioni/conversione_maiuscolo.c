@@ -5,40 +5,44 @@
 void main(){
     char caratteri[N];
     char c;
-    int i;
+    int n_inseriti, j;
 
-    i=0;
-    c='a';
-    while(i<N && c != '0'){
+    /* Chiediamo all'utente di inserire i caratteri desiderati, verranno terminati dal carattere 0 o dal limite
+     * dell'array. Teniamo traccia del numero di caratteri inseriti tramite la variabile n_inseriti
+     */
+    n_inseriti = 0;
+    scanf(" %c", &c);
+    while(n_inseriti < N && c != '0'){
+        caratteri[n_inseriti] = c;
+        n_inseriti++;
         scanf(" %c", &c);
-        caratteri[i] = c;
-        i++;
     }
 
-    i=0;
-    while(i<N && caratteri[i] != '0'){
-        if (caratteri[i] >= 'a' && caratteri[i] <= 'z')
-            caratteri[i] += 'A' - 'a';
-        i++;
+    /* A questo punto n_inseriti mi indica quanti elementi validi considerare nell'array.
+     * Uso la variabile j come contatore e n_inseriti come limite dell'array
+     */
+    j = 0;
+    while(j < n_inseriti){
+        if ((caratteri[j] >= 'a') && (caratteri[j] <= 'z'))
+            caratteri[j] += 'A' - 'a';
+        j++;
     }
 
-    i=0;
-    while(i<N && caratteri[i] != '0'){
-        if (caratteri[i] == '.' ||
-                caratteri[i] == ',' || 
-                caratteri[i] == ':' || 
-                caratteri[i] == ';' || 
-                caratteri[i] == '?')
-            caratteri[i] = ' ';
-        i++;
+    j = 0;
+    while(j < n_inseriti){
+        if (caratteri[j] == '.' ||
+                caratteri[j] == ',' || 
+                caratteri[j] == ':' || 
+                caratteri[j] == ';' || 
+                caratteri[j] == '?')
+            caratteri[j] = ' ';
+        j++;
     }
 
-    i=0;
-    while(i<N && caratteri[i] != '0'){
-        printf("%c", caratteri[i]);
-        i++;
+    j = 0;
+    while(j < n_inseriti){
+        printf("%c", caratteri[j]);
+        j++;
     }
     printf("\n");
 }
-
-

@@ -1,6 +1,6 @@
 /* Dato un vettore ordinato di interi V ed un numero n, si scriva la
 porzione di codice per implementare un algoritmo di ricerca e
-stampare l’indice del primo elemento di V uguale ad n. (Esempio 1)
+stampare l’indice del primo elemento di V uguale ad n.
 Si modifichi il programma per trovare più occorrenze dello stesso
 numero (stampandone tutti gli indici).
  */
