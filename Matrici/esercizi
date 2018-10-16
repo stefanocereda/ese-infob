@@ -1,0 +1,14 @@
+
+\begin{frame}{Esercizio 3}
+Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salvi in una matrice $M$ di dimensioni note $R \times C$. Si stampi poi la matrice in formato tabellare.
+\end{frame}
+
+\begin{frame}{Esercizio 4}
+Data una matrice quadrata intera $M$, di dimensioni $D \times D$, si scriva il codice per calcolare e visualizzare la trasposta. (le righe diventano colonne e viceversa).
+\end{frame}
+
+\begin{frame}{Esercizio 5}
+Date due matrici intere $A, B$ si scriva un programma che ne calcoli il prodotto $C=A\times B$
+
+Guardare le slide della lezione per la definizione. Praticamente ricordatevi ``mano sinistra in orizzontale si muove verso destra e mano destra in verticale si muove verso il basso''.
+\end{frame} 

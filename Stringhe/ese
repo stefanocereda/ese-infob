@@ -1,0 +1,22 @@
+\begin{frame}{La libreria string.h}
+La libreria string.h vi offre alcune funzioni per eseguire operazioni comuni sulle stringhe. Ad esempio:
+\begin{itemize}
+	\item Ottenere la lunghezza di una stringa
+	\item Confrontare due stringhe
+	\item Concatenare due stringhe
+	\item Cercare un carattere in una stringa
+	\item Cercare una stringa in un'altra
+	\item Copiare una stringa in un'altra
+\end{itemize}
+\end{frame}
+
+\begin{frame}{La libreria string.h - Vedere il codice per gli esempi}
+\begin{itemize}
+	\item \texttt{int strlen(char* str);} $\rightarrow$ numero di caratteri in \texttt{str} senza contare il terminatore
+	\item \texttt{int strcmp(char* str1, char* str2);} $\rightarrow$ $<$0 se \texttt{str1} precede lessicograficamente \texttt{str2}, $>$0 per il viceversa, =0 se sono uguali
+	\item \texttt{char* strcat(char* dest, char* src);} $\rightarrow$ appende \texttt{str} in coda a \texttt{dest}
+	\item \texttt{char* strchr(char* str, int car);} $\rightarrow$ \texttt{car} all'interno di \texttt{str} e restituisce la porzione di \texttt{str} successiva alla prima occorrenza di \texttt{car} (incluso) oppure \texttt{NULL}
+	\item \texttt{char* strstr(char* str, char* sub);} $\rightarrow$ \texttt{sub} all'interno di \texttt{str} e restituisce la porzione di \texttt{str} successiva alla prima occorrenza di \texttt{sub} (inclusa) oppure \texttt{NULL}
+	\item \texttt{char* strcpy(char* dest, char* src)} $\rightarrow$ copia \texttt{src} in \texttt{dest e restituisce \texttt{dest}}
+\end{itemize}
+\end{frame} 
