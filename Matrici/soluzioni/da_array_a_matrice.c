@@ -5,8 +5,10 @@ interi e li salvi in una matrice M di dimensioni note R × C . */
 #define R 3
 #define C 2
 
+typedef int matrice[R][C];
+
 int main(){
-    int M[R][C];
+    matrice M;
     int i,j;
 
     for (i = 0; i<R; i++){

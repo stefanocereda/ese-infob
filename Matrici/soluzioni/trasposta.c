@@ -4,9 +4,9 @@ scriva il codice per calcolare e visualizzare la trasposta di M. */
 
 #define D 3
 
+typedef int matrice[D][D];
 int main(){
-    int M1[D][D];
-    int M2[D][D];
+    matrice M1, M2;
     int i,j;
 
     for (i = 0; i<D; i++){

@@ -3,6 +3,7 @@ il prodotto C = A × B */
 
 #include <stdio.h>
 
+/* Non è necessario che la seconda matrice abbia N1 colonne */
 #define N1 3
 #define N2 2
 
