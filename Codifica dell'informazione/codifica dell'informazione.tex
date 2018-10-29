@@ -575,7 +575,7 @@ Operandi concordi ma risultato discorde indicano che siamo in una condizione di 
 (Operandi discordi non daranno mai overflow)
 \end{frame}
 
-\section{Esercizio da TdE}
+\section{Esercizi da TdE}
 
 \begin{frame}{Esercizio completo - TdE 10/09/2018}
 \begin{enumerate}
@@ -598,7 +598,7 @@ Operandi concordi ma risultato discorde indicano che siamo in una condizione di 
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Soluzione punto 1}
+\begin{frame}{TdE 10/09/2018 - Soluzione punto 1}
 Convertiamo tutti i valori in base 10.
 	\begin{itemize}
 		\item $34_8 = 3 \cdot 8 +  4 = 24+4 = 28_{10}$
@@ -613,7 +613,7 @@ Dunque il maggiore è $0A1_{16}$.
 Notare che non era necessario convertire tutti i numeri: A è minore di B per la base e D è negativo.
 \end{frame}
 
-\begin{frame}{Soluzione punto 2 - numero di bit necessari}
+\begin{frame}{TdE 10/09/2018 - Soluzione punto 2 - numero di bit necessari}
 Con $N$ bit possiamo rappresentare da $-2^{N-1}$ a $2^{N-1}-1$.
 
 \pause
@@ -636,7 +636,7 @@ Per il numero minore (-1) basterebbero solo 2 bit, controlliamo dunque il maggio
 Dunque ci servono 9 bit.
 \end{frame}
 
-\begin{frame}{Soluzione punto 2 - conversione}
+\begin{frame}{TdE 10/09/2018 - Soluzione punto 2 - conversione}
 Convertiamo i primi 3 numeri con il metodo delle divisioni ripetute (o con le tabelle per base 8 e 16) e aggiungendo zeri a sinistra fino ad arrivare a 9 bit:
 	\begin{itemize}
 		\item $34_8 = 000\ 011\ 100_{cpl2}$
@@ -652,7 +652,7 @@ Per gli ultimi due numeri aggiungiamo uni o zeri a sinistra fino ad arrivare a 9
  	\end{itemize}
 \end{frame}
 
-\begin{frame}{Soluzione punto 3 - $A-B$}
+\begin{frame}{TdE 10/09/2018 - Soluzione punto 3 - $A-B$}
 $A-B = A + (-B)$ dunque troviamo $-B = 111011110_{cpl2}$
 
 \pause
@@ -675,7 +675,7 @@ Dunque il risultato vale -6, che è corretto: $A-B = 28-34 = -6$
 
 \end{frame}
 
-\begin{frame}{Soluzione punto 3 - $C+B+E$}
+\begin{frame}{TdE 10/09/2018 - Soluzione punto 3 - $C+B+E$}
 \begin{tabular}{r|l}
 	010 100 001 & + \\
 	000 100 010 & + \\
@@ -714,5 +714,175 @@ Risultati discordi non danno overflow.
 \pause
 $1110100111_{cpl2} = -(0001011001_{cpl2}) = -(1+8+16+64)_{10} = -89_{10} = 324-413$
 \end{frame}
+
+
+
+\begin{frame}{Esercizio somma}
+Si scriva la codifica in complemento a due dei numeri $a=-68$ e $b=+73$ utilizzando 8 bit.
+Calcolare inoltre il risultato di $a-b$ e commentarlo.
+\end{frame}
+
+\begin{frame}{Esercizio somma - Soluzione 1}
+\begin{itemize}[<+->]
+\item Con 8 bit rappresento da $-2^{8-1} = -128$ a $+2^{8-1}-1 = +127$. Posso rappresentare gli operandi.
+\item $(-68) - (+73) = (-68) + (-73) = -141$ Non posso rappresentare il risultato, mi aspetto overflow.
+\item $-68 < 0 \rightarrow$ passo all'opposto, converto in base 2, copio da lsb a msb fino al primo uno poi complemento $\rightarrow 68_{10} = 1000100_2 = 01000100_2 \rightarrow 10111100$
+\item $-73 < 0 \rightarrow 73_{10} = 1001001_2 = 01001001_2 \rightarrow 10110111$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Esercizio somma - Soluzione 2}
+\begin{tabular}{c|c}
+$10111100$ & + \\
+$10110111$ & = \\
+\hline
+\hskip-0.15cm\alert{1}$01110011$& \\
+\end{tabular}
+
+Ignoro il riporto e considero $01110011$, operandi concordi danno risultato discorde, si è verificato overflow.
+
+Infatti, se converto $01110011$ ottengo $1+2+16+32+64 = 115$ (nota che $115+141=256=2^8$)
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{TdE 26 Giugno 2017}
+Si  dica  e  si  motivi  qual  è  il  minimo  numero  di  bit  che  permette  di  rappresentare  in  
+complemento  a  due  (CP2)  tutti  i  numeri  seguenti:  
+\begin{enumerate}
+	\item A  =  +  255  
+	\item B  =  -­  42  
+	\item C  =  +  7  
+	\item D  =  -­  257  
+\end{enumerate}
+
+\framebreak
+Se  si  volessero  eseguire  tutte  le  possibili  somme  e  sottrazioni  tra  le  coppie  di  numeri  A,  B,  
+C,  D,  qual  è  il  minimo  numero  di  bit  in  cui  dovrebbero  essere  rappresentati  i  numeri?  Si  
+motivi  la  risposta
+
+Si  calcoli  il  risultato  dell’operazione  7  -­  255  utilizzando  la  rappresentazione  in  CP2  con  il  
+numero  di  bit  stabilito  nel  punto  (a).  Si  mostrino  tutti  i  passaggi  eseguiti  e  si  indichino  i  bit  di  
+carry  e  di  overflow.
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{TdE 26 Giugno 2017 - Soluzione}
+In CP2 con $n$ bit posso rappresentare da $-2^{n-1}$ a $2^{n-1}-1$.
+
+Dato un numero negativo $x$ mi serviranno dunque $n = \log_2{-x}+1$ bit per rappresentarlo e dato un numero positivo $y$ me ne serviranno $n = \log_2(y+1)+1$
+
+Le potenze di 2 sono: 1 2 4 8 16 32 64 128 256 512 ...
+
+I due numeri che devo controllare sono A e D:
+\begin{itemize}
+\item A=255 $\rightarrow$ $n_A = \log_2{256}+1 = 9$
+\item D=-257 $\rightarrow$ $n_B = \log_2{257}+1 = 10$
+\end{itemize}
+
+Dunque mi servono \alert{10 bit} per rappresentare tutti i valori.
+
+\framebreak
+
+Le operazioni che possono dare problemi sono le sottrazioni che coinvolgono A e D. In particolare, A-D darà un numero positivo, mentre D-A darà un numero negativo. Le due operazioni avranno risultato uguale in valore assoluto. Dato che con $n$ bit posso rappresentare da $-2^{n-1}$ a $2^{n-1}\alert{-1}$ controllo solo A-D che dando un risultato positivo è l'operazione più problematica a causa del \alert{-1}.
+
+$A-D=255-(-257) = 255+257 = 256+256 = 512 = 2^9$ e per rappresentarlo mi servono $n = \log_2(2^9+1)+1 = 10+1 = 11$.
+
+Mi servono dunque 11 bit per eseguire tutte le possibili somme e sottrazioni.
+
+\framebreak
+
+Converto +7 in CPL2. Inizio a convertirlo in base 2:
+\begin{tabular}{c|c}
+7 & 1\\
+3 & 1\\
+1 & 1\\
+0 & 
+\end{tabular}\\
+La rappresentazione è dunque 111. Essendo un numero positivo la notazione in CPL2 è 0111. Dovendo usare 10 bit aggiungo degli zeri a sinistra: 0000000111
+
+\framebreak
+Inizio a convertire +255 in base 2:
+\begin{tabular}{c|c}
+255 & 1\\
+127 & 1\\
+63 & 1\\
+31 & 1\\
+15 & 1\\
+7 & 1\\
+3 & 1\\
+1 & 1\\
+0 & 
+\end{tabular}\\
+La rappresentazione di +255 è dunque 11111111. Aggiungo uno 0 a sinistra per avere la rappresentazione in CPL2: 011111111. Noi siamo interessati a -255, dunque copiamo da sx verso dx fino al primo 1 compreso, poi complementiamo: 100000001 e aggiungiamo degli 1 a sinistra per ottenere 10 bit: 1100000001
+
+\framebreak
+
+\begin{tabular}{cc|c}
+7			& 0000000111 & + \\
+-255		& 1100000001 & = \\
+riporti		& \ \ \ \ \ \ \ \ 111\ &  \\
+\hline
+risultato	& 1100001000 &  \\
+\end{tabular}
+
+Operandi discordi non possono dare overflow.
+
+Controllo il risultato: 1100001000 è negativo, l'opposto è 0011111000, che vale $8+16+32+64+128 = 248 \rightarrow -248 = -255+7$
+
+\end{frame}
+
+\begin{frame}{Esercizio somma}
+Si considerino $A_{10} = +77$ e $B_{CPL2} = 101110$ (già in complemento a 2). Li si rappresenti entrambi in base 2 notazione complemento a 2, sul numero \alert{minimo} di bit per rappresentare \alert{entrambi} gli operandi. Si effettuino quindi, sul numero di bit prima individuato, le
+operazioni A+B e A–B in complemento a 2, indicando se si verifica overflow oppure no.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Esercizio somma - soluzione}
+\begin{tabular}{c|c}
+77 & 1\\
+38 & 0\\
+19 & 1\\
+9 & 1\\
+4 & 0\\
+2 & 0\\
+1 & 1\\
+0 &
+\end{tabular}
+$77_{10} = 1001101_2 = 01001101_{CPL2}$
+
+Ho rappresentato $A$ con 8 bit, devo aggiungere 2 bit a B. Essendo B negativo (inizia con 1) aggiungo degli 1: $B=11101110_{CPL2}$
+
+Noto anche che B vale -18, in quanto: $-B=010010_2=16+2=18_{10}$
+
+\framebreak
+Eseguo A+B
+
+\begin{tabular}{cc|c}
+A			& 01001101 & + \\
+B			& 11101110 & = \\
+\hline
+risultato	&\hspace{-0.5cm}(1)00111011 &  \\
+\end{tabular}
+
+Ignoro il riporto. Il risultato è 00111011. Operandi discordi non possono dare overflow.
+$00111011 = 1+2+8+16+32=59=77-18$
+
+\framebreak
+
+Eseguo A-B = A+(-B).\\
+$-B = 00010010_{CPL2}$
+
+\begin{tabular}{cc|c}
+A			& 01001101 & + \\
+-B			& 00010010 & = \\
+\hline
+risultato	& 01011111 &  \\
+\end{tabular}
+
+Operandi concordi hanno dato un risultato ad essi concorde, quindi non si è verificato overflow.
+
+$01011111 = 1+2+4+8+16+64=95=75-(-18)$
+
+\end{frame}
+
 
 \end{document}

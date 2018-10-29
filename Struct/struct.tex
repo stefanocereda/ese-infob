@@ -1,0 +1,165 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[format=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Struct}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{30/10/2018}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+	\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}<handout:0>{Nuovi esercizi su argomenti vecchi}
+Aggiunti due esercizi sulle matrici e alcuni esercizi sul binario.
+\end{frame}
+
+\begin{frame}{Anagrafe}
+Si vuole gestire l’anagrafe della motorizzazione e dei proprietari di auto. Un veicolo è identificato da:
+\begin{itemize}
+\item Targa
+\item Modello
+\item Proprietario (si suppone che ogni auto abbia un unico proprietario)
+\end{itemize}
+
+I proprietari di auto sono identificati dai campi:
+\begin{itemize}
+\item Cognome
+\item Nome
+\item Un insieme di indirizzi di recapito (max 3).
+\end{itemize}
+
+Un recapito è composto da: via, numero civico e CAP. L’anagrafe contiene al max N veicoli.
+\end{frame}
+
+{
+\small
+\begin{frame}{Anagrafe}
+Definire in C la struttura dati che permette di rappresentare la situazione descritta.
+
+Scrivere il programma C che chiede all’utente di inserire i dati degli N veicoli da memorizzare
+nell’anagrafe. Per ogni veicolo il programma deve acquisire anche le informazioni relative al
+proprietario, inclusi i suoi recapiti. In una prima versione del programma si inseriscano esattamente
+tre recapiti per proprietario, in una seconda versione si consenta all’utente di inserire un numero di
+recapiti minore o uguale a tre.
+
+Finita la fase di inserimento il programma stampa il contenuto della struttura nel formato:\\
+VEICOLO Targa XXXXX \\
+PROPRIETARIO Cognome XXXXXXXXX \\
+RECAPITI CAP XXXXXXXXX ... XXXXXXXXX \\
+\end{frame}
+}
+
+
+
+\begin{frame}{Fantacalcio da TdE 17/09/2012}
+Definire un tipo di dato \emph{fantacalcio} che contiene una lista di $N = 20$ \emph{fantasquadre}. Ogni fantasquadra è identificata dal nome, il colore della casacca, il punteggio corrente e l’allenatore. L’\emph{allenatore} è definito dal nome, cognome e numero di coppe vinte (un intero $\geq 0$). Infine si dichiari una variabile \emph{campionato} di
+tipo fantacalcio. 
+
+Scrivere un frammento di codice in linguaggio C che stampi a video il numero totale degli allenatori (contenuti all'interno della variabile \emph{campionato}) che hanno vinto almeno una coppa.
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{Archivio reperti da TdE 26 Giugno 2017 - vedere pdf esame}
+Un’organizzazione che si occupa di archeologia sottomarina vuole sviluppare un software in linguaggio C
+che permetta di catalogare tutti i reperti archeologici che sono stati scoperti. Ogni reperto è caratterizzato
+dalle seguenti informazioni:
+\begin{itemize}
+\item coordinate geografiche in cui si trova
+\item profondità del reperto rispetto al livello del mare
+\item  peso del reperto
+\item  tipo di reperto, questo può essere: manufatto in terracotta, manufatto in marmo, manufatto in metallo
+\end{itemize}
+Tutti i reperti vengono memorizzati in un array di dimensione massima 1000.
+
+\begin{enumerate}
+\item Si definiscano in linguaggio C le strutture dati e le variabili necessarie per rappresentare l’insieme dei
+reperti nella variabile insiemeReperti.
+\item  Si supponga che la variabile insiemeReperti sia stata precedentemente riempita con le informazioni
+di 1000 reperti e si sviluppi in C il ciclo che, per ogni reperto, stampa a video il suo peso. Si dichiarino
+anche tutte le variabili necessarie allo scopo che non sono state dichiarate nel punto precedente.
+
+Periodicamente, l’organizzazione progetta spedizioni per raccogliere i reperti scoperti. L’operazione non è
+sempre possibile perché il veicolo che viene usato per raccogliere i reperti ha una portata massima (un peso
+massimo che può portare) che non può essere superato. D’altra parte, l’organizzazione vuole fare in modo
+che il veicolo venga utilizzato nel modo più efficiente possibile e quindi la spedizione verrà pianificata in
+modo tale che il veicolo raccolga il maggior numero possibile di reperti nell’area prescelta. La spedizione
+viene pianificata come segue:
+
+Si parte con un veicolo scarico, di portata pMax, da una coppia di coordinate geografiche (latitudineI
+e longitudineI) e si esplorano le vicinanze di quelle coordinate geografiche in modo da rimanere
+nell’ambito della zona di ricerca, i cui confini sono definiti dai punti latitudineI ± soglia,
+longitudineI ± soglia. Per ogni reperto che si trova nei confini definiti, si pianifica di caricare il
+reperto a bordo del veicolo, a patto che il suo peso, sommato al peso del carico corrente portato dal veicolo,
+sia minore di pMax. In caso contrario, quel reperto viene scartato e si procede a cercarne un altro, sempre
+rimanendo nei confini dell’area di ricerca. La ricerca termina quando il peso dei reperti da trasportare avrà
+raggiunto il valore pMax oppure quando tutti i reperti nella zona di ricerca saranno stati esaminati.
+
+L’algoritmo di pianificazione del viaggio, durante l’analisi sopra descritta, crea un array di reperti chiamato
+caricoVeicolo che contiene, alla fine dell’analisi, tutti i reperti che dovranno essere caricati sul veicolo
+durante l’esecuzione della spedizione.
+
+\item Dato un reperto che assumiamo si trovi nella cella i-esima (con i che ha un valore qualsiasi compreso tra
+0 e 999, estremi inclusi) dell’array insiemeReperti, si scriva la condizione che, se vera, ci permette di
+dire che il reperto si trova nell’area di ricerca definita dai confini indicati sopra.
+
+\item Si sviluppi il frammento di codice in C necessario per acquisire da tastiera: la portata massima del
+veicolo, le coordinate geografiche di partenza della spedizione, il valore soglia che definisce i confini di
+ricerca. Si dichiarino tutte le variabili necessarie allo scopo.
+
+\item Si sviluppi in linguaggio C l’algoritmo di pianificazione del carico descritto in precedenza. Oltre alle
+dovute inizializzazioni di variabili (non è necessario inizializzare insiemeReperti che si assume essere
+già riempito), la parte principale di questo algoritmo sarà costituita a un ciclo che analizza tutti i reperti in
+insiemeReperti e, per ogni reperto:
+\begin{itemize}
+\item  Valuta se si trova nell’area di ricerca (si faccia riferimento alla soluzione fornita per il punto C)
+\item  In caso positivo, valuta se può essere caricato sul veicolo
+\item  In caso positivo, aggiorna la variabile caricoVeicolo in modo che contenga i dati del reperto in
+questione
+\end{itemize}
+Si dichiarino anche tutte le variabili necessarie allo scopo che non sono state dichiarate nei punti precedenti.
+\end{enumerate}
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{Scontrini}
+Un supermercato ha memorizzato il proprio archivio di scontrini nell'array \emph{archivio}, in cui ogni è una struttura dati di tipo \emph{scontrino} con le  seguenti informazioni:
+\begin{itemize}
+\item IDcliente: stringa di 10 caratteri che identifica univocamente il cliente
+\item totale: totale della spesa in Euro
+\item punti: punti premio associati alla spesa
+\end{itemize}
+Ad ogni spesa, vengono assegnati ad ogni cliente un quantitativo di punti premio pari alla somma dei punti raccolti più un ulteriore punto premio per ogni 10 euro spesi.
+
+\begin{enumerate}
+\item  Definire il tipo $scontrino$ e l'array $archivio$
+\item Scrivere il frammento di codice C che, dato il codice identificativo di un cliente, calcoli la somma dei suoi punti premio.
+\item Scrivere il frammento di codice C che ordina l'array \emph{archivio} secondo il totale della spesa in ordine decrescente.
+\end{enumerate}
+Nota: Si faccia attenzione al fatto che un cliente può comparire in più di uno scontrino.
+\end{frame}
+
+\end{document}

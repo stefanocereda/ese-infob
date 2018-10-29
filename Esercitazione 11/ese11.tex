@@ -64,198 +64,39 @@
 	\maketitle
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Binario - TdE 26 Giugno 2017}
-	Si  dica  e  si  motivi  qual  è  il  minimo  numero  di  bit  che  permette  di  rappresentare  in  
-	complemento  a  due  (CP2)  tutti  i  numeri  seguenti:  
-	\begin{enumerate}
-	\item A  =  +  255  
-	\item B  =  -­  42  
-	\item C  =  +  7  
-	\item D  =  -­  257  
+\begin{frame}{Matlab e binario}
+\framebreak
+Scrivere  una  funzione  Matlab  controllaCP2  che  prende  in  ingresso  una  stringa  (ad  
+esempio ‘0101001’)  corrispondente  ad  un  numero  codificato  in  CP2  e  restituisce  due  
+valori: 
+\begin{enumerate}
+	\item par  che  vale  true  se  il  numero  è  pari  e  false  altrimenti  
+	\item    pos  che  vale  true  se  il  numero  è  positivo  e  false  altrimenti  
 \end{enumerate}
+(L’esecuzione  della  funzione  nel  caso  dell’esempio  darebbe  par = false  e  pos =
+true)
 
-	\framebreak
-	Se  si  volessero  eseguire  tutte  le  possibili  somme  e  sottrazioni  tra  le  coppie  di  numeri  A,  B,  
-	C,  D,  qual  è  il  minimo  numero  di  bit  in  cui  dovrebbero  essere  rappresentati  i  numeri?  Si  
-	motivi  la  risposta
 
-	Si  calcoli  il  risultato  dell’operazione  7  -­  255  utilizzando  la  rappresentazione  in  CP2  con  il  
-	numero  di  bit  stabilito  nel  punto  (a).  Si  mostrino  tutti  i  passaggi  eseguiti  e  si  indichino  i  bit  di  
-	carry  e  di  overflow.
-	
-	\framebreak
-	Scrivere  una  funzione  Matlab  controllaCP2  che  prende  in  ingresso  una  stringa  (ad  
-	esempio ‘0101001’)  corrispondente  ad  un  numero  codificato  in  CP2  e  restituisce  due  
-	valori: 
-	\begin{enumerate}
-		\item par  che  vale  true  se  il  numero  è  pari  e  false  altrimenti  
-		\item    pos  che  vale  true  se  il  numero  è  positivo  e  false  altrimenti  
-	\end{enumerate}
-	(L’esecuzione  della  funzione  nel  caso  dell’esempio  darebbe  par = false  e  pos =
-	true)
-\end{frame}
+\framebreak
 
-\begin{frame}[allowframebreaks, fragile]{Binario - TdE 26 Giugno 2017 - Soluzione}
-	In CP2 con $n$ bit posso rappresentare da $-2^{n-1}$ a $2^{n-1}-1$.
-	
-	Dato un numero negativo $x$ mi serviranno dunque $n = \log_2{-x}+1$ bit per rappresentarlo e dato un numero positivo $y$ me ne serviranno $n = \log_2(y+1)+1$
-	
-	Le potenze di 2 sono: 1 2 4 8 16 32 64 128 256 512 ...
-	
-	I due numeri che devo controllare sono A e D:
-	\begin{itemize}
-		\item A=255 $\rightarrow$ $n_A = \log_2{256}+1 = 9$
-		\item D=-257 $\rightarrow$ $n_B = \log_2{257}+1 = 10$
-	\end{itemize}
-
-	Dunque mi servono \alert{10 bit} per rappresentare tutti i valori.
-	
-	\framebreak
-	
-	Le operazioni che possono dare problemi sono le sottrazioni che coinvolgono A e D. In particolare, A-D darà un numero positivo, mentre D-A darà un numero negativo. Le due operazioni avranno risultato uguale in valore assoluto. Dato che con $n$ bit posso rappresentare da $-2^{n-1}$ a $2^{n-1}\alert{-1}$ controllo solo A-D che dando un risultato positivo è l'operazione più problematica a causa del \alert{-1}.
-	
-	$A-D=255-(-257) = 255+257 = 256+256 = 512 = 2^9$ e per rappresentarlo mi servono $n = \log_2(2^9+1)+1 = 10+1 = 11$.
-	
-	Mi servono dunque 11 bit per eseguire tutte le possibili somme e sottrazioni.
-	
-	\framebreak
-	
-	Converto +7 in CPL2. Inizio a convertirlo in base 2:
-	\begin{tabular}{c|c}
-		7 & 1\\
-		3 & 1\\
-		1 & 1\\
-		0 & 
-	\end{tabular}\\
-	La rappresentazione è dunque 111. Essendo un numero positivo la notazione in CPL2 è 0111. Dovendo usare 10 bit aggiungo degli zeri a sinistra: 0000000111
-
-	\framebreak
-	Inizio a convertire +255 in base 2:
-	\begin{tabular}{c|c}
-		255 & 1\\
-		127 & 1\\
-		63 & 1\\
-		31 & 1\\
-		15 & 1\\
-		7 & 1\\
-		3 & 1\\
-		1 & 1\\
-		0 & 
-	\end{tabular}\\
-\small
-	La rappresentazione di +255 è dunque 11111111. Aggiungo uno 0 a sinistra per avere la rappresentazione in CPL2: 011111111. Noi siamo interessati a -255, dunque copiamo da sx verso dx fino al primo 1 compreso, poi complementiamo: 100000001 e aggiungiamo degli 1 a sinistra per ottenere 10 bit: 1100000001
-	
-	\framebreak
-	
-	\begin{tabular}{cc|c}
-		7			& 0000000111 & + \\
-	    -255		& 1100000001 & = \\
-		riporti		& \ \ \ \ \ \ \ \ 111\ &  \\
-		\hline
-		risultato	& 1100001000 &  \\
-	\end{tabular}
-
-	Operandi discordi non possono dare overflow.
-	
-	Controllo il risultato: 1100001000 è negativo, l'opposto è 0011111000, che vale $8+16+32+64+128 = 248 \rightarrow -248 = -255+7$
-	
-	\framebreak
-	
-	La funzione matlab deve semplicemente controllare il bit a sinistra per sapere se il numero è positivo, ed il bit a destra per sapere se è pari (ragionate sul perché un numero positivo pari mantiene il primo bit=0 quando passo al negativo).
-	\begin{lstlisting}
+La funzione matlab deve semplicemente controllare il bit a sinistra per sapere se il numero è positivo, ed il bit a destra per sapere se è pari (ragionate sul perché un numero positivo pari mantiene il primo bit=0 quando passo al negativo).
+\begin{lstlisting}
 function [par, pos] = controllaCP2(stringa)
-	if stringa(1) == '0'
-		pos = true;
-	else
-		pos = false;
-	end
-	% versione equivalente:
-	% pos = stringa(1) == '0';
-	
-	par = stringa(end) == '0';
+if stringa(1) == '0'
+pos = true;
+else
+pos = false;
+end
+% versione equivalente:
+% pos = stringa(1) == '0';
+
+par = stringa(end) == '0';
 end
 \end{lstlisting}
-	
+
 
 \end{frame}
 
-\begin{frame}{Binario}
-	Si considerino $A_{10} = +77$ e $B_{CPL2} = 101110$ (già in complemento a 2). Li si rappresenti entrambi in base 2 notazione complemento a 2, sul numero \alert{minimo} di bit per rappresentare \alert{entrambi} gli operandi. Si effettuino quindi, sul numero di bit prima individuato, le
-	operazioni A+B e A–B in complemento a 2, indicando se si verifica overflow oppure no.
-\end{frame}
-
-\begin{frame}[allowframebreaks]{Binario - soluzione}
-	\begin{tabular}{c|c}
-		77 & 1\\
-		38 & 0\\
-		19 & 1\\
-		9 & 1\\
-		4 & 0\\
-		2 & 0\\
-		1 & 1\\
-		0 &
-	\end{tabular}
-	$77_{10} = 1001101_2 = 01001101_{CPL2}$
-	
-	Ho rappresentato $A$ con 8 bit, devo aggiungere 2 bit a B. Essendo B negativo (inizia con 1) aggiungo degli 1: $B=11101110_{CPL2}$
-	
-	Noto anche che B vale -18, in quanto: $-B=010010_2=16+2=18_{10}$
-	
-	\framebreak
-	Eseguo A+B
-	
-	\begin{tabular}{cc|c}
-		A			& 01001101 & + \\
-		B			& 11101110 & = \\
-		\hline
-		risultato	&\hspace{-0.5cm}(1)00111011 &  \\
-	\end{tabular}
-
-	Ignoro il riporto. Il risultato è 00111011. Operandi discordi non possono dare overflow.
-	$00111011 = 1+2+8+16+32=59=77-18$
-	
-	\framebreak
-	
-	Eseguo A-B = A+(-B).\\
-	$-B = 00010010_{CPL2}$
-	
-	\begin{tabular}{cc|c}
-		A			& 01001101 & + \\
-		-B			& 00010010 & = \\
-		\hline
-		risultato	& 01011111 &  \\
-	\end{tabular}
-	
-	Operandi concordi hanno dato un risultato ad essi concorde, quindi non si è verificato overflow.
-	
-	$01011111 = 1+2+4+8+16+64=95=75-(-18)$
-	
-\end{frame}
-
-
-\begin{frame}{C - Struct}
-	Vedi esercizio 2 TdE 26 Giugno 2017
-	
-	La difficoltà dell'esercizio è più nella comprensione del testo che nella sua risoluzione, abbiamo visto come affrontandolo un punto alla volta sia di facile risoluzione.
-\end{frame}
-
-
-\begin{frame}[allowframebreaks]{C -Struct e Array}
-Un supermercato ha memorizzato il proprio archivio di scontrini nell'array \emph{archivio}, in cui ogni è una struttura dati di tipo \emph{scontrino} con le  seguenti informazioni:
-\begin{itemize}
-	\item IDcliente: stringa di 10 caratteri che identifica univocamente il cliente
-	\item totale: totale della spesa in Euro
-	\item punti: punti premio associati alla spesa
-\end{itemize}
-Ad ogni spesa, vengono assegnati ad ogni cliente un quantitativo di punti premio pari alla somma dei punti raccolti più un ulteriore punto premio per ogni 10 euro spesi.
-
-\begin{enumerate}
-\item  Definire il tipo $scontrino$ e l'array $archivio$
-\item Scrivere il frammento di codice C che, dato il codice identificativo di un cliente, calcoli la somma dei suoi punti premio.
-\item Scrivere il frammento di codice C che ordina l'array \emph{archivio} secondo il totale della spesa in ordine decrescente.
-\end{enumerate}
-Nota: Si faccia attenzione al fatto che un cliente può comparire in più di uno scontrino.
-\end{frame}
 
 
 \begin{frame}[allowframebreaks]{Matlab - Ricorsione}

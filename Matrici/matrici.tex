@@ -63,6 +63,36 @@ Date due matrici intere $A, B$ si scriva un programma che ne calcoli il prodotto
 
 Si ricorda che il prodotto di due matrici $A$ e $B$ (di dimensioni $m \times n, n \times p$) è una matrice $C$ (di dimensioni $m \times p$) i cui elementi $C_{ij}$ sono dati da:
 \[ c_{ij} = \sum_{r=1}^n  a_{ir}b_{rj} \]
-\end{frame} 
+\end{frame}
+
+\begin{frame}{Array e matrici}
+Si scriva un programma che riceva in input un numero $dim<MAX\_V$ ($MAX\_V=100$) e chieda poi $dim$ interi in modo da popolare un vettore $v$. 
+
+Il programma richiede all’utente altri due numeri, $r$ e $c$ rappresentanti le dimensioni di una matrice $m$.
+Il programma deve usare i primi $r*c$ valori di $v$ per riempire la matrice $m$.
+
+\begin{itemize}
+	\item Se $r*c > dim$ il programma termina scrivendo un messaggio di errore.
+	\item Se $r*c < dim$ il programma riempie $m$ e stampa i valori di $v$ che sono stati esclusi
+	dalla matrice.
+	\item Se $r*c = dim$ il programma stampa un messaggio di successo.
+\end{itemize}
+
+Nei casi in cui la matrice viene popolata si ricerchi all’interno di essa il massimo e minimo e se ne
+stampino i valori.
+\end{frame}
+
+\begin{frame}{Stringhe e matrici}
+Si definisca la struttura dati composta da una matrice di stringhe (NxN).
+
+Si scriva quindi il codice che permette ad un utente di riempire la matrice con parole.
+Alla fine della fase di inserimento si deve stampare la lunghezza media delle parole ed il numero
+totale di caratteri presenti nella matrice.
+
+Si costruisca un vettore contenente le parole presenti nella diagonale della matrice e se ne stampi
+il contenuto.
+
+Si chiede di inserire una parola da ricercare fra il contenuto della matrice. Il risultato della ricerca restituisce gli indici ([riga,colonna]) della prima occorrenza della parola (se essa esiste) oppure il valore -1.
+\end{frame}
 
 \end{document}
