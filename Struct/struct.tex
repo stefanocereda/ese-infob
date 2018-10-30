@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169]{beamer}
+\documentclass[format=169, handout]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -32,6 +32,23 @@
 
 \begin{frame}<handout:0>{Nuovi esercizi su argomenti vecchi}
 Aggiunti due esercizi sulle matrici e alcuni esercizi sul binario.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Scontrini}
+Un supermercato ha memorizzato il proprio archivio di scontrini nell'array \emph{archivio}, in cui ogni elemento è una struttura dati di tipo \emph{scontrino} con le  seguenti informazioni:
+\begin{itemize}
+	\item IDcliente: stringa di 10 caratteri che identifica univocamente il cliente
+	\item totale: totale della spesa in Euro
+	\item punti: punti premio associati alla spesa
+\end{itemize}
+Ad ogni spesa, vengono assegnati ad ogni cliente un quantitativo di punti premio pari alla somma dei punti raccolti più un ulteriore punto premio per ogni 10 euro spesi.
+
+\begin{enumerate}
+	\item  Definire il tipo $scontrino$ e l'array $archivio$
+	\item Scrivere il frammento di codice C che, dato il codice identificativo di un cliente, calcoli la somma dei suoi punti premio.
+	\item Scrivere il frammento di codice C che ordina l'array \emph{archivio} secondo il totale della spesa in ordine decrescente.
+\end{enumerate}
+Nota: Si faccia attenzione al fatto che un cliente può comparire in più di uno scontrino.
 \end{frame}
 
 \begin{frame}{Anagrafe}
@@ -95,8 +112,8 @@ Tutti i reperti vengono memorizzati in un array di dimensione massima 1000.
 
 \begin{enumerate}
 \item Si definiscano in linguaggio C le strutture dati e le variabili necessarie per rappresentare l’insieme dei
-reperti nella variabile insiemeReperti.
-\item  Si supponga che la variabile insiemeReperti sia stata precedentemente riempita con le informazioni
+reperti nella variabile \emph{insiemeReperti}.
+\item  Si supponga che la variabile \emph{insiemeReperti} sia stata precedentemente riempita con le informazioni
 di 1000 reperti e si sviluppi in C il ciclo che, per ogni reperto, stampa a video il suo peso. Si dichiarino
 anche tutte le variabili necessarie allo scopo che non sono state dichiarate nel punto precedente.
 
@@ -104,62 +121,43 @@ Periodicamente, l’organizzazione progetta spedizioni per raccogliere i reperti
 sempre possibile perché il veicolo che viene usato per raccogliere i reperti ha una portata massima (un peso
 massimo che può portare) che non può essere superato. D’altra parte, l’organizzazione vuole fare in modo
 che il veicolo venga utilizzato nel modo più efficiente possibile e quindi la spedizione verrà pianificata in
-modo tale che il veicolo raccolga il maggior numero possibile di reperti nell’area prescelta. La spedizione
+modo tale che il veicolo raccolga il maggior numero possibile di reperti nell'area prescelta. La spedizione
 viene pianificata come segue:
 
-Si parte con un veicolo scarico, di portata pMax, da una coppia di coordinate geografiche (latitudineI
-e longitudineI) e si esplorano le vicinanze di quelle coordinate geografiche in modo da rimanere
-nell’ambito della zona di ricerca, i cui confini sono definiti dai punti latitudineI ± soglia,
-longitudineI ± soglia. Per ogni reperto che si trova nei confini definiti, si pianifica di caricare il
+Si parte con un veicolo scarico, di portata \emph{pMax}, da una coppia di coordinate geografiche (\emph{latitudineI}
+e \emph{longitudineI}) e si esplorano le vicinanze di quelle coordinate geografiche in modo da rimanere
+nell'ambito della zona di ricerca, i cui confini sono definiti dai punti $latitudineI ± soglia$,
+$longitudineI ± soglia$. Per ogni reperto che si trova nei confini definiti, si pianifica di caricare il
 reperto a bordo del veicolo, a patto che il suo peso, sommato al peso del carico corrente portato dal veicolo,
-sia minore di pMax. In caso contrario, quel reperto viene scartato e si procede a cercarne un altro, sempre
-rimanendo nei confini dell’area di ricerca. La ricerca termina quando il peso dei reperti da trasportare avrà
-raggiunto il valore pMax oppure quando tutti i reperti nella zona di ricerca saranno stati esaminati.
+sia minore di $pMax$. In caso contrario, quel reperto viene scartato e si procede a cercarne un altro, sempre
+rimanendo nei confini dell'area di ricerca. La ricerca termina quando il peso dei reperti da trasportare avrà
+raggiunto il valore $pMax$ oppure quando tutti i reperti nella zona di ricerca saranno stati esaminati.
 
 L’algoritmo di pianificazione del viaggio, durante l’analisi sopra descritta, crea un array di reperti chiamato
-caricoVeicolo che contiene, alla fine dell’analisi, tutti i reperti che dovranno essere caricati sul veicolo
+$caricoVeicolo$ che contiene, alla fine dell'analisi, tutti i reperti che dovranno essere caricati sul veicolo
 durante l’esecuzione della spedizione.
 
-\item Dato un reperto che assumiamo si trovi nella cella i-esima (con i che ha un valore qualsiasi compreso tra
-0 e 999, estremi inclusi) dell’array insiemeReperti, si scriva la condizione che, se vera, ci permette di
-dire che il reperto si trova nell’area di ricerca definita dai confini indicati sopra.
+\item Dato un reperto che assumiamo si trovi nella cella $i$-esima (con $i$ che ha un valore qualsiasi compreso tra
+0 e 999, estremi inclusi) dell'array $insiemeReperti$, si scriva la condizione che, se vera, ci permette di
+dire che il reperto si trova nell'area di ricerca definita dai confini indicati sopra.
 
 \item Si sviluppi il frammento di codice in C necessario per acquisire da tastiera: la portata massima del
 veicolo, le coordinate geografiche di partenza della spedizione, il valore soglia che definisce i confini di
 ricerca. Si dichiarino tutte le variabili necessarie allo scopo.
 
 \item Si sviluppi in linguaggio C l’algoritmo di pianificazione del carico descritto in precedenza. Oltre alle
-dovute inizializzazioni di variabili (non è necessario inizializzare insiemeReperti che si assume essere
+dovute inizializzazioni di variabili (non è necessario inizializzare $insiemeReperti$ che si assume essere
 già riempito), la parte principale di questo algoritmo sarà costituita a un ciclo che analizza tutti i reperti in
-insiemeReperti e, per ogni reperto:
+$insiemeReperti$ e, per ogni reperto:
 \begin{itemize}
-\item  Valuta se si trova nell’area di ricerca (si faccia riferimento alla soluzione fornita per il punto C)
+\item  Valuta se si trova nell'area di ricerca (si faccia riferimento alla soluzione fornita per il punto 3)
 \item  In caso positivo, valuta se può essere caricato sul veicolo
-\item  In caso positivo, aggiorna la variabile caricoVeicolo in modo che contenga i dati del reperto in
+\item  In caso positivo, aggiorna la variabile $caricoVeicolo$ in modo che contenga i dati del reperto in
 questione
 \end{itemize}
 Si dichiarino anche tutte le variabili necessarie allo scopo che non sono state dichiarate nei punti precedenti.
 \end{enumerate}
 
-\end{frame}
-
-
-
-\begin{frame}[allowframebreaks]{Scontrini}
-Un supermercato ha memorizzato il proprio archivio di scontrini nell'array \emph{archivio}, in cui ogni è una struttura dati di tipo \emph{scontrino} con le  seguenti informazioni:
-\begin{itemize}
-\item IDcliente: stringa di 10 caratteri che identifica univocamente il cliente
-\item totale: totale della spesa in Euro
-\item punti: punti premio associati alla spesa
-\end{itemize}
-Ad ogni spesa, vengono assegnati ad ogni cliente un quantitativo di punti premio pari alla somma dei punti raccolti più un ulteriore punto premio per ogni 10 euro spesi.
-
-\begin{enumerate}
-\item  Definire il tipo $scontrino$ e l'array $archivio$
-\item Scrivere il frammento di codice C che, dato il codice identificativo di un cliente, calcoli la somma dei suoi punti premio.
-\item Scrivere il frammento di codice C che ordina l'array \emph{archivio} secondo il totale della spesa in ordine decrescente.
-\end{enumerate}
-Nota: Si faccia attenzione al fatto che un cliente può comparire in più di uno scontrino.
 \end{frame}
 
 \end{document}

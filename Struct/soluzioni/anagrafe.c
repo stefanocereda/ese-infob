@@ -23,7 +23,7 @@ contiene al max N veicoli.
 #define MAX_STRLEN 256 // ragionevole lunghezza massima di nome, cognome, via e modello
 #define MAX_RECAPITI 3 // massimo numero di recapiti associati ad un proprietario
 #define LEN_CAP 6 // Rappresento il cap come una stringa di 5 caratteri + terminatore
-#define LEN_TARGA 10 // Rapressento la targa come una stringa di 9 caratteri + terminatore
+#define LEN_TARGA 10 // Rappresento la targa come una stringa di 9 caratteri + terminatore
 
 typedef char Stringa[MAX_STRLEN];
 typedef char Cap[LEN_CAP];
@@ -83,7 +83,7 @@ int main(){
         /* La scanf non vuole \n */
         /* La %s non vuole il & */
         /* Potete accedere ai campi delle struct con un punto. Leggete al contrario sostituendo i punti con "del" e [i] con "i-esimo"
-         * Sapendo che l'anagrafe contiene veicoli possiamo dire che la scanf sta salvando una stringa nella targa dell'i-esimo veiocolo */
+         * Sapendo che l'anagrafe contiene veicoli possiamo dire che la scanf sta salvando una stringa nella targa dell'i-esimo veicolo */
 
         printf("Inserisci modello: ");
         scanf("%s", anagrafe[i].modello);

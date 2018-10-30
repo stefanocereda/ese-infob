@@ -45,7 +45,7 @@ int main(){
         scanf("%d", &v[i]);
     }
 
-    /* Modificatelo per fare un continuare a chiedere r e c finchè vi arrivano entrambi minori di MAX_V */
+    /* Modificatelo per continuare a chiedere r e c finchè vi arrivano entrambi minori di MAX_V */
     /* Notare che la modifica non vi garantisce di essere in grado di popolare la matrice */
     printf("Inserisci r e c: ");
     scanf("%d%d", &r, &c);

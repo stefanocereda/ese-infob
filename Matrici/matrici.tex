@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169]{beamer}
+\documentclass[format=169, handout]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -58,14 +58,18 @@ Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salv
 \end{frame}
 
 
-\begin{frame}{Prodotto fra matrici}
+\begin{frame}{Prodotto fra matrici - già fatto a lezione}
 Date due matrici intere $A, B$ si scriva un programma che ne calcoli il prodotto $C=A\times B$
 
 Si ricorda che il prodotto di due matrici $A$ e $B$ (di dimensioni $m \times n, n \times p$) è una matrice $C$ (di dimensioni $m \times p$) i cui elementi $C_{ij}$ sono dati da:
 \[ c_{ij} = \sum_{r=1}^n  a_{ir}b_{rj} \]
 \end{frame}
 
-\begin{frame}{Array e matrici}
+
+
+\begin{frame}[allowframebreaks]{Array e matrici}
+Questo esercizio e il successivo non sono stati svolti durante l'esercitazione sulle matrici.
+
 Si scriva un programma che riceva in input un numero $dim<MAX\_V$ ($MAX\_V=100$) e chieda poi $dim$ interi in modo da popolare un vettore $v$. 
 
 Il programma richiede all’utente altri due numeri, $r$ e $c$ rappresentanti le dimensioni di una matrice $m$.
@@ -94,5 +98,7 @@ il contenuto.
 
 Si chiede di inserire una parola da ricercare fra il contenuto della matrice. Il risultato della ricerca restituisce gli indici ([riga,colonna]) della prima occorrenza della parola (se essa esiste) oppure il valore -1.
 \end{frame}
+
+
 
 \end{document}
