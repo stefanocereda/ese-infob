@@ -1,4 +1,4 @@
-%Risoluzione equazione di secondo grado
+% Risoluzione equazione di secondo grado
 
 a=input('Inserisci a: ');
 b=input('Inserisci b: ');

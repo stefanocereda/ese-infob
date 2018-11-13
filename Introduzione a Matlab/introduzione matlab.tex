@@ -1,0 +1,64 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[format=169, handout]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{multicol}
+
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Introduzione a Matlab}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{13/11/2018}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+	\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}<handout:0>{Conclusione esercizi struct}
+Completare gli esercizi sulle struct in C (anagrafe)
+\end{frame}
+
+
+\begin{frame}{Costrutto if: equazioni di secondo grado}
+Scaricare e installare Matlab/Octave
+
+Script: commenti(nome e descrizione; data e autori; def variabili), input, calcolo, output.
+
+Si chieda l’inserimento dei tre coefficienti di una equazione di secondo grado: $ax^2+bx+c=0$ e si stampi il valore delle radici reali.
+\end{frame}
+
+\begin{frame}{Grafici: equazioni di secondo grado}
+Si chieda l’inserimento dei tre coefficienti di una equazione di secondo grado: $ax^2+bx+c=0$ e si dia una rappresentazione della curva.
+\end{frame}
+
+\begin{frame}{Costrutto while: fattoriale}
+Si scriva uno script che chieda l'inserimento di un numero $n$ e ne calcoli e visualizzi il fattoriale utilizzando un ciclo while.
+\end{frame}
+
+\begin{frame}{Matrice triangolare}
+Scrivere uno script in Matlab/Octave che svolga le seguenti operazioni:
+\begin{enumerate}
+	\item Definire una matrice quadrata di interi di dimensione $N\times N$, con $N=5$.
+	\item Acquisire da tastiera una sequenza di valori interi da memorizzare nella porzione triangolare superiore della matrice. La parte triangolare superiore della matrice è costituita dalle celle poste sulla diagonale principale e al di sopra di tale diagonale.
+	\item Copiare in un array di dimensioni opportune tutti i valori della porzione triangolare di matrice che sono maggiori di -10.
+	\item Stampare il contenuto dell'array.
+\end{enumerate}
+\end{frame}
+
+\end{document}
