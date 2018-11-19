@@ -43,7 +43,8 @@ int main(){
 	printf("L'utente %s ha totalizzato %d punti.\n", idCerca, tot);
 
 
-	
+	/* MODIFICARE QUESTA PARTE PER NON USARE TUTTI GLI i OGNI VOLTA */
+    
 	scambio = true;
 	while (scambio){
 		scambio = false;
@@ -62,3 +63,6 @@ int main(){
 	}
 	return 0;
 }
+
+
+/* Scambio di mail interessate con Marco Bernardini, inserirli come possibili errori /*
