@@ -108,6 +108,7 @@ Dunque, $M(1,1,:)$ sarà un array monodimensionale che indica il colore del pixe
 \begin{frame}{Immagini - colori}
 Il colore di un punto viene descritto da un array di lunghezza 3 in quanto ogni colore può essere descritto come combinazione dei tre colori di base rosso verde e blu.
 
+{
 \centering
 \begin{tabular}{|c|c|}
 	\hline 
@@ -122,7 +123,12 @@ Il colore di un punto viene descritto da un array di lunghezza 3 in quanto ogni 
 	0 0 0 & Nero \\ 
 	1 1 1 & Bianco \\ 
 	\hline 
-\end{tabular} 
+\end{tabular}
+\par
+}
+
+
+I colori di base vengono anche detti \emph{canali}.
 \end{frame}
 
 \begin{frame}[fragile]{Immagini - Bandiera Italiana}
@@ -143,6 +149,43 @@ E mostriamo la figura:
 \begin{lstlisting}[style=matlab, firstnumber=5]
 imagesc(bandiera);
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile, allowframebreaks]{Immagini - Bandiera Italiana - colori float}
+Usando triplette RGB con valori 0 o 1 possiamo usare solo 8 colori, se usiamo valori float possiamo indicare molti più colori.
+
+Ad esempio, i colori corretti della bandiera italiana sono:\\
+(R:0 G:146 B:70), (R:241 G:242 B:241), (R:206 G:43 B:55)
+
+Le triplette RGB hanno valore massimo 255, dunque possiamo dipingere una bandiera migliore utilizzando dei valori float che indichino questi valori.
+
+Ad esempio, la fascia verde avrà come valore 146/255 per il canale verde e 70/255 per il canale blu.
+
+\url{https://en.wikipedia.org/wiki/RGB_color_model}
+
+\pause
+
+\begin{lstlisting}[style=matlab]
+bandiera = zeros(200,300,3);
+bandiera(:, 1:100, 2) = 146/255;
+bandiera(:, 1:100, 3) = 70/255;
+
+bandiera(:, 101:200, 1) = 241/255;
+bandiera(:, 101:200, 2) = 242/255;
+bandiera(:, 101:200, 3) = 241/255;
+
+bandiera(:, 201:300, 1) = 206/255;
+bandiera(:, 201:300, 2) = 43/255;
+bandiera(:, 201:300, 3) = 55/255;
+imagesc(bandiera);
+\end{lstlisting}
+
+\pause
+\centering
+\begin{tabular}{cc}
+	Colori interi: & \includegraphics[width=0.4\linewidth]{./bandiera1.png} \\
+	Colori float: & \includegraphics[width=0.4\linewidth]{./bandiera2.png} \\
+\end{tabular}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Competizione bandiere}
