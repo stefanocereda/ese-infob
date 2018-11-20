@@ -12,3 +12,5 @@ end
 
 disp(A)
 disp(B)
+
+disp(rot90(A))
