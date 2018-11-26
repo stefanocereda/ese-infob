@@ -277,7 +277,83 @@ $\rightarrow$
 	1& \alert{2} &3&4&...\\
 	\hline
 \end{tabular}
+\end{frame}
 
+\begin{frame}
+\Huge
+Esercizi svolti 27/11/2018
+\end{frame}
+
+\begin{frame}{Vettori logici}
+Risolvere i due esercizi di confronto utilizzando vettori logici.
+\end{frame}
+
+\begin{frame}{Aggiunta colonna}
+Scrivere uno script Matlab che, data una matrice $Q$ ed un valore $v$, stampi una
+matrice corrispondente a $Q$, alla quale è stata aggiunta una nuova prima
+colonna contenente $v$.
+\end{frame}
+
+\begin{frame}{Ordinamento matrice}
+Ordinare una matrice per righe o per colonne, in ordine crescente o decrescente mantenendo la struttura della matrice. Vedere l'help della funzione sort.
+
+Si crei poi un vettore ordinato contenente tutti gli elementi della matrice.
+
+Infine, si trasformi il vettore in una matrice con le stesse dimensioni della matrice originale. Si veda l'help della funzione reshape.
+\end{frame}
+
+\begin{frame}{Coppie per somme}
+Scrivere uno script MATLAB che, ricevuto in ingresso un intero positivo $n$, stampi due vettori $x$ e $y$, contenenti tutte le coppie di interi $(x,y)$ la cui somma è pari ad $n$.
+\end{frame}
+
+\begin{frame}{Soglia intorno}
+Si scriva in linguaggio MATLAB uno script che riceva in ingresso una matrice, un numero di riga, un numero di colonna e un valore di soglia. Lo script stampa true se tutti i valori delle celle della matrice nell'intorno della cella della riga e della colonna date sono minori del valore di soglia.
+
+Le celle nell'intorno della cella identificata dalla riga e dalla colonna date sono quelle immediatamente adiacenti a questa cella.
+\end{frame}
+
+\begin{frame}{Caffè}
+In un dipartimento ci sono 9 persone, ognuna nell'ultima settimana ha
+consumato un certo numero di caffè memorizzati in una matrice "caffe" data
+(dove le righe rappresentano le persone, mentre le colonne i giorni).
+\begin{enumerate}
+	\item Si vuole sapere quanto deve pagare ogni persona sapendo che ogni caffè
+	ha un costo di 0,25 euro.
+	\item Si supponga che vi sia un costo fisso di noleggio della macchinetta per
+	fare il caffè pari a 10 euro a settimana.
+	\begin{enumerate}
+		\item  La metà di tale costo è divisa equamente tra i bevitori (coloro che
+		hanno consumato almeno un caffè);
+		\item l'altra metà tra i bevitori che ne hanno consumato di più rispetto
+		alla media.
+	\end{enumerate}
+\end{enumerate}
+
+Si dica quanto deve pagare ogni persona.
+\end{frame}
+
+\begin{frame}{Matrice palindroma - TdE 2 Luglio 2018}
+Data una matrice $N \times M$, essa si definisce palindroma per riga se la riga 1 è uguale alla riga $N$, la riga 2 è uguale alla riga $N-­$1 e così via.
+  
+Si scriva uno script MATLAB che, data in ingresso una matrice, stampi 1 se la matrice è palindroma per riga o 0 nel caso non lo sia.
+
+Attenzione alla correzione del tema d'esame, contiene un errore!
+\end{frame}
+
+\begin{frame}{Matrice dominante - TdE 20 Luglio 2018}
+Una matrice quadrata è definita diagonalmente dominante se il valore assoluto di ciascun elemento sulla  
+diagonale principale è maggiore della somma dei valori assoluti degli altri elementi sulla stessa riga.
+
+Per esempio, la seguente matrice è diagonalmente dominante:
+\begin{tabular}{ccccc}	 
+	20 & 2 & 3 & 4 & 5 \\ 	 
+	3 & -25 & 5 & 6 & 7 \\ 
+	2 & 3 & 23 & 5 & 6 \\  
+	8 & 7 & 6 & -30 & 4 \\ 
+	2 & 3 & 4 & 5 & 20 \\  
+\end{tabular} 
+
+Si scriva uno script MATLAB che, ricevuta una matrice $m$, stampi -1 se $m$ non è quadrata, 0 se quadrata ma non diagonalmente dominante, 1 se quadrata e diagonalmente dominante.
 \end{frame}
 
 \end{document}

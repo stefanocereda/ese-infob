@@ -1,0 +1,123 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[format=169, handout, 10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{hyperref}
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Struct in MATLAB}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{27/11/2018}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+
+\setbeamercovered{invisible}
+
+
+\makeindex
+
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+
+\begin{frame}{Paghe}
+Data la seguente tabella:
+
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	& op1 & op2 & op3 & op4 & op5 \\
+	\hline
+	Paga oraria & 5 & 5.5 & 6.5 & 5 & 6.25 \\ 
+	\hline
+	Ore settimanali & 40 & 43 & 37 & 50 & 45 \\
+	\hline
+	Pezzi prodotti & 1000 & 1100 & 1000 & 1200 & 1100 \\
+	\hline
+\end{tabular} 
+
+Scrivere uno script Matlab che organizzi la tabella in un array di dati strutturati e risponda alle seguenti domande:
+\begin{enumerate}
+	\item Quanto guadagna ogni operaio?
+	\item Qual è il salario totale di tutti gli impiegati?
+	\item Quanti pezzi vengono prodotti?
+	\item Qual è il costo medio di un pezzo?
+	\item Quante ore occorrono in media per un pezzo?
+	\item Qual è l’operaio più efficiente?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Archivio mammiferi}
+
+	Si vogliono rappresentare informazioni relative ai mammiferi ospitati in un
+	parco protetto.
+	
+	In particolare, per ogni mammifero si rappresentano i seguenti dati:\\
+	NOME TIPO, TIPO ALIMENTAZIONE, PESO MEDIO, insieme di ESEMPLARI
+	
+	Dove ogni esemplare è caratterizzato da:\\
+	CODICE ESEMPLARE, ANNO DI NASCITA, NUMERO CUCCIOLI
+	
+	\begin{enumerate}
+	\item Si crei una variabile mammifero che contenga le informazioni del
+	seguente mammifero:\\
+	NOME TIPO: Elefante\\
+	TIPO ALIMENTAZIONE: Erbivoro\\
+	PESO MEDIO: 2500\\
+	ESEMPLARE 1: (Codice: 3, Anno: 1985, Cuccioli: 3)\\
+	ESEMPLARE 2: (Codice: 5, Anno: 1989, Cuccioli: 0)\\
+	ESEMPLARE 3: (Codice: 8, Anno: 1982, Cuccioli: 0)\\
+	
+	\item Chieda all'utente se vuole inserire ulteriori elefanti
+	\item Si scriva il codice che costruisce, a partire dalla variabile creata al punto
+	precedente, l'archivio degli esemplari di elefante sterili sapendo che un
+	elefante si dice sterile se è nato prima del 1990 e non ha concepito
+	nessun cucciolo.
+\end{enumerate}
+
+	Si stampi su schermo l'elenco dei codici degli elefanti sterili.
+	
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Treni in stazione}
+Si consideri il sistema di gestione dei treni in una stazione. In ogni stazione ci sono varie banchine e
+ogni banchina consente la sosta e il transito di un treno. Ad ogni treno in stazione viene assegnato uno dei
+seguenti stati:
+\begin{itemize}
+\item fuoriStazione: il treno, in attesa di essere assegnato a una banchina, si trova fuori dalla stazione
+\item inIngresso: il treno è stato assegnato a una banchina ed è in marcia a velocità ridotta per entrare in
+stazione
+\item inSosta: il treno è fermo a una banchina
+\item attesaOut: il treno è fermo a una banchina in attesa di poter partire
+\item  inUscita: il treno sta abbandonando la banchina procedendo a velocità ridotta.
+\end{itemize}
+Si assuma che siano già stati introdotti i tipi Stazione e Banchina. In particolare, Stazione contiene l'insieme delle banchine presenti in stazione (banchine), la coda dei treni in attesa all'ingresso (codaTreni) e una variabile Booleana che dice se c'è qualche treno in manovra in stazione (bloccata).
+
+Banchina, invece, contiene il numero della banchina e i dati del
+treno in sosta, se la banchina è in stato occupato. Ciascun treno, oltre ad avere il proprio stato e il numero della banchina eventualmente assegnata, ha un campo minutiAttesaOut che indica da quanti minuti è in
+attesa in stato attesaOut.
+
+Si supponga che sia stata definita la variabile stazioneMI di tipo Stazione e che questa variabile sia stata
+riempita in modo opportuno per rappresentare lo stato corrente della stazione di Milano, si definisca uno script che, se la stazione non è bloccata dalle manovre di qualche
+treno e se vi è almeno un treno in coda per entrare in stazione, blocca la stazione, estrae dalla coda il
+primo treno che vi era stato inserito, gli assegna lo stato inIngresso, e aggiorna la coda in modo tale
+che poi contenga solo i rimanenti treni in coda. Se per esempio, prima di questa operazione la coda è cosi costituita: \\
+stazioneMI.codaTreni(1) = FR2092, stazioneMI.codaTreni(2) = IR097,
+stazioneMI.codaTreni(3) = FA2673 (per semplicità abbiamo riportato solo il nome del treno, ma,
+ovviamente, codaTreni dovrebbe contenere l’intera struct corrispondente), dopo l’operazione si deve
+avere che stazioneMI.codaTreni(1)= IR097, stazioneMI.codaTreni(2) = FA2673.
+
+\end{frame}
+
+\end{document}

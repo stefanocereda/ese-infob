@@ -1,13 +1,26 @@
 N=input('Quanti numeri vuoi inserire? ');
 
-x=1;
-while(x<=N)
-    a(x)=input(fprintf('Inserisci numero %d: ',x));
-    x=x+1;
+for x = [1:N]
+    a(x) = input(fprintf('Inserisci numero %d: ',x));
 end
 
-m=input('Inserisci numero da confrontare: ');
 
+val=input('Inserisci numero da confrontare: ');
+
+
+
+% SOLUZIONE MIGLIORE
+if (min(a) > val)
+    disp('Tutti maggiori')
+elseif (max(a) < val)
+    disp('Tutti minori')
+elseif (min(a) == max(a) == val)
+    disp('Tutti uguali')
+else
+    disp('Nessuno dei precedenti')
+
+    
+% SOLUZIONE PEGGIORE
 % Il controllo di tutti minori (o maggiori o uguali) utilizza delle flag con la stessa logica dell'esercizio precedente
 minori=1;maggiori=1;uguali=1;
 

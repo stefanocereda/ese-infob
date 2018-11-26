@@ -1,0 +1,106 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[format=169, handout, 10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{hyperref}
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Funzioni in MATLAB}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{/11/2018}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+
+\setbeamercovered{invisible}
+
+
+\makeindex
+
+
+\begin{document}
+	\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Funzione split}
+Scrivere una funzione (split) che data una variabile di ingresso $m$ (scalare, vettore o
+matrice di numeri) ed un numero $x$ restituisce due vettori $vMin$ e $vMax$. $vMin$
+contiene tutti gli elementi di $m$ minori di $x$, mentre $vMax$ gli elementi maggiori
+di $x$.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Struct e funzioni: codice IBAN}
+Un codice IBAN è una sequenza di 27 caratteri alfanumerici così composta:
+\begin{itemize}
+\item 2 caratteri maiuscoli rappresentanti la sigla internazionale della Nazione
+\item 2 cifre (CIN Europeo)
+\item 1 carattere maiuscolo (CIN Italiano)
+\item 5 cifre (ABI)
+\item 5 cifre (CAB)
+\item 12 cifre (Numero di Conto)
+\end{itemize}
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	naz & cin\_e & cin\_I & abi & cab	&	conto \\
+	\hline
+	IT&02&L&12345&12345&123456789012\\
+	\hline
+\end{tabular}
+
+
+Si scrivano le seguenti funzioni:
+\begin{itemize}
+\item \emph{removeSpaces}, che prenda in ingresso una stringa strIn e restituisca una stringa strOut contenente tutti i caratteri di strIn ad esclusione degli spazi.
+\item \emph{isAlpha}, che prenda in ingresso una stringa str e restituisca 1 quando str contiene esclusivamente lettere maiuscole, o 0 altrimenti.
+\item \emph{isDigit}, che prenda in ingresso una stringa str e restituisca 1 quando str contiene esclusivamente caratteri corrispondenti a cifre, o 0 altrimenti.
+\end{itemize}
+
+Si utilizzino tali funzioni per scrivere un’ulteriore funzione \emph{checkIBAN} che riceve come parametro una stringa e restituisce 1 se la stringa inserita, una volta rimossi gli spazi, corrisponde ad un codice IBAN che rispetta lo schema sopra illustrato, o 0 altrimenti.
+\end{frame}
+
+	
+\begin{frame}[allowframebreaks]{Struct e funzioni: biblioteca}
+Si vuole automatizzare la gestione di una biblioteca di un piccolo paese.
+
+Come primo passo si vuole gestire una matrice di dimensioni $N \times 2$ contenente nella
+prima colonna un identificativo numerico e nella seconda colonna un numero di
+tessera.
+
+Immaginate l’identificativo numerico come un codice interno alla biblioteca mentre il
+numero di tessera come il numero di una tessera esistente appartenente (ad esempio
+il vostro codice persona del politecnico).
+
+\begin{tabular}{|c|c|}
+	\hline
+	ID	&	Codice Persona \\
+	\hline
+	1	&	123456789	\\
+	\hline
+	2	&	987654321	\\
+	\hline
+	...	&	... \\
+	\hline
+\end{tabular} 
+
+
+Si forniscano le funzioni necessarie all'inserimento di una nuova tessera e alla ricerca
+dell'identificativo numerico dato un numero di tessera (l’identificativo numerico è un
+numero crescente che parte da 1).
+
+Funzione \emph{inserisci}:\\
+\emph{input}: matrice Soci e nuovo numero di tessera\\
+\emph{output}: la matrice Soci
+
+Funzione \emph{cerca}:\\
+\emph{input}: matrice Soci e numero di tessera da cercare\\
+\emph{output}: l’identificativo numerico associato al numero tessera
+\end{frame}
