@@ -8,3 +8,5 @@ for i = 1:floor(dim(1)/2) % faccio controlli solo su metà delle righe
      end
 end
 res
+
+m = rot90(m')
