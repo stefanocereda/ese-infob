@@ -1,0 +1,188 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[format=169, 10pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{hyperref}
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Funzioni in MATLAB}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{3/12/2018}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+
+%\setbeamercovered{invisible}
+
+
+\makeindex
+
+
+\begin{document}
+	\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}{Funzione split}
+Scrivere una funzione (split) che data una variabile di ingresso $m$ (scalare, vettore o
+matrice di numeri) ed un numero $x$ restituisce due vettori $vMin$ e $vMax$. $vMin$
+contiene tutti gli elementi di $m$ minori di $x$, mentre $vMax$ gli elementi maggiori
+di $x$.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Struct e funzioni: codice IBAN}
+Un codice IBAN è una sequenza di 27 caratteri alfanumerici così composta:
+\begin{itemize}
+\item 2 caratteri maiuscoli rappresentanti la sigla internazionale della Nazione
+\item 2 cifre (CIN Europeo)
+\item 1 carattere maiuscolo (CIN Italiano)
+\item 5 cifre (ABI)
+\item 5 cifre (CAB)
+\item 12 cifre (Numero di Conto)
+\end{itemize}
+\begin{tabular}{|c|c|c|c|c|c|}
+	\hline
+	naz & cin\_e & cin\_I & abi & cab	&	conto \\
+	\hline
+	IT&02&L&12345&12345&123456789012\\
+	\hline
+\end{tabular}
+
+\framebreak
+Si scrivano le seguenti funzioni:
+\begin{itemize}
+\item \emph{removeSpaces}, che prenda in ingresso una stringa strIn e restituisca una stringa strOut contenente tutti i caratteri di strIn ad esclusione degli spazi.
+\item \emph{isAlpha}, che prenda in ingresso una stringa str e restituisca 1 quando str contiene esclusivamente lettere maiuscole, o 0 altrimenti.
+\item \emph{isDigit}, che prenda in ingresso una stringa str e restituisca 1 quando str contiene esclusivamente caratteri corrispondenti a cifre, o 0 altrimenti.
+\end{itemize}
+
+Si utilizzino tali funzioni per scrivere un’ulteriore funzione \emph{checkIBAN} che riceve come parametro una stringa e restituisce 1 se la stringa inserita, una volta rimossi gli spazi, corrisponde ad un codice IBAN che rispetta lo schema sopra illustrato, o 0 altrimenti.
+\end{frame}
+
+	
+\begin{frame}[allowframebreaks]{Struct e funzioni: biblioteca}
+Si vuole automatizzare la gestione di una biblioteca di un piccolo paese.
+
+Come primo passo si vuole gestire una matrice di dimensioni $N \times 2$ contenente nella
+prima colonna un identificativo numerico e nella seconda colonna un numero di
+tessera.
+
+Immaginate l’identificativo numerico come un codice interno alla biblioteca mentre il
+numero di tessera come il numero di una tessera esistente appartenente (ad esempio
+il vostro codice persona del politecnico).
+
+\begin{tabular}{|c|c|}
+	\hline
+	ID	&	Codice Persona \\
+	\hline
+	1	&	123456789	\\
+	\hline
+	2	&	987654321	\\
+	\hline
+	...	&	... \\
+	\hline
+\end{tabular} 
+
+
+Si forniscano le funzioni necessarie all'inserimento di una nuova tessera e alla ricerca
+dell'identificativo numerico dato un numero di tessera (l’identificativo numerico è un
+numero crescente che parte da 1).
+
+Funzione \emph{inserisci}:\\
+\emph{input}: matrice Soci e nuovo numero di tessera\\
+\emph{output}: la matrice Soci
+
+Funzione \emph{cerca}:\\
+\emph{input}: matrice Soci e numero di tessera da cercare\\
+\emph{output}: l’identificativo numerico associato al numero tessera
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Badge - TdE 2 Febbraio 2017}
+Un'azienda ha installato un sistema che registra gli ingressi e le uscite dei propri dipendenti tramite
+l'uso di badge.
+All'entrata e all'uscita, ogni dipendente deve registrarsi passando il badge nel lettore
+posto all'ingresso.
+Siete stati incaricati di scrivere in Matlab parte del software per la gestione dei
+dati acquisiti.
+
+\framebreak
+
+Il programma Matlab è costituito da una serie di funzioni che lavorano sui seguenti dati:
+\begin{enumerate}
+\item Informazioni relative a ciascun dipendente. Queste sono organizzate in una struct con i
+seguenti campi:
+\begin{itemize}
+\item ID (un numero intero che identifica univocamente ogni dipendente),
+\item nome (stringa)
+\item  cognome (stringa)
+\end{itemize}
+\item Il registro dei dipendenti. Questo è un array di struct che contiene in ogni suo elemento:
+\begin{itemize}
+\item I campi di un dipendente (ID, nome, cognome).
+\item La data che corrisponde a un ingresso e a un’uscita del dipendente (si suppone che
+avvengano nello stesso giorno).
+ Questa data è rappresentata con un numero intero di 8 cifre. Per esempio, il numero 20171223 corrisponde alla data 23 Dicembre 2017.
+\item oraIngresso e oraUscita, che vengono rappresentati con un numero intero che indica
+l’ora come il numero di minuti trascorsi dalla mezzanotte precedente (ad esempio, le
+ore 7:30 corrispondono a 450 minuti, infatti 7 * 60 + 30 = 450).
+\end{itemize}
+\end{enumerate}
+
+\framebreak
+
+\begin{enumerate}
+	\item Per verificare se il dipendente può uscire oppure no, scrivere la funzione \emph{verificaUscita} che prende in ingresso il registro, una data nel formato indicato al punto 2, e un ID e controlla se il
+dipendente corrispondente ha lavorato nella data passata come parametro per almeno 7 ore e 30
+minuti (i.e., 450 minuti). La funzione restituisce vero se questa condizione risulta verificata, falso in
+caso contrario.
+
+\item Scrivere la funzione \emph{badge} che prende in ingresso un dipendente, la struttura registro, la data
+odierna (rappresentata come indicato al punto 2), un intero contenente l’ora corrente (rappresentata
+come indicato al punto 2).
+La funzione \emph{badge} aggiorna registro nel seguente modo: se nella data odierna il dipendente non
+compare nella struttura registro (ossia l’utente sta entrando in azienda), la funzione ne aggiunge le
+informazioni indicando come data e oraIngresso la data e l’ora passate come parametro.
+Altrimenti, se il dipendente è già presente nel registro alla data odierna (ossia l’utente sta uscendo
+dall'azienda), la funzione badge aggiorna il campo oraUscita relativo al dipendente con il valore
+del parametro ora. La funzione \emph{badge} quindi richiama la funzione \emph{verificaUscita} descritta al punto 1 e, se il dipendente può uscire stampa a video 'Arrivederci!', altrimenti 'Errore uscita!'
+
+\item  Si supponga che il registro sia stato precedentemente popolato con i dati relativi ai dipendenti di
+un'azienda. Si scriva un frammento di codice per definire una variabile \emph{dip1} corrispondente al
+dipendente “Giacomo Puccini” avente ID = 1858. Si invochi inoltre la funzione badge al fine di
+inserire nel registro il suo ingresso il 3 Febbraio 2017 alle 8:15.
+\end{enumerate} 
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Atleti - TdE 16 Febbraio 2018}
+Un comitato sportivo di sci vuole memorizzare le performance degli sportivi che percorrono la più ripida  
+delle piste del comprensorio.
+Per ogni atleta, la memorizzazione parte da quota $h_0 = 3000 m$ e termina a  
+quota $h_{end} = 1000 m$, e viene effettuata in 100 punti diversi del tracciato equidistanti tra loro.
+I dati vengono salvati in:
+\begin{itemize}
+	\item la matrice $atleti$, le cui righe rappresentano i diversi atleti monitorati, e le cui colonne rappresentano i vari tempi collezionati sul tracciato (quindi l’elemento $(i,j)$ della matrice contiene il tempo in cui l'atleta $i$-­esimo è transitato per il$j$-­esimo punto della pista);
+	\item il vettore colonna $velocitaMedia$, con stesso numero di righe della matrice $atleti$, che contiene un valore numerico per ogni atleta, indicativo della sua velocità media lungo tutta la pista.
+\end{itemize}  
+
+\framebreak
+
+Scrivere in linguaggio Matlab una funzione $dividiMatrice$ che:
+\begin{enumerate}
+	\item riceva in input una matrice $atletiTot$ (con la stessa struttura di $atleti$), un vettore $velocitaM$ (con stessa struttura di vettore $velocitaMedia$) e uno scalare soglia;
+	\item fornisca in output due matrici $atletiOver$ e $atletiUnder$ (ognuna con la stessa struttura di $atletiTot$).
+	$atletiOver$ include solo le righe di $atletiTot$ corrispondenti agli elementi di $velocitaM$ con valore maggiore o uguale di soglia.
+	$atletiUnder$, invece, include solo le righe di $atletiTot$ corrispondenti agli elementi di $velocitaM$ con valore minore di soglia. 
+\end{enumerate}
+\end{frame}
+
+
+
+\end{document}
