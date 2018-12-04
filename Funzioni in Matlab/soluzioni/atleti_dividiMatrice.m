@@ -1,4 +1,4 @@
-function [atletiOver, atletiUnder] = dividiMatrice(atletiTot, velocitaM, soglia)  
+function [atletiOver, atletiUnder] = atleti_dividiMatrice(atletiTot, velocitaM, soglia)  
  
 % Riceve in input la matrice atletiTot, il vettore velocitaM e uno scalare soglia.  
 % Fornisce in output due matrici: atletiOver e atletiUnder  

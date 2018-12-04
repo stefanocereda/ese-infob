@@ -4,6 +4,9 @@ function [ vMin vMax ] = split(m,x)
 vLin=m(:);
 vMin = vLin(vLin<x);
 vMax = vLin(vLin>x);
-paperino=5;
+pippo=5;
 end
 
+% Ora è chiaro che la funzione abbia bisogno di una variabile m ed una variabile x (ed il commento ne specifica il tipo).
+% Inoltre, se avessi delle variabili vLin vMin vMax nel workspace chiamante, queste non verrebbero sovrascritte.
+% Allo stesso modo, la variabile pippo non è ritornata e quindi non ne troveremo traccia nel workspace.

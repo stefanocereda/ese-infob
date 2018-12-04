@@ -1,4 +1,4 @@
-function okUscita = verificaUscita(registro, ID, data)
+function okUscita = badge_verificaUscita(registro, ID, data)
 % verificaUscita: controlla che un certo dipendente abbia lavorato almeno 7
 % ore e 30 al momento dell'uscita. Prende in ingresso il registro e l'ID
 % del dipendente da verificare. Restituisce true se il dipendente può

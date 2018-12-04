@@ -1,4 +1,4 @@
-function [res] = inserisciTessera( m, num)
+function [res] = biblioteca_inserisciTessera( m, num)
 %inserisciTessera Inserisce una nuova tessera
 
 %[r c]=size(m);

@@ -1,4 +1,4 @@
-function [res] = cercaTessera(m,num)
+function [res] = biblioteca_cercaTessera(m,num)
 %cercaTessera cerca tessera
 
 %indice=find(m(:,2)==num);

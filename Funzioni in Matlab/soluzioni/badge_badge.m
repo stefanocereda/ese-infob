@@ -1,4 +1,4 @@
-function [registro] = badge(dipendente, registro, data, ora)
+function [registro] = badge_badge(dipendente, registro, data, ora)
 % badge: aggiorna il registro dei dipendenti; se il dipendente sta entrando
 % aggiungo i suoi dati, la data e l'ora al registro; se il dipendente sta
 % uscendo, aggiungo al registro l'ora di uscita e verifico se può uscire.

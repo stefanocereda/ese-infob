@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169, 10pt]{beamer}
+\documentclass[format=169, 10pt, handout]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -22,6 +22,32 @@
 
 %\setbeamercovered{invisible}
 
+\usepackage{xcolor}
+\usepackage{listings}
+
+% for matlab code
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{matlab}{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
 
 \makeindex
 
@@ -31,13 +57,55 @@
 	\maketitle
 \end{frame}
 
+\begin{frame}[fragile]{Funzioni}
+Definizione di funzione:
+\begin{lstlisting}[style=matlab]
+function [r]=pow(x,y)
+  r=1;
+  for ii=[1:y]
+    r = r*x;
+  end
+end
+\end{lstlisting}
+\begin{itemize}
+	\item lista dei \emph{risultati} fra parentesi quadre
+	\item lista degli \emph{argomenti} fra parentesi tonde
+	\item realizza una singola operazione che può essere usata in altri programmi
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Funzione split}
+Scrivere uno script Matlab che, ricevuto in ingresso un vettore di interi $m$, stampi due vettori $p$ ed $n$ contenenti i numeri di $m$ positivi e negativi (rispettivamente.)
+
+\pause
+Scrivere uno script Matlab che, ricevuto in ingresso un vettore di interi $m$ ed un numero $x$, stampi due vettori $v_1$ e $v_2$ contenenti i numeri di $m$ maggiori e minori di $x$ (rispettivamente.)
+
+\pause
 Scrivere una funzione (split) che data una variabile di ingresso $m$ (scalare, vettore o
 matrice di numeri) ed un numero $x$ restituisce due vettori $vMin$ e $vMax$. $vMin$
 contiene tutti gli elementi di $m$ minori di $x$, mentre $vMax$ gli elementi maggiori
 di $x$.
 \end{frame}
 
+\begin{frame}{Conversioni}
+Scrivere uno script Matlab che, ricevuto un numero $a$, lo converta in binario utilizzando l'algoritmo delle divisioni ripetute.
+
+Modificare lo script per ottenere una funzione che converta in una base a piacere.
+\end{frame}
+
+\begin{frame}{Istogramma}
+Scrivere una funzione Matlab che, ricevuto in ingresso un array numerico $values$ e due interi $min$ e $max$, restituisca il numero di elementi di $values$ compresi fra $min$ e $max$.
+
+\pause
+Scrivere una funzione Matlab che, ricevuto in ingresso un array numerico $values$, ed un intero $bins$ restituisca un array che rappresenti l'istogramma dei valori di bins.
+In particolare, l'intervallo di valori contenuti in $values$ andrà diviso in $bins$ intervalli ed ogni intervallo avrà un elemento nel nuovo array contenente il numero di elementi di $values$ che cadono nell'intervallo.
+
+\pause
+Se avessimo utilizzato degli script avremmo condiviso il workspace fra i due pezzi di codice, questo potrebbe portare a cancellare delle variabili.
+Con le funzioni dobbiamo avere un approccio più pulito in cui ogni funzione lavora solo con i parametri d'ingresso e ritorna tutti i valori di cui potremmo avere bisogno.
+\end{frame}
+
+\iffalse
 \begin{frame}[allowframebreaks]{Struct e funzioni: codice IBAN}
 Un codice IBAN è una sequenza di 27 caratteri alfanumerici così composta:
 \begin{itemize}
@@ -66,6 +134,7 @@ Si scrivano le seguenti funzioni:
 
 Si utilizzino tali funzioni per scrivere un’ulteriore funzione \emph{checkIBAN} che riceve come parametro una stringa e restituisce 1 se la stringa inserita, una volta rimossi gli spazi, corrisponde ad un codice IBAN che rispetta lo schema sopra illustrato, o 0 altrimenti.
 \end{frame}
+\fi
 
 	
 \begin{frame}[allowframebreaks]{Struct e funzioni: biblioteca}
@@ -152,7 +221,7 @@ compare nella struttura registro (ossia l’utente sta entrando in azienda), la 
 informazioni indicando come data e oraIngresso la data e l’ora passate come parametro.
 Altrimenti, se il dipendente è già presente nel registro alla data odierna (ossia l’utente sta uscendo
 dall'azienda), la funzione badge aggiorna il campo oraUscita relativo al dipendente con il valore
-del parametro ora. La funzione \emph{badge} quindi richiama la funzione \emph{verificaUscita} descritta al punto 1 e, se il dipendente può uscire stampa a video 'Arrivederci!', altrimenti 'Errore uscita!'
+del parametro ora. La funzione \emph{badge} quindi richiama la funzione \emph{verificaUscita} descritta al punto 1 e, se il dipendente può uscire stampa a video `Arrivederci!', altrimenti `Errore uscita!'
 
 \item  Si supponga che il registro sia stato precedentemente popolato con i dati relativi ai dipendenti di
 un'azienda. Si scriva un frammento di codice per definire una variabile \emph{dip1} corrispondente al
@@ -183,6 +252,32 @@ Scrivere in linguaggio Matlab una funzione $dividiMatrice$ che:
 \end{enumerate}
 \end{frame}
 
+\begin{frame}{Matrice simmetrica}
+Scrivere una funzione per controllare se una matrice è simmetrica.	
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Partizione - TdE 4 Febbraio 2016}
+Si implementi in linguaggio MATLAB una funzione chiamata \emph{partition} che prende in ingresso un  
+vettore $V$ di valori numerici non ordinati, e restituisce in uscita un valore numerico $m$ (valore  
+centrale di $V$) e un nuovo vettore $T$, definiti nel modo seguente:  
+
+\framebreak
+
+\begin{itemize}
+	\item Se $V$ ha lunghezza dispari, $m$ viene posto pari all'elemento in posizione centrale di $V$, e il  
+vettore $T$ viene costruito dagli elementi di $V$, disponendo a sinistra di $m$ tutti gli elementi minori  
+dello stesso $m$ e a destra tutti gli elementi maggiori di $m$.  
+Ad esempio, dato il vettore $V = [6 5 3 4 3 1 2]$, la funzione restituisce il valore centrale $m = 4$ e  
+il vettore $T = [ 3 3 1 2 4 6 5]$.  
+
+	\item Se $V$ ha lunghezza pari, il valore $m$ è definito come la media dei due elementi centrali di $V$, e gli  
+elementi di $V$ vengono disposti in $T$ in modo tale che tutti quelli minori di $m$ precedono tutti  
+quelli maggiori dello stesso numero. In questo caso, non essendo $m$ parte di $V$, esso non viene  
+inserito in $T$. 
+Ad esempio, dato il vettore $V = [5 6 1 2 3 4]$, la funzione restituisce il valore centrale $m = 1.5$  
+(cioè la media dei due valori in posizione centrale 1 e 2) e il vettore $T = [1 5 6 2 3 4]$. 
+\end{itemize}
+\end{frame}
 
 
 \end{document}
