@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169, 10pt, handout]{beamer}
+\documentclass[format=169, 10pt]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -279,5 +279,17 @@ Ad esempio, dato il vettore $V = [5 6 1 2 3 4]$, la funzione restituisce il valo
 \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]{Temperature}
+Si consideri la seguente struttura dati Temperatura:
+\begin{lstlisting}
+Temperatura.valore = 20;
+Temperatura.scala = 'celsius'
+\end{lstlisting}
+Dove il campo \emph{scala} indica se il campo \emph{valore} è da intendersi espresso in gradi celsius o fahrenheit.
+
+Scrivere una funzione che, ricevuta in ingresso una struct Temperatura restituisca una struct in cui il valore di temperatura è espresso secondo l'altra scala.
+
+Si ricorda che: \[fahrenheit = celsius * (9/5) + 32;\] 	\[celsius = (fahrenheit -32) * (5/9)\]
+\end{frame}
 
 \end{document}

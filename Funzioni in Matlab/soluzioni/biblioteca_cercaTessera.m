@@ -5,6 +5,5 @@ function [res] = biblioteca_cercaTessera(m,num)
 %res=m(indice,1);
 
 indice=find([m.numTessera]==num);
-res=m(indice).id+1;
 end
 

@@ -1,0 +1,321 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[format=169, handout]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{forest}
+
+
+% for matlab code
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{matlab}{language=Matlab,%
+	%basicstyle=\color{red},
+	breaklines=true,%
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{black}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\usetheme{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Ricorsione}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{11/12/2018}
+\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
+	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+
+\setbeamercovered{invisible}
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+	\maketitle
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Competizione Forza4}
+Vi si richiede di implementare una strategia in MATLAB per giocare automaticamente a Forza4.
+
+\begin{itemize}
+	\item La strategia deve essere realizzata interamente con una funzione MATLAB, senza interazione con l'utente 
+	\item La funzione che implementa la strategia deve avere come signature  $col = strat_matricola(Griglia, colore)$ deve prendere in ingresso una matrice  $Griglia$  (di dimensioni 6x7), che rappresenta la griglia di gioco, ed un intero  colore, di valore 1 o -1, che rappresenta il colore della pedina da giocare (rosso o giallo) e restituire un intero  $col$, con valore tra 1 e 7, che indica il numero della colonna in cui inserire una pedina. Perché la mossa sia valida,  $col$  deve indicare una colonna in cui c'è ancora spazio (ci sono meno di sei pedine).
+\end{itemize}
+	
+Una griglia rappresentante la situazione di una partita di Forza4 è modellizzata da una matrice 6x7 contenente solo i valori -1, 0, 1. 0 rappresenta una casella vuota, 1 una pedina del primo giocatore (rosso) e -1 una del secondo giocatore (giallo).
+\end{frame}
+
+
+\begin{frame}[fragile]{Forza4 - Esempio strategia randomica}
+\begin{lstlisting}[style=matlab]
+function col = random_strategy(Griglia, colore)
+% La strategia mette la pedina in una colonna libera a caso
+% (e quindi non utilizza il colore)
+
+% trovo le colonne con ancora posto
+cols = find(Griglia(1,:) == 0);
+
+% ne seleziono una a caso
+col = cols(randi(length(cols)));
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{Forza4 - Test strategia}
+Testiamo la strategia randomica tramite il file main.m disponibile su beep.
+
+La funzione di cui è richiesta l'implementazione verrà richiamata nello script nel file  main.m. Lo script vi chiederà di inserire il nome della vostra funzione (che deve essere visibile nel path di MATLAB) e il nome della strategia contro cui volete giocare. Ci sono due opzioni già disponibili nel codice messo a disposizione: una strategia che richiede l'intervento dell'utente (human\_strategy()) e una che seleziona una mossa valida secondo un criterio random (random\_strategy())
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Forza4 - Regole}
+Le regole della competizione si trovano su beep, corso Competitions Informatica B.
+
+\begin{itemize}
+\item È necessario usare operazioni vettoriali, si possono usare cicli, si può ricorrere a randomizzazione e ricorsione 
+\item Una giocata non può richiedere più di 3 secondi su un processore di un laptop comune (per evitare possibili loop infiniti). In caso contrario, la partita viene vinta a tavolino dall'avversario 
+\item Una giocata deve essere valida, cioè deve corrispondere all'inserimento di una pedina in una colonna della griglia in cui è ancora disponibile spazio. In caso contrario, la partita viene vinta a tavolino dall'avversario 
+\item La funzione non deve restituire errori. In caso contrario, la partita viene vinta a tavolino dall'avversario 
+\item Verrà valutata la strategia grazie ad un torneo all'italiana tra tutti i partecipanti (di tutti gli scaglioni)
+\item Potete presentare una sola strategia a persona 
+\item Entro la scadenza indicata (19/12/2018, ore 23.59), caricate il file .m contenente la vostra strategia (opportunamente commentata) nell'apposita cartella di consegna. Il nome della funzione deve essere compatibile con le regole indicate qui sopra. Nel commento in testa al file specificate il vostro nome e cognome e il vostro docente di Informatica B.  
+\end{itemize}
+\end{frame}
+\iffalse
+\fi
+
+
+\begin{frame}{Notazione scientifica}
+	Scrivere una funzione iterativa che dato un numero reale positivo lo traduca in notazione scientifica.
+	
+	$123.456 = 1.23456E2$
+	
+	Scrivere poi la stessa funzione in modo ricorsivo.
+\end{frame}
+
+\begin{frame}{Triangolo di Tartaglia}
+	Si consideri una matrice triangolare T rappresentante il triangolo di Tartaglia, i cui valori sono definiti nel seguente modo:
+	\begin{itemize}
+		\item T(r,1) = 1
+		\item T(r,r) = 1
+		\item T(r,c) = T(r-1, c-1) + T(r-1, c)
+	\end{itemize}
+
+	Si scriva una funzione ricorsiva che, usando la definizione sopra, permetta di calcolare il valore di un generico elemento della matrice T a partire dagli indici di riga e colonna.
+\end{frame}
+
+\begin{frame}[fragile]{Funzione misteriosa 1}
+	Si dica cosa calcola la seguente funzione ricorsiva quando si passano i parametri 7 e 2 ed in generale.
+	
+\begin{lstlisting}[style=matlab]
+function [z]=mistero1(x,y)
+    if x<y
+        z=0;
+    else
+        if mod(x,y) == 0
+            z=x+mistero1(x-y,y);
+        else
+            z=mistero1(x-1,y);
+        end
+    end
+\end{lstlisting}
+	
+	\pause
+	La funzione calcola la somma di tutti i multipli di $y$ compresi fra $x$ ed $y$.
+\end{frame}
+
+\iffalse
+\begin{frame}{Torri di Hanoi - fatto a lezione}
+	Il gioco delle torri di Hanoi consiste nello spostare la pila di dischetti su un nuovo piolo, rispettando il vincolo di non mettere un disco grande su un disco piccolo.
+	
+	\pause
+	Una pila di due dischi può essere spostata da un piolo $a$ ad un piolo $b$ spostando il primo disco sul piolo $c$, il secondo disco su $b$ ed infine il primo su $b$.
+	
+	\pause
+	Una torre di $K$ dischi può quindi essere spostata su un nuovo piolo usando il terzo piolo come supporto intermedio:
+	\begin{enumerate}
+		\item sposto la pila di $k-1$ dischi sul piolo d'appoggio (ricorsione)
+		\item sposto il primo disco sul piolo di destinazione (caso base)
+		\item sposto la pila di $k-1$ dischi sul piolo di destinazione (ricorsione)
+	\end{enumerate}
+\end{frame}
+\fi
+
+\begin{frame}[fragile]{Funzione misteriosa 2}
+	Si dica cosa calcola la seguente funzione ricorsiva quando si passa il parametro 7, quando si passa il parametro 8 ed in generale.
+	
+\begin{lstlisting}[style=matlab]
+function [z] = mistero2(x)
+    if x>= 1
+        z=mod(x,2) + 10*mistero2(floor(x/2))
+    else
+        z=0;
+    end
+\end{lstlisting}
+
+\pause
+mistero2(x) calcola un valore numerico in base 10 la cui sequenza di cifre può essere
+interpretata come rappresentazione del numero naturale x nel sistema binario.
+\end{frame}
+
+\begin{frame}[fragile, allowframebreaks]{Funzione misteriosa 3 - TdE 17/02/2009}
+	Si consideri il seguente programma:
+\begin{lstlisting}[style=matlab, basicstyle=\small]
+function[ris] = s(n)
+    if n<1
+        ris = -1;
+    elseif n>=1 & n<=4 %*
+        ris = n; %*
+    else
+        ris = s(n-2)*s(n-4);
+    end
+%script di chiamata
+for x = 1:8
+    fprintf('%d, ', s(x));    
+end    
+\end{lstlisting}
+	
+	Quali risultati vengono stampati a video?
+	
+	Si supponga ora di rimuovere le linee evidenziate da un asterisco:
+	\begin{enumerate}
+		\item La terminazione della ricorsione è ancora garantita per ogni valore
+		dell’argomento n? In caso affermativo giustificare brevemente la risposta,
+		in caso negativo riportare almeno un esempio di argomento in cui la
+		ricorsione non termina.
+		
+		\item Con la modifica apportata quali risultati vengono stampati a video?
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Permutazioni}
+	Si scriva una funzione in MATLAB che abbia come parametro di ingresso un vettore contenente un insieme di valori, e che stampi tutte le permutazioni di
+	tali valori.
+	
+	Le permutazioni di [1 2 3] sono:
+	[1 2 3], [1 3 2], [2 1 3], [2 3 1], [3 1 2], [3 2 1].
+	
+	\begin{center}
+	\begin{forest}
+	[123
+		[1
+			[2
+				[3]
+			]
+			[3
+				[2]
+			]
+		]		
+		[2
+			[1
+				[3]
+			]
+			[3
+				[1]
+			]
+		]
+		[3
+			[1
+				[2]
+			]
+			[2
+				[1]
+			]
+		]	
+	]
+	\end{forest}
+\end{center}
+
+\framebreak
+Osservando lo schema possiamo notare che abbiamo bisogno di due
+informazioni: i valori già considerati precedentemente nelle permutazioni (per non ripeterli) e i valori ancora disponibili (da aggiungere). Queste informazioni dovranno quindi essere i parametri d'ingresso della funzione ricorsiva. Tuttavia, la consegna dice di scrivere una funzione che riceva come parametro solamente il vettore di valori da permutare, \alert{dovremo quindi aggiungere una funzione per mascherare il cambio di parametri}
+
+\framebreak
+La funzione si struttura nel seguente modo:
+\begin{itemize}
+	\item \alert{Caso base} L'insieme dei valori da inserire è vuoto: stampo i valori già inseriti e termino.
+	\item \alert{Ricorsione} L'insieme dei valori da inserire non è vuoto: scandisco tutti i possibili valori
+	ancora da inserire ed eseguo una invocazione ricorsiva della funzione per
+	ognuno di questi valori. In queste invocazioni ricorsive passo come primo
+	parametro i valori già inseriti dal chiamante, più quello nuovo che sto
+	scandendo. Come secondo parametro invece passo tutti i valori ancora da
+	inserire, eccetto quello che sto scandendo.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Vettore triplo - Prova in itinere 2014}
+Un vettore $x$ si definisce vettore triplo di un altro vettore $y$ quando $x$ e
+$y$ sono di uguale lunghezza e ogni elemento di $x$ è maggiore del triplo
+del corrispondente elemento di $y$.
+
+Scrivere in Matlab/Octave una funzione \alert{ricorsiva} \emph{vettoreTriplo} che
+riceve in ingresso due vettori \alert{colonna} \emph{a} e \emph{b}. La funzione
+vettoreTriplo:
+\begin{enumerate}
+	\item Restituisce -1 se \emph{a} e \emph{b} hanno lunghezza diversa, o se non sono due vettori colonna.
+	\item Restituisce 0 se \emph{a} e \emph{b} sono due vettori colonna di uguale
+	lunghezza, ma non è vero che ogni elemento di \emph{a} è maggiore
+	del triplo del corrispondente elemento di \emph{b}.
+	\item Restituisce 1 se \emph{a} e \emph{b} sono due vettori colonna di uguale
+	lunghezza e ogni elemento di \emph{a} è maggiore
+	del triplo del corrispondente elemento di \emph{b}.
+\end{enumerate}
+
+Esempi:
+\begin{itemize}
+	\item vettoreTriplo ([1; 2; 3; 4], [2 5 1 10]) restituisce -1
+	\item vettoreTriplo ( [1 2 3 4; 5 3 5 5], [2; 2; 3; 9]) restituisce -1
+	\item vettoreTriplo ([7; 2; 4; 4], [2; 5; 1; 10]) restituisce 0
+	\item vettoreTriplo([7; 16; 40; 31], [2; 5; 13; 10]) restituisce 1
+\end{itemize}
+
+Nell’implementazione \alert{non} è consentito utilizzare cicli, e quindi \alert{non} si possono usare le istruzioni \emph{while} e \emph{for}. Inoltre, \alert{non} è possibile utilizzare alcuna funzione di libreria disponibile in Matlab/Octave ad eccezione di \emph{length} e \emph{size}.
+\end{frame}
+
+
+\begin{frame}[fragile, allowframebreaks]{Funzione misteriosa 4 - TdE 17/09/2012}
+Si consideri la seguente funzione ricorsiva in linguaggio MATLAB:
+\begin{lstlisting}[style=matlab=]
+function n = calcola(x)
+if (floor(x/10) == 0)
+    n = 1;
+else
+    n = 1 + calcola(floor(x/10));
+end
+\end{lstlisting}
+
+Rispondere ai seguenti quesiti.
+\begin{enumerate}
+	\item Simulare l'esecuzione della funzione e indicare il valore restituito in corrispondenza di ciascuna delle
+	chiamate: calcola(4) e calcola(123)
+	\item 
+	Assumendo che la funzione calcola riceva come parametro un qualsiasi numero intero positivo n , dire qual
+	è il risultato dell'esecuzione di calcola(n) al variare di n. Motivare adeguatamente la risposta.
+\end{enumerate}
+\end{frame}
+
+\end{document}
