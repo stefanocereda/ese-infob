@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169, handout]{beamer}
+\documentclass[format=169,]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -63,7 +63,7 @@ Vi si richiede di implementare una strategia in MATLAB per giocare automaticamen
 
 \begin{itemize}
 	\item La strategia deve essere realizzata interamente con una funzione MATLAB, senza interazione con l'utente 
-	\item La funzione che implementa la strategia deve avere come signature  $col = strat_matricola(Griglia, colore)$ deve prendere in ingresso una matrice  $Griglia$  (di dimensioni 6x7), che rappresenta la griglia di gioco, ed un intero  colore, di valore 1 o -1, che rappresenta il colore della pedina da giocare (rosso o giallo) e restituire un intero  $col$, con valore tra 1 e 7, che indica il numero della colonna in cui inserire una pedina. Perché la mossa sia valida,  $col$  deve indicare una colonna in cui c'è ancora spazio (ci sono meno di sei pedine).
+	\item La funzione che implementa la strategia deve avere come signature  $col = strat\_matricola(Griglia, colore)$ deve prendere in ingresso una matrice  $Griglia$  (di dimensioni 6x7), che rappresenta la griglia di gioco, ed un intero  colore, di valore 1 o -1, che rappresenta il colore della pedina da giocare (rosso o giallo) e restituire un intero  $col$, con valore tra 1 e 7, che indica il numero della colonna in cui inserire una pedina. Perché la mossa sia valida,  $col$  deve indicare una colonna in cui c'è ancora spazio (ci sono meno di sei pedine).
 \end{itemize}
 	
 Una griglia rappresentante la situazione di una partita di Forza4 è modellizzata da una matrice 6x7 contenente solo i valori -1, 0, 1. 0 rappresenta una casella vuota, 1 una pedina del primo giocatore (rosso) e -1 una del secondo giocatore (giallo).
@@ -131,7 +131,7 @@ Le regole della competizione si trovano su beep, corso Competitions Informatica 
 \begin{frame}[fragile]{Funzione misteriosa 1}
 	Si dica cosa calcola la seguente funzione ricorsiva quando si passano i parametri 7 e 2 ed in generale.
 	
-\begin{lstlisting}[style=matlab]
+\begin{lstlisting}[style=matlab, basicstyle=\small]
 function [z]=mistero1(x,y)
     if x<y
         z=0;
