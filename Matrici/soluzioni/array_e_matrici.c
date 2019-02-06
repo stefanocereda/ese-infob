@@ -66,7 +66,7 @@ int main(){
         }
 
         /* Metto i uguale alla posizione dell'ultimo elemento inserito */
-        i = (c-1)*c + (r-1);
+        i = (c-1)*c + (r-1); /* credo sia (i-1)*c + (j-1) */
         if (i < dim){
             printf("Sono avanzati i seguenti valori: ");
             while (i < dim){
