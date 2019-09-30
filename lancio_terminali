@@ -1,2 +1,0 @@
-gotty tmux new -A -s gotty
-tmux new -A -s gotty

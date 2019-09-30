@@ -25,7 +25,7 @@ void main(){
      * ma il C rappresenta il vero/falso tramite dei numeri. In particolare, il valore
      * falso è rappresentato dal numero 0, mentre qualsiasi altro valore significa vero.
      * Questo può essere sfruttato per rendere le condizioni più compatte: (X == 0) è infatti
-     * totalmente euqivalente a (!X) */
+     * totalmente equivalente a (!X) */
 
     if (!(anno % 4))
         if (!(anno % 100))
@@ -37,7 +37,4 @@ void main(){
             printf("%d è un anno bisestile\n", anno);
     else
         printf("%d non è un anno bisestile\n", anno);
-
-
-
-    }
+}

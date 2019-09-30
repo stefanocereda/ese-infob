@@ -12,9 +12,20 @@ void main(){
 
     printf("Inserisci due numeri interi: ");
     scanf("%d%d", &a, &b);
+
+    /* Generiamo le liste dei multipli di a e b e fermiamoci al primo multiplo comune.
+       Esempio con 4 e 6:
+       4    8   12  16  ...
+       6    12  18  24  ...
+       12 è il primo numero ad apparire in entrambe le liste.
+
+       Possiamo generare le due liste in modo alternato, considerando ad ogni passaggio quella inferiore e fermandoci quando troviamo un numero uguale:
+       4    8   8   12
+       6    6   12  12
+    */
+
     mulA = a;
     mulB = b;
-
     while (mulA != mulB){
         if (mulA < mulB){
             mulA = mulA + a;

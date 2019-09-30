@@ -1,4 +1,11 @@
+[font_size]
+22
 [notes]
+### 1
+Esercitazione = Risolvere problemi tipo esame
+Seguire in modo attivo
+Almeno leggere slide binario
+Programmazione = creazione algoritmo, il linguaggio viene dopo
 ### 2
 Prima di tutto devono capire il problema: dati in ingresso e cosa vuole in uscita
 Poi lo si scompone in sottoparti
@@ -7,10 +14,30 @@ Si scrive il programma
 Lo si testa
 ### 3
 A sinistra notazione standard, a destra quella del corso
+### 4
+13imo episodio 2a stagione: come farsi amico Kripke per avere accesso ad un computer
 ### 5
 Dobbiamo chiedere due numeri e stamparli entrambi ordinati
 acquisizione / capire chi stampare prima / stampare
                     se a<b stampo a, b e viceversa
+### 6
+Blocco di condizione usato per controllare una condizione
+### 7
+
 ### 8
-Ricevo a,b / controllo che la divisione sia fattibile / stamo div e mod
+Ricevo a,b / controllo che la divisione sia fattibile / stampo div e mod
                   b != 0
+### 9
+Fatta negando le condizioni della consegna.
+Le istruzioni esci in mezzo al codice sono molto brutte
+### 10
+Istruzioni IF annidate, più leggibile
+### 14
+Variabile contatore ed accumulatore
+Iterazione -> condizione, corpo (avanzamento)
+### 17
+Genero le liste dei multipli in modo alternato, espandendo quella più bassa
+### 18
+If annidato nel while, se indentate si capisce
+### 20
+La 4.1 è la condizione che ci interessa, serve una variabile sentinella
