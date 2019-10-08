@@ -1,51 +1,23 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169]{beamer}
+\documentclass[aspectratio=169, ]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{multicol}
-\usetheme{metropolis}
+\usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
 
-\usepackage{xcolor}
-\usepackage{listings}
-
-\definecolor{mGreen}{rgb}{0,0.6,0}
-\definecolor{mGray}{rgb}{0.5,0.5,0.5}
-\definecolor{mPurple}{rgb}{0.58,0,0.82}
-\definecolor{backgroundColour}{rgb}{0.95,0.95,0.92}
-
-\lstdefinestyle{CStyle}{
-	backgroundcolor=\color{backgroundColour},   
-	commentstyle=\color{mGreen},
-	keywordstyle=\color{magenta},
-	numberstyle=\tiny\color{mGray},
-	stringstyle=\color{mPurple},
-	basicstyle=\tiny,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,                 
-	numbers=left,                    
-	numbersep=5pt,                  
-	showspaces=false,                
-	showstringspaces=false,
-	showtabs=false,                  
-	tabsize=2,
-	language=C
-}
-
+\input{../c-setup.tex}
 
 \title{Esercitazioni di Informatica B}
-\subtitle{Introduzione al C e costrutto while}
+\subtitle{Introduzione al C}
 
 \author{Stefano Cereda\\
 		stefano.cereda@polimi.it
 	}
-\date{8/10/2017}
-\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
-	\includegraphics[width=0.2\linewidth]{../logopolimi}}
-%\logo{\includegraphics[width=15mm]{./logopolimi}}
+\date{1/10/2019}
+\institute[PoliMi]{Politecnico Milano}
+\logo{\includegraphics[width=15mm]{../logopolimi}}
 
 \setbeamercovered{invisible}
 
@@ -56,27 +28,24 @@
 	\maketitle
 \end{frame}
 
-\begin{frame}{Indice}
-\tableofcontents
+
+\begin{frame}{Equazioni di secondo grado}
+    Scrivere un programma che, ricevuti tre numeri reali $a, b, c$, calcoli e visualizzi le eventuali radici reali dell'equazione di secondo grado $a x^2 + b x +c = 0$
 \end{frame}
 
-\section{Introduzione al C}
+\begin{frame}{Calcolatrice}
+    Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi $a, b$ ed un operatore matematico $op$,
+    stampi il risultato dell'operazione $a \ op \  b$.
 
-\begin{frame}
-\frametitle{Calcolatrice}
-Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi ed un operatore matematico, stampi il risultato dell'operazione. Le operazioni da supportare sono: addizione, sottrazione, divisione, moltiplicazione e resto della divisione. Se l'utente inserisce un'operazione non supportata stampare un errore.
+    Le operazioni da supportare sono: addizione, sottrazione, divisione, moltiplicazione e resto della divisione.
+
+    Se l'utente inserisce un'operazione non supportata stampare un errore.
 \end{frame}
 
-\begin{frame}
-\frametitle{Equazioni di secondo grado}
-Scrivere un programma che, ricevuti tre numeri reali \emph{a,b,c}, calcoli e visualizzi le eventuali radici dell'equazione di secondo grado $a x^2 + b x +c = 0$
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Espressioni logiche}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{lstlisting}[style=CStyle]
+\begin{frame}[fragile]{Espressioni logiche}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{lstlisting}[style=CStyle]
 void main(){
   int x=8,y=11;
   char z='t';
@@ -102,55 +71,38 @@ void main(){
   else
     printf("Espressione 3 falsa\n");
 }
-\end{lstlisting}
-\end{column}
+            \end{lstlisting}
+        \end{column}
 
-\begin{column}{0.45\textwidth}
-\alert{Tratto dal tema d'esame del 18/11/2008}
+        \begin{column}{0.45\textwidth}
+            \alert{Tratto dal tema d'esame del 18/11/2008}
 
-Si dica se le espressioni a lato sono vere o false. Si dica inoltre se le espressioni sono sempre vere o sempre false nel caso in cui le variabili fossero inizializzate diversamente.
-\end{column}
-\end{columns}
+            Si dica se le espressioni a lato sono vere o false. Si dica inoltre se le espressioni sono sempre vere o sempre false nel caso in cui le variabili fossero inizializzate diversamente.
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
-\frametitle{Espressioni logiche - soluzione}
-\begin{enumerate}
-\item L'espressione è falsa per i valori dati a causa del valore di \emph{x}. Sarebbe però vera per \emph{x=9}, quindi non è sempre falsa.
+    \frametitle{Espressioni logiche - soluzione}
+    \begin{enumerate}[<+->]
+        \item L'espressione è falsa per i valori dati a causa del valore di \emph{x}. Sarebbe però vera per \emph{x=9}, quindi non è sempre falsa.
 
-\item L'espressione è falsa per i valori dati, ma sarebbe vera per \emph{y=0}.
+        \item L'espressione è falsa per i valori dati, ma sarebbe vera per \emph{y=0}.
 
-\item L'espressione è falsa per i valori dati, ma sarebbe vera per \emph{x=6, z='c'}.
+        \item L'espressione è falsa per i valori dati, ma sarebbe vera per \emph{x=6, z='c'}.
 
-\item L'espressione 4, considerata l'espressione 3, sarà sempre falsa a causa di \emph{z}.
-\end{enumerate}
+        \item L'espressione 4, considerata l'espressione 3, sarà sempre falsa a causa di \emph{z}.
+    \end{enumerate}
 \end{frame}
-
 
 \iffalse
-\begin{frame}
-\frametitle{ Simulazione codice}
-Dire cosa stampa il seguente codice:
-
-TODO: LE ENUM NON LE HANNO ANCORA FATTE
-%#include<stdio.h>
-%const enum Alpha{
-%	X,
-%	Y=5,
-%	Z
-%}p=10;
-%int main(){
-%	enum Alpha a,b;
-%	a= X;
-%	b= Z;
-%	printf("%d",a+b-p);
-%	return 0;
-%}
+\begin{frame}[fragile]{Enum}
+    \alert{@Elisabetta, le enum non le hanno viste?}
 \end{frame}
 \fi
 
-\begin{frame}
-\frametitle{Statistiche}
+\iffalse
+\begin{frame}{Statistiche}
 Scrivere un programma che legga da tastiera 5 numeri e stampi a video il maggiore, la media e la radice quadrata della somma.
 
 Per calcolare la radice quadrata si utilizzi la funzione \emph{sqrt} definita in \emph{math.h} (se utilizzate gcc aggiungete l'opzione \texttt{-lm})
@@ -158,43 +110,59 @@ Per calcolare la radice quadrata si utilizzi la funzione \emph{sqrt} definita in
 Si risolva il problema senza utilizzare il costrutto while, vedremo in seguito come affrontare lo stesso problema usando il while.
 \end{frame}
 
-\section{Costrutto while}
-%\begin{frame} Ne ha fatto uno simile a laboratorio
-%\frametitle{Media di n numeri}
-%Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad ogni numero inserito il programma calcola e stampa la media dell'intera sequenza. La sequenza termina quando viene inserito un numero negativo.
-%\end{frame}
+\begin{frame}{Media di n numeri}
+Scrivere un programma che legga una sequenza di numeri di lunghezza ignota. Ad ogni numero inserito il programma calcola e stampa la media dell'intera sequenza. La sequenza termina quando viene inserito un numero negativo.
+\end{frame}
+\fi
 
-\begin{frame}
-\frametitle{Sottrazione ripetuta}
-%Iterazione controllata da un valore sentinella
-Si scriva un programma che legga da tastiera un numero intero \emph{n}, lo riduca ad un valore compreso fra 0 e 127 \emph{mediante sottrazione ripetuta} del valore 128, lo interpreti come carattere ASCII e lo stampi a video.
+\begin{frame}{Statistiche}
+    %\alert{@Elisabetta, simile ad uno fatto a laboratorio, ma chiedo anche radice e soprattuto media per potergli
+    %ricordare che se usano interi per somma e conteggio avranno la media come intero.
+    %Passo quindi ad usare un float per la somma in modo da evitare di fare il cast esplicito.}
+
+Scrivere un programma che legga da tastiera una sequenza di numeri interi terminata da -1 e stampi a video il maggiore, la media e la radice quadrata della somma.
 \end{frame}
 
 \begin{frame}{Calcolo di $\pi$}
-%Iterazione controllata da un contatore
 Scrivere un programma che calcoli il valore di $\pi$ usando la serie:
 \[ \pi = 4 - \frac{4}{3} + \frac{4}{5} - \frac{4}{7} + \frac{4}{9} - \frac{4}{11} + \dots \]
 
 Calcolare la serie fino a 500 termini, visualizzando il valore di $\pi$ ogni 10 iterazioni.
 \end{frame}
 
-\begin{frame}{Statistiche con while}
-Scrivere un programma che legga da tastiera una sequenza di numeri terminata da -1 e stampi a video il maggiore, la media e la radice quadrata della somma.
+\begin{frame}{Sottrazione ripetuta}
+Si scriva un programma che:
+    \begin{enumerate}
+            \item legga da tastiera un numero intero $n$
+            \item lo riduca ad un valore compreso fra 0 e 127 \emph{mediante sottrazione ripetuta} del valore 128
+            \item lo interpreti come carattere ASCII e lo stampi a video.
+    \end{enumerate}
 \end{frame}
 
+\begin{frame}{Calcolo di $\mathrm{e}$}
+    Modificate il programma per il calcolo del fattoriale \footnote{visto settimana scorsa} per calcolare la costante $\mathrm{e}$ tramite la formula:
+    \[ \mathrm{e} = \sum_{n=0}^{\infty} \frac{1}{n!} = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} +
+    \frac{1}{4!} + \dots \]
+
+    Calcolare i primi 10 termini della somma e visualizzare il risultato, cosa accade quando cerchiamo di calcolare
+    un numero maggiore di termini?
+\end{frame}
+
+\begin{frame}{Separazione in cifre}
+    Sfruttando la proprietà per cui un numero è divisibile per 3 quando la somma delle sue cifre è divisibile per 3, si
+    scriva un programma che, ricevuto un numero intero, stampi le sue cifre partendo dalla meno significativa e dica se
+    il numero è intero.
+
+    Provare a modificare il proramma per far si che anche la divisibilità della somma venga controllata facendo la somma
+    delle sue cifre, ripetendo il controllo fino a quando si ottiene una somma con una singola cifra.
+\end{frame}
+
+\iffalse
 \begin{frame}{Da binario a decimale}
 	Scrivere un programma che riceva in ingresso un numero intero contenente solo uni e zeri (cioè un intero in
 	binario) e visualizzi il suo equivalente in base dieci.
 
 	A differenza dell'esercizio di conversione da base 10 a base 2, il numero binario NON sarà in ordine opposto.
 \end{frame}
-
-\begin{frame}{Calcolo di $\mathrm{e}$}
-	Modificate il programma per il calcolo del fattoriale \footnote{visto al primo laboratorio ed in pseudocodice alla prima esercitazione} per calcolare la costante $\mathrm{e}$ tramite la formula:
-	\[ \mathrm{e} = \sum_{n=0}^{\infty} \frac{1}{n!} = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} +
-	\frac{1}{4!} + \dots \]
-
-	Calcolare i primi 10 termini della somma e visualizzare il risultato, cosa accade quando cerchiamo di calcolare
-	un numero maggiore di termini?
-\end{frame}
+\fi
 \end{document}

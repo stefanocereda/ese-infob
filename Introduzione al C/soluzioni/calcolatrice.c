@@ -1,18 +1,19 @@
 #include <stdio.h>
 
-/* Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi ed un operatore matematico,
- * stampi il risultato dell'operazione. Le operazioni da supportare sono: addizione, sottrazione, divisione,
- * moltiplicazione e resto della divisione. Se l'utente inserisce un'operazione non supportata stampare un errore. */
+/* Scrivere un programma che, dopo aver ricevuto dall'utente due numeri interi a,b ed un operatore matematico op, stampi il risultato dell'operazione a op b.
+ Le operazioni da supportare sono: addizione, sottrazione, divisione, moltiplicazione e resto della divisione.
+ Se l'utente inserisce un'operazione non supportata stampare un errore. */
 
 /* Dovremo utilizzare una variabile per controllare
 * eventuali errori. Per rappresentare una condizione di errore ci
 * bastano tre valori (2 bit) (nessun errore, divisore=0, operatore
-* sconosciuto).*/
+* sconosciuto).
+* In alternativa alle enum, possiamo utilizzare un intero, in modo simile a quanto fatto settimana scorso per controllare i numeri primi. */
 typedef enum {ok, divisoreNullo, operatoreSconosciuto} controllo;
 int main(){
     /* Dichiariamo le variabili per i due operandi, l'operatore ed il
      * risultato*/
-    int x,y,ris;
+    int x, y, ris;
     char op;
 
     /* Ad esercitazione abbiamo usato un int per lo stesso scopo*/

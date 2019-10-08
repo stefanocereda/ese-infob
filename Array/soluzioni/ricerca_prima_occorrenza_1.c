@@ -8,34 +8,44 @@ numero (stampandone tutti gli indici).
 #define MAX_N 10
 
 typedef int array[MAX_N];
-typedef enum {true, false} bool;
-int main(){
+typedef enum {false, true} bool;
+/* nel dichiarare le enum booleane ricordativi di mettere come primo valore false */
+
+void main(){
     array V;
     int n, i;
     bool trovato = false;
 
     /* Leggo il vettore */
-    i = 0;
-    while (i < MAX_N){
+    for (i=0; i < MAX_N; i++){
         printf("Inserisci l'elemento nella posizione %d: ", i);
         scanf("%d", &V[i]);
-        i++;
     }
 
     /* Leggo l'elemento da cercare */
     printf("Inserisci l'elemento da cercare: ");
     scanf("%d", &n);
 
-    /* Cerco e stampo*/
+    /* Cerco e stampo SOLO LA PRIMA */
     i = 0;
-    while (i < MAX_N){
+    while (i < MAX_N && !trovato)
+    {
+        if (V[i] == n){
+            trovato = true;
+            printf("L'elemento cercato si trova per la prima volta all'indice %d\n", i);
+        }
+        i++;
+    }
+    if (trovato == false)
+        printf("L'elemento non è presente\n");
+
+    /* Cerco e stampo tutte le occorrenze */
+    for (i=0, trovato=false; i < MAX_N; i++){
         if (V[i] == n){
             trovato = true;
             printf("L'elemento cercato si trova all'indice %d\n", i);
         }
-        i++;
     }
-
     if (trovato == false)
         printf("L'elemento non è presente\n");
 }

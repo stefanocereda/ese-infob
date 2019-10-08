@@ -20,11 +20,9 @@ int main(){
     int n, i, j;
 
     /* Leggo il vettore */
-    i = 0;
-    while (i < MAX_N){
+    for (i=0; i<MAX_N; i++){
         printf("Inserisci l'elemento nella posizione %d: ", i);
         scanf("%d", &V[i]);
-        i++;
     }
 
     /* Leggo l'elemento da cercare */
@@ -32,21 +30,16 @@ int main(){
     scanf("%d", &n);
 
     /* Cerco l'elemento ed utilizzo un secondo indice per salvarne la posizione in V2 senza lasciare buchi */
-    j = 0;
-    i = 0;
-    while (i<MAX_N){
+    for (i=0, j=0; i < MAX_N; i++){
         if (V[i] == n){
             V2[j] = i;
             j++;
         }
-        i++;
     }
 
     /* Stampo. Abbiamo visto come j possa essere usato per terminare la scansione di V2 al punto esatto */
-    i = 0;
-    while (i < j){
+    for (i = 0; i < j; i++){
         printf("%d ", V2[i]);
-        i++;
     }
     printf("\n");
 

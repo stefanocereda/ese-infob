@@ -12,16 +12,15 @@ int main(){
     float re, im;
 
     printf("\nInserisci a,b e c: ");
-    scanf("%f %f %f", &a, &b, &c);
+    scanf("%f%f%f", &a, &b, &c);
 
     if(a==0){
-        if(b!=0){
-            printf("Equazione di primo grado");
-            x1=-c/b;
-            printf("Soluzione: x=%lf\n",
-                    x1);
+        if(b==0){
+            printf("Non e' una equazione valida\n");
         }else{
-            printf("Non e' una equazione valida");
+            printf("Equazione di primo grado\n");
+            x1 = -c/b;
+            printf("Soluzione: x=%lf\n", x1);
         }
     }else{
         delta=b*b-4*a*c;

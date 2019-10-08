@@ -3,6 +3,8 @@
 echo $1
 echo $2
 
+xrdb ~/.Xdefaults_light
+
 # Open slides
 i3-msg 'workspace 1, move workspace to output eDP-1'
 i3-msg 'workspace 2, move workspace to output HDMI-2'

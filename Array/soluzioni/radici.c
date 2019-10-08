@@ -2,14 +2,14 @@
 #include <math.h>
 
 #define N 10
+typedef float array[N];
 
 void main(){
-    float radici[N];
+    array radici;
     float num;
     int i;
 
-    i=0;
-    while (i < N){
+    for (i=0; i < N; i++){
         printf("Inserisci un numero positivo: ");
         scanf("%f", &num);
 
@@ -19,13 +19,10 @@ void main(){
         }
 
         radici[i] = sqrt(num);
-        i++;
     }
 
-    i = 0;
-    while (i < N){
+    for (i = 0; i < N; i++){
         printf("%f ", radici[i]);
-        i++;
     }
     printf("\n");
 }

@@ -1,7 +1,6 @@
 /* Scrivere un programma che legga un vettore di interi V ed un numero intero n,
  * si stampi l'indice di V corrispondente al primo elemento uguale ad n.*/
 
-/* Programma visto a lezione */
 
 /* Solita include per le operazioni di in/out */
 #include <stdio.h>
