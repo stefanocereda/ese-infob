@@ -29,7 +29,7 @@
 	numberstyle={\tiny \color{black}},% size of the numbers
 	numbersep=9pt, % this defines how far the numbers are from the text
 	emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
-	%emph=[2]{word1,word2}, emphstyle=[2]{style},    
+	%emph=[2]{word1,word2}, emphstyle=[2]{style},
 }
 
 \usetheme{metropolis}
@@ -111,18 +111,18 @@ Il colore di un punto viene descritto da un array di lunghezza 3 in quanto ogni 
 {
 \centering
 \begin{tabular}{|c|c|}
-	\hline 
-	Tripletta RGB & Colore \\ 
-	\hline 
-	1 0 0 & \textcolor{rosso}{Rosso} \\ 
-	0 1 0 & \textcolor{verde}{Verde} \\ 
-	0 0 1 & \textcolor{blu}{Blu} \\ 
-	1 1 0 & \textcolor{giallo}{Giallo} \\ 
+	\hline
+	Tripletta RGB & Colore \\
+	\hline
+	1 0 0 & \textcolor{rosso}{Rosso} \\
+	0 1 0 & \textcolor{verde}{Verde} \\
+	0 0 1 & \textcolor{blu}{Blu} \\
+	1 1 0 & \textcolor{giallo}{Giallo} \\
 	1 0 1 & \textcolor{magenta}{Magenta} \\
-	0 1 1 & \textcolor{ciano}{Ciano} \\ 
-	0 0 0 & Nero \\ 
-	1 1 1 & Bianco \\ 
-	\hline 
+	0 1 1 & \textcolor{ciano}{Ciano} \\
+	0 0 0 & Nero \\
+	1 1 1 & Bianco \\
+	\hline
 \end{tabular}
 \par
 }
@@ -210,22 +210,6 @@ Come disegnare una buona bandiera:
 \item \href{https://www.youtube.com/watch?v=BRNzeiV14bY}{The Big Bang Theory - Fun with Flags}
 \item \href{https://www.youtube.com/watch?v=pnv5iKB2hl4}{Why city flags may be the worst-designed thing you've never noticed | Roman Mars}
 \end{itemize}
-\end{frame}
-
-\begin{frame}{Rotazione di matrice}
-Sc scriva una script in Matlab/Octave che data una matrice $a$ di dimensioni $N\times N$ crea una nuova matrice $b$ ruotata di 90 gradi in senso antiorario rispetto ad $a$.
-
-Si consideri $N=4$ e la matrice $a$ inizializzata con i valori:
-
-\centering
-\begin{tabular}{|cccc|}
-	\hline
-	1&2&3&4\\
-	2&3&4&5\\
-	6&7&8&9\\
-	0&0&0&0\\
-	\hline
-\end{tabular}
 \end{frame}
 
 \begin{frame}{Sequenza palindroma}
@@ -334,24 +318,24 @@ Si dica quanto deve pagare ogni persona.
 
 \begin{frame}{Matrice palindroma - TdE 2 Luglio 2018}
 Data una matrice $N \times M$, essa si definisce palindroma per riga se la riga 1 è uguale alla riga $N$, la riga 2 è uguale alla riga $N-­$1 e così via.
-  
+
 Si scriva uno script MATLAB che, data in ingresso una matrice, stampi 1 se la matrice è palindroma per riga o 0 nel caso non lo sia.
 
 Attenzione alla correzione del tema d'esame, contiene un errore!
 \end{frame}
 
 \begin{frame}{Matrice dominante - TdE 20 Luglio 2018}
-Una matrice quadrata è definita diagonalmente dominante se il valore assoluto di ciascun elemento sulla  
+Una matrice quadrata è definita diagonalmente dominante se il valore assoluto di ciascun elemento sulla
 diagonale principale è maggiore della somma dei valori assoluti degli altri elementi sulla stessa riga.
 
 Per esempio, la seguente matrice è diagonalmente dominante:
-\begin{tabular}{ccccc}	 
-	20 & 2 & 3 & 4 & 5 \\ 	 
-	3 & -25 & 5 & 6 & 7 \\ 
-	2 & 3 & 23 & 5 & 6 \\  
-	8 & 7 & 6 & -30 & 4 \\ 
-	2 & 3 & 4 & 5 & 20 \\  
-\end{tabular} 
+\begin{tabular}{ccccc}
+	20 & 2 & 3 & 4 & 5 \\
+	3 & -25 & 5 & 6 & 7 \\
+	2 & 3 & 23 & 5 & 6 \\
+	8 & 7 & 6 & -30 & 4 \\
+	2 & 3 & 4 & 5 & 20 \\
+\end{tabular}
 
 Si scriva uno script MATLAB che, ricevuta una matrice $m$, stampi -1 se $m$ non è quadrata, 0 se quadrata ma non diagonalmente dominante, 1 se quadrata e diagonalmente dominante.
 \end{frame}

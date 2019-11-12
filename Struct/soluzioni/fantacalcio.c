@@ -30,4 +30,6 @@ for (i = 0; i < N; i++)
         NAllConCoppa++;
 
 printf("\n\n Il numero di allenatori che hanno vinto almeno una coppa è : %d", NAllConCoppa);
- 
+
+/* Come posso fare per controllare che un allenatore non abbia più di una
+ * squadra? */

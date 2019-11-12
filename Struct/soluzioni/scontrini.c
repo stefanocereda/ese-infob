@@ -17,7 +17,7 @@ typedef Scontrino Archivio [NUM_SCONTRINI];
 
 typedef enum{false,true} bool;
 
-int main(){
+void main(){
 	Archivio archivio;
 	Scontrino tmp;
 	IdCliente idCerca;
@@ -44,12 +44,14 @@ int main(){
 
 
 	/* MODIFICARE QUESTA PARTE PER NON USARE TUTTI GLI i OGNI VOLTA */
-    
 	scambio = true;
 	while (scambio){
 		scambio = false;
 		for (i = 0; i < NUM_SCONTRINI-1; i++){
+            /* Ordiniamo SECONDO il totale, ma ordiniamo gli scontrini.
+             * Quindi controllo il totale: */
 			if (archivio[i].totale < archivio[i+1].totale){
+                    /* E scambio L'INTERA STRUTTUTA, non solo il totale */
 			       tmp = archivio[i];
 			       archivio[i] = archivio[i+1];
 			       archivio[i+1] = tmp;
@@ -61,8 +63,4 @@ int main(){
 	for (i=0; i < NUM_SCONTRINI; i++){
 		printf("%s\t%d\t%d\n", archivio[i].id, archivio[i].totale, archivio[i].punti);
 	}
-	return 0;
 }
-
-
-/* Scambio di mail interessate con Marco Bernardini, inserirli come possibili errori /*

@@ -1,0 +1,148 @@
+
+\begin{frame}{Acquisizione dati da fogli di calcolo}
+    La funzione \emph{xlsread} consente di aprire in MATLAB file .xls creati con Microsoft Excel.
+
+    Proviamo ad usarla.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Trading - TdE 16 Febbraio 2018}
+    Un’agenzia di trading online vuole memorizzare l’andamento del valore dei titoli che controlla.
+    La memorizzazione viene effettuata in \textbf{500} istanti temporali equidistanti.
+    I dati vengono salvati nel file MATLAB \textbf{log.mat} che contiene:
+    \begin{itemize}
+        \item la matrice \textbf{titoli}, le cui righe rappresentano i diversi titoli controllati e le cui colonne rappresentano i vari istanti in cui sono stati memorizzati i valori di tali titoli (quindi ogni cella della matrice contiene il valore di un titolo in un dato istante)
+        \item il vettore colonna \textbf{andamento}, con lo stesso numero di righe della matrice \textbf{titoli}, che contiene un valore numerico per ogni titolo, indicativo del suo andamento complessivo crescente o decrescente
+    \end{itemize}
+
+    \framebreak
+    \begin{enumerate}
+        \item Scrivere in linguaggio MATLAB una funzione \textbf{splittaMatrice} che:
+            \begin{itemize}
+                \item riceva in input una matrice \textbf{titoliTot} (con la stessa struttura di \textbf{titoli}), un vettore \textbf{andamentoTot} (con stessa struttura di vettore \textbf{andamento}) e uno scalare \textbf{soglia};
+                \item fornisca in output due matrici \textbf{titoliOver} e \textbf{titoliUnder} (ognuna con la stessa struttura di \textbf{titoliTot}). \textbf{titoliOver} include solo le righe di \textbf{titoliTot} corrispondenti agli elementi di \textbf{andamentoTot} con valore maggiore o uguale di soglia. \textbf{titoliUnder}, invece, include le righe di \textbf{titoliTot} corrispondenti agli elementi di \textbf{andamentoTot} con valore minori di soglia.
+            \end{itemize}
+
+            \framebreak
+        \item Scrivere in linguaggio MATLAB uno script che:
+            \begin{enumerate}
+                \item legga dal file \textbf{log.mat} i due dati memorizzati: \textbf{titoli} e \textbf{andamento}
+                \item richiami la funzione \textbf{splittaMatrice} per separare titoli nelle due matrici \textbf{titoliOver} e \textbf{titoliUnder}, per un valore di soglia pari a 0
+                \item crei un vettore \textbf{x} che contenga i 500 istanti di memorizzazione
+                \item disegni su due grafici separati (che includano il titolo del grafico e il nome dei due assi) l’andamento dei titoli in \textbf{titoliOver} e \textbf{titoliUnder}, in funzione di x.
+            \end{enumerate}
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Cornici - TdE 29 Gennaio 2018}
+    Si consideri il seguente problema: si vuole creare una matrice quadrata che sia organizzata come quella in figura.
+
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        12 & 12 & 12 & 12 & 12 \\
+        \hline
+        12 & 13 & 13 & 13 & 12 \\
+        \hline
+        12 & 13 & 14 & 13 & 12 \\
+        \hline
+        12 & 13 & 13 & 13 & 12 \\
+        \hline
+        12 & 12 & 12 & 12 & 12 \\
+        \hline
+    \end{tabular}
+
+    \begin{enumerate}
+        \item Si scriva in linguaggio MATLAB una funzione \alert{iterativa} \textbf{cornici} che, data la dimensione N della matrice e un numero di partenza P, restituisca al chiamante una matrice quadrata NxN così definita: la matrice contiene nella cornice più esterna il numero P e numeri crescenti nelle cornici più interne.
+
+        \item Si scriva inoltre uno script in linguaggio MATLAB che acquisisca da tastiera la dimensione desiderata N e il numero di partenza P, invochi la funzione \textbf{cornici} con gli opportuni parametri e infine stampi a video la matrice risultante.
+
+        \item Si implementi la funzione \alert{ricorsiva} \textbf{corniciRic} in modo che presenti lo stesso comportamento della funzione \textbf{cornici}
+    \end{enumerate}
+\end{frame}
+
+\iffalse
+\begin{frame}[fragile]{Matlab e binario}
+    \framebreak
+    Scrivere  una  funzione  Matlab  controllaCP2  che  prende  in  ingresso  una  stringa  (ad
+    esempio ‘0101001’)  corrispondente  ad  un  numero  codificato  in  CP2  e  restituisce  due
+    valori:
+    \begin{enumerate}
+        \item par  che  vale  true  se  il  numero  è  pari  e  false  altrimenti
+        \item    pos  che  vale  true  se  il  numero  è  positivo  e  false  altrimenti
+    \end{enumerate}
+    (L’esecuzione  della  funzione  nel  caso  dell’esempio  darebbe  par = false  e  pos =
+    true)
+
+
+    \framebreak
+
+    La funzione matlab deve semplicemente controllare il bit a sinistra per sapere se il numero è positivo, ed il bit a destra per sapere se è pari (ragionate sul perché un numero positivo pari mantiene il primo bit=0 quando passo al negativo).
+    \begin{lstlisting}[style=matlab]
+    function [par, pos] = controllaCP2(stringa)
+    if stringa(1) == '0'
+    pos = true;
+    else
+    pos = false;
+    end
+    % versione equivalente:
+    % pos = stringa(1) == '0';
+
+    par = stringa(end) == '0';
+    end
+    \end{lstlisting}
+
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{Matlab - Ricorsione}
+    Un metodo per calcolare il valore approssimato della radice quadrata di un
+    numero reale non negativo z, detto metodo babilonese, utilizza la seguente
+    relazione ricorsiva:
+    \[x(n) = \frac{1}{2}(x(n-1)+\frac{z}{x(n-1)})\]
+    \[x(0)=1\]
+
+    Dove $n$ è un intero non-negativo arbitrario, mentre $x(n)$ rappresenta un'approssimazione della radice quadrata del numero $z$. Per esempio, se $z$ è pari a 2 e $n$ è pari a 3 il valore di $x(n)$ ottenuto applicando la formula indicata sopra è 1.4142 (che è una buona approssimazione della radice di 2).
+
+    \framebreak
+
+    L'errore di approssimazione associato a $x(n)$ è definito come segue:
+    \[errore(n) = | x(n) - x(n-1)|\]
+    e decresce al crescere di $n$. Per esempio, se si calcola la radice di 2 con $n$ pari a 1 si ottiene il valore 1.5000 con errore 0.5000. Se invece si calcola la radice dello stesso valore con $n$ pari a 2 si ottiene il valore 1.4167 con errore 0.0833.
+
+    \framebreak
+
+    \begin{enumerate}
+        \item Si scriva una funzione ricorsiva \emph{sqrt1(z,n)} per MATLAB/Octave che
+            restituisca un'approssimazione della radice quadrata di $z$ e il relativo errore utilizzando il metodo babilonese. Quando $n$ è pari a zero, si assuma un valore dell’errore pari a inf.
+        \item Si scriva una funzione \emph{sqrt2(z,err)} per MATLAB/Octave che, utilizzando la funzione \emph{sqrt1}, restituisca un valore approssimato della radice quadrata di $z$ con errore non superiore al valore $err$ fornito come parametro.
+    \end{enumerate}
+
+    Nella soluzione di entrambi i quesiti non è permesso utilizzare alcuna funzione di
+    libreria di MATLAB/Octave a parte la funzione \emph{abs(x)} per il calcolo del valore
+    assoluto di x.
+\end{frame}
+
+\begin{frame}{Matlab - Grafici}
+    Scrivere una funzione Octave con parametri $a$, $b$ e $p$ che esegue le seguenti operazioni:
+    \begin{enumerate}
+        \item  calcola i valori $\cos(x^2)$ per valori di x compresi fra a e b, con passo p, e li memorizza in un vettore y
+        \item visualizza su un grafico l'andamento di y;
+        \item restituisce al chiamante il massimo valore di $\cos(x^2)$ per $a \leq x \leq b$ ed il valore di x corrispondente. Per effettuare il
+            calcolo in questione si può utilizzare la funzione max che, quando prende come parametro un vettore, restituisce due
+            valori di cui il primo è il valore massimo trovato nel vettore ed il secondo è l’indice della posizione del vettore in cui tale
+            valore è contenuto.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Matlab - Scomposizione in fattori}
+    Scrivere una funzione che scomponga in fattori primi un numero.
+    Il risultato dovrà composto da due vettori: il primo conterrà le basi dei fattori, il secondo conterrà gli esponenti dei fattori, cioè quante volte essi sono ripetuti.
+
+    Esempio: il numero 100 è uguale a $2^2 * 5^2$, per cui il vettore delle basi sarà [2 5] mentre quello degli esponenti corrispondenti sarà [2 2].
+
+    Un modo semplice per fattorizzare un numero consiste nel dividerlo ripetutamente per tutti i numeri che gli sono inferiori fino ad ottenere 1.
+\end{frame}
+\fi

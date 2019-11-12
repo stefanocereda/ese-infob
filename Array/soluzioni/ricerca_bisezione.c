@@ -9,21 +9,40 @@ void main(){
     array valori;
     int i, valore, z;
     int idx_min, idx_max;
-    bool acquisire, trovato;
+    bool deve_inserire, trovato;
 
-    acquisire = true;
-    while (acquisire == true){
+    /* Cicliamo fino a che l'utente deve_inserire */
+    deve_inserire = true;
+    while (deve_inserire == true){
         /* Acquisiamo i valori dall'utente */
         printf("Inserisci un vettore ordinato:\n");
         for (i=0; i<N; i++)
             scanf("%d", &valori[i]);
 
-        /* Controlliamo che sia effettivamente ordinato */
-        acquisire = false;
-        for (i=1; i < N; i++)
-            if (valori[i] < valori[i-1])
-                acquisire = true;
+        /* Controlliamo che sia effettivamente ordinato. Supponiamo che l'array vada bene e cerchiamo un controesempio */
+        deve_inserire = false;
+        for (i=0; i < N-1; i++)
+            if (valori[i] > valori[i+1])
+                deve_inserire = true;
+        /* Posso modificare il for in for(i=1; deve_inserire==false && i < N; i++) per uscire al primo controesempio trovato*/
     }
+
+
+
+    /* In alternativa, possiamo richiedere all'utente di reinserire solo i valori non in ordine */
+    printf("Inserisci un vettore ordinato modo 2\n");
+    for (i=0; i<N; i++){
+        printf("Inserisci un numero: ");
+        scanf("%d", &valori[i]);
+        /* Controllo che vada bene (solo dal secondo in poi) */
+        while (i >= 1 && valori[i] < valori[i-1]){
+            printf("Il numero non è valido, deve essere maggiore di %d\n", valori[i-1]);
+            printf("Inserisci un numero: ");
+            scanf("%d", &valori[i]);
+        }
+    }
+
+
 
     /* chiediamo il valore da cercare */
     printf("Quale valore vuoi cercare?\n");
@@ -37,7 +56,7 @@ void main(){
     idx_min = 0;
     idx_max = N-1;
 
-    /* Continuo il confronto fino a che ho trovato il valore cercato oppure sto considerando un'array di lunghezza negativa */
+    /* Continuo il confronto fino a che non ho trovato il valore cercato e sto considerando un'array di lunghezza valida */
     while (trovato == false && idx_min <= idx_max){
         /* considero l'elemento centrale */
         i = (idx_max + idx_min) / 2;
@@ -57,7 +76,7 @@ void main(){
                 printf("     ");
         }
         printf("\n");
-        /* Fine informazioni utili */
+        /* Fine informazioni utili, riprende l'algoritmo vero e proprio */
 
         /* se il valore considerato è uguale a quello cercato ho finito, il risultato è in i */
         if (valori[i] == valore)
@@ -73,7 +92,7 @@ void main(){
     }
 
     if (trovato == true)
-        printf("Elemento trovato in posizione %d.\n", i);
+        printf("Elemento trovato in indice %d.\n", i);
     else
         printf("L'elemento cercato non è presente.\n");
 }

@@ -1,12 +1,12 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[9pt, format=169, handout]{beamer}
+\documentclass[aspectratio=169, ]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{multicol}
 
-\usetheme{metropolis}
+\usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
 
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
@@ -17,22 +17,23 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{02/10/2018 e 08/10/2018}
-\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
-	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+\date{14/10/2019 e 15/10/2019}
+\institute[PoliMi]{Politecnico Milano}
+\logo{\includegraphics[width=10mm]{../logopolimi}}
 
 \setbeamercovered{invisible}
 
 \makeindex
+
 
 \begin{document}
 	\begin{frame}
 	\maketitle
 	\end{frame}
 
-	\begin{frame}<handout:0>{}
-		\Huge{Settimana prossima ci sarà solamente esercitazione il lunedì mattina.}
-	\end{frame}
+	%\begin{frame}<handout:0>{}
+	%	\Huge{Settimana prossima ci sarà solamente esercitazione il lunedì mattina.}
+	%%\end{frame}
 
 	\begin{frame}{Argomenti}
 	\tableofcontents
@@ -48,25 +49,34 @@ L'insieme di simboli (e.g. cifre) utilizzabili definisce l'alfabeto.
 \pause
 Dato un alfabeto con $S$ simboli, le possibili combinazioni di lunghezza $L$ sono $C = S^L$.
 
+\pause
 Viceversa, per rappresentare $C$ combinazioni tramite un alfabeto di $S$ simboli avremo bisogno di combinazioni di lunghezza $L = \ceil{\log_S C}$ (arrotondamento per eccesso).
 
+\pause
 In informatica si usano alfabeti di 2 simboli, ogni simbolo viene detto \alert{bit}. 8 bit vengono chiamati \alert{byte}.
 \end{frame}
 
 \begin{frame}{Sistemi di numerazione}
-Possiamo usare diversi sistemi per rappresentare una certa quantità. Diversi sistemi hanno diverse caratteristiche che possono rendere più o meno semplice il calcolo.
+    \begin{columns}
+        \begin{column}{0.4\textwidth}
+            \includegraphics[width=0.9\linewidth]{algoristi_abacisti.jpg}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            Possiamo usare diversi sistemi per rappresentare una certa quantità. Diversi sistemi hanno diverse caratteristiche che possono rendere più o meno semplice il calcolo.
 
-Nel 1202 Leonardo Fibonacci introduce in Europa, con il \emph{Liber abaci}, il sistema numerico decimale indo-arabico ed i relativi metodi di calcolo.
+            Nel 1202 Leonardo Fibonacci introduce in Europa, con il \emph{Liber abaci}, il sistema numerico decimale indo-arabico ed i relativi metodi di calcolo.
 
-\centering
-\includegraphics[width=0.4\linewidth]{algoristi_abacisti.jpg}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Sistema di numerazione posizionale in base 10}
 Il sistema di numerazione di tutti i giorni è un sistema \alert{posizionale} in \alert{base 10}.
 
+\pause
 Un sistema di numerazione è \alert{posizionale} quando ogni simbolo (cifra) utilizzato assume un significato diverso a seconda della posizione che occupa nella notazione.
 
+\pause
 Il rapporto fra il valore che una cifra assume in una data pozione e quella successiva è definito da una sequenza di moltiplicatori $b_1, b_2, b_3, \dots$:
 \[c_4c_3c_2c_1 = c_4(b_3b_2b_1) + c_3(b_2b_1) + c_2b_1 + c_1\]
 \pause
@@ -76,13 +86,11 @@ Il numero $b$ si chiama \alert{base} del sistema di numerazione.
 \end{frame}
 
 \begin{frame}{Codifiche in base 2, 8 e 16}
-Possiamo inserire la base della codifica come pedice di un numero per indicarne la base.
-
+Possiamo indicare la base della codifica mettendola a pedice di un numero.
 Utilizzando come basi i valori 2, 8 e 16 otteniamo tre codifiche molto utilizzate in ambito informatico.
+Utilizzando la formula precedente è semplice ricavare il valore nella base 10:
 
-Utilizzando la formula precedente è molto semplice ricavare il valore nella base 10:
-
-\[1234_{10} = 1\cdot10^3 + 2\cdot10^2 + 3\cdot10^1 + 4\cdot10^0 = 1234_{10}\]
+\[1234_{10} = 1\cdot0^3 + 2\cdot10^2 + 3\cdot10^1 + 4\cdot10^0 = 1234_{10}\]
 \pause
 \[1010_{2}  = 1\cdot2^3  + 0\cdot2^2  + 1\cdot2^1  + 0\cdot2^0 = 10_{10}\]
 \pause
@@ -92,7 +100,7 @@ Utilizzando la formula precedente è molto semplice ricavare il valore nella bas
 \end{frame}
 
 \begin{frame}{Esempi conversione da base 2 a base 10}
-Ricordando le potenze di 2 (1,2,4,8,16,32,64,128,...) la conversione diventa molto più facile. Basta sommare le potenze in corrispondenza degli uni:
+Ricordando le potenze di 2 ($1,2,4,8,16,32,64,128,\dots$) la conversione diventa molto più facile. Basta sommare le potenze in corrispondenza degli uni:
 
 $01101101_2 = 1+4+8+32+64 = 109_{10}$
 
@@ -101,25 +109,32 @@ $10010010_2 = 2+16+128 = 146_{10}$
 
 
 \begin{frame}{Codifica in base 2}
-La codifica in base 2 (o binaria pura) è molto utilizzata in informatica perché può essere rappresentata tramite presenza o assenza di tensione elettrica.
+    \begin{columns}
+        \begin{column}{0.7\textwidth}
+            La codifica in base 2 (o binaria pura) è molto utilizzata in informatica perché può essere rappresentata tramite presenza o assenza di tensione elettrica.
 
-Per passare dalla base 10 alla base 2 utilizziamo l'algoritmo delle \alert{divisioni ripetute}: dividiamo ripetutamente il numero per 2 fino ad arrivare a zero, la lettura dei resti (in ordine inverso) ci darà il numero in base 2.
+            Per passare dalla base 10 alla base 2 utilizziamo l'algoritmo delle \alert{divisioni ripetute}: dividiamo ripetutamente il numero per 2 fino ad arrivare a zero, la lettura dei resti (in ordine inverso) ci darà il numero in base 2.
+        \end{column}
 
-\pause
+        \begin{column}{0.2\textwidth}
 
-	\begin{tabular}{c|c}
-		\multicolumn{2}{c}{$b=2$}\\
-		123 & 1 \\
-		61  & 1 \\
-		30  & 0 \\
-		15  & 1 \\
-		7   & 1 \\
-		3   & 1 \\
-		1	& 1	\\
-		0   &  \\
-	\end{tabular}
-$\uparrow$
-$123_{10} = 1111011_2$
+            \pause
+
+            \begin{tabular}{c|c}
+                \multicolumn{2}{c}{$b=2$}\\
+                123 & 1 \\
+                61  & 1 \\
+                30  & 0 \\
+                15  & 1 \\
+                7   & 1 \\
+                3   & 1 \\
+                1	& 1	\\
+                0   &  \\
+            \end{tabular}
+            $\uparrow$
+            $123_{10} = 1111011_2$
+        \end{column}
+    \end{columns}
 
 In generale, dividendo ripetutamente per $b$ possiamo passare dalla base 10 alla base $b$.
 \end{frame}
@@ -128,47 +143,57 @@ In generale, dividendo ripetutamente per $b$ possiamo passare dalla base 10 alla
 Le basi 8 e 16 sono molto utilizzate come modo compatto per rappresentare cifre binarie.
 Infatti, è molto semplice passare da base 2 a base 8 (o 16), basta tradurre a gruppi di tre (o quattro) cifre per volta partendo dalla cifra meno significativa:
 
-\begin{tabular}{c|c}
-	000 & 0 \\
-	001 & 1 \\
-	010 & 2 \\
-	011 & 3 \\
-	100 & 4 \\
-	101 & 5 \\
-	110	& 6	\\
-	111 & 7 \\
-\end{tabular}
-\hspace{5cm}
-\begin{tabular}{c|c}
-	0000 & 0 \\
-	0001 & 1 \\
-	0010 & 2 \\
-	0011 & 3 \\
-	0100 & 4 \\
-	0101 & 5 \\
-	0110 & 6 \\
-	0111 & 7 \\
-\end{tabular}
-\begin{tabular}{c|c}
-	1000 & 8 \\
-	1001 & 9 \\
-	1010 & A \\
-	1011 & B \\
-	1100 & C \\
-	1101 & D \\
-	1110 & E \\
-	1111 & F \\
-\end{tabular}
+\pause
+    \vspace{.5cm}
+\begin{columns}
+    \begin{column}{0.1\textwidth}
+        \begin{tabular}{c|c}
+            000 & 0 \\
+            001 & 1 \\
+            010 & 2 \\
+            011 & 3 \\
+            100 & 4 \\
+            101 & 5 \\
+            110	& 6	\\
+            111 & 7 \\
+        \end{tabular}
+    \end{column}
+    \pause
+    \begin{column}{0.3\textwidth}
+        \begin{tabular}{c|c}
+            0000 & 0 \\
+            0001 & 1 \\
+            0010 & 2 \\
+            0011 & 3 \\
+            0100 & 4 \\
+            0101 & 5 \\
+            0110 & 6 \\
+            0111 & 7 \\
+        \end{tabular}
+        \begin{tabular}{c|c}
+            1000 & 8 \\
+            1001 & 9 \\
+            1010 & A \\
+            1011 & B \\
+            1100 & C \\
+            1101 & D \\
+            1110 & E \\
+            1111 & F \\
+        \end{tabular}
+    \end{column}
+    \begin{column}{0.5\textwidth}
 
-\[10100101_2 = 010\ 100\ 101_2 = 245_8 \]
-\[10100101_2 = 1010\ 0101_2 = A5_{16} \]
+        \[10100101_2 = 010\ 100\ 101_2 = 245_8 \]
+        \[10100101_2 = 1010\ 0101_2 = A5_{16} \]
+    \end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rappresentazione di enumerazioni}
 Tramite una opportuna codifica possiamo rappresentare delle enumerazioni tramite cifre binarie.
 
-Ad esempio, consideriamo l'insieme dei giorni della settimana. Dati $M=7$ valori distinti da rappresentare, abbiamo bisogno di $N=\ceil{\log_2 7}=\ceil{2.83}=3$ bit. 
+Ad esempio, consideriamo l'insieme dei giorni della settimana. Dati $M=7$ valori distinti da rappresentare, abbiamo bisogno di $N=\ceil{\log_2 7}=\ceil{2.83}=3$ bit.
 
 \begin{table}[h]
 	\begin{tabular}{cccc}
@@ -200,25 +225,27 @@ Una delle codifiche per enumerazione più importanti è quella ASCII.
 
 \begin{frame}{Somme e sottrazioni in base 2}
 	\begin{tabular}{r|l}
-		0+0 & =0 \\
-		0+1 & =1 \\
-		1+0 & =1 \\
-		1+1 & =0 con \alert{riporto} di 1
+		0+0 & = 0 \\
+		0+1 & = 1 \\
+		1+0 & = 1 \\
+		1+1 & = \pause 0 con \alert{riporto} di 1
 	\end{tabular}
+    \pause
 \hspace{2cm}
 	\begin{tabular}{r|l}
-		0-0 & =0 \\
-		1-0 & =1 \\
-		1-1 & =0 \\
-		0-1 & =1 con \alert{prestito} di 1
+		0-0 & = 0 \\
+		1-0 & = 1 \\
+		1-1 & = 0 \\
+		0-1 & = 1 con \alert{prestito} di 1
 	\end{tabular}
 
+\pause
 \vspace{1cm}
 	\begin{tabular}{r|l}
-		 10 + 01 & =11 \\
-		 01 + 01 & =10 \\
-		 11 + 01 & =00 con \alert{overflow} \\
-		 011 + 01 & =100 dopo il \alert{padding}
+		 10 + 01 & = 11 \\
+		 01 + 01 & = 10 \\
+		 11 + 01 & = 00 con \alert{overflow} \\
+		 011 + 01 & = 100 dopo il \alert{padding}
  	\end{tabular}
 \end{frame}
 
@@ -232,6 +259,7 @@ Le somme si eseguono come in base 10. Se alla fine dell'operazione ``avanza'' un
 	\hline
 	risultato        &   & \\
 \end{tabular}
+\pause
 $\rightarrow$
 \begin{tabular}{r|l}
 	1001 & + \\
@@ -240,6 +268,7 @@ $\rightarrow$
 	\hline
 	0    &  \\
 \end{tabular}
+\pause
 $\rightarrow$
 \begin{tabular}{r|l}
 	1001 & + \\
@@ -248,7 +277,7 @@ $\rightarrow$
 	\hline
 	10   &  \\
 \end{tabular}
-
+\pause
 $\rightarrow$
 \begin{tabular}{r|l}
 	1001 & + \\
@@ -257,6 +286,7 @@ $\rightarrow$
 	\hline
 	110&  \\
 \end{tabular}
+\pause
 $\rightarrow$
 \begin{tabular}{r|l}
 	1001 & + \\
@@ -331,6 +361,15 @@ Convertiamo le somme in base 10 per trovare eventuali errori:
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Esercizi C}
+    Realizzare due programmi in C:
+    \begin{enumerate}
+        \item ricevuto un numero $n$ in base 10 ed una nuova base $b$, rappresentare $n$ nella nuova base (stampando le
+            cifre in ordine inverso)
+        \item ricevuto un numero $n$ in base $b$, stamparne il valore in base 10.
+    \end{enumerate}
+\end{frame}
+
 \section{Numeri interi}
 \begin{frame}{Notazione in modulo e segno}
 Utilizzando la codifica binaria vista fin'ora, con $N$ bit possiamo rappresentare $2^N$ valori: da 0 a $2^N - 1$
@@ -351,12 +390,12 @@ Possiamo quindi rappresentare numeri nell'intervallo $-2^{N-1}+1 \leq x \leq +2^
 \pause
 
 Abbiamo infatti due possibili codifiche per il numero zero:
-\[+0 = +0000 = 00000\]
-\[-0 = -0000 = 10000\]
+\[+0 = +0000 = 00000
+= -0 = -0000 = 10000\]
 \end{frame}
 
 \begin{frame}{Notazione in complemento alla base}
-La notazione in modulo e segno spreca un valore, inoltre il calcolare avrebbe bisogno di un circuito per effettuare la somma ed un altro per effettuare la sottrazione.
+La notazione in modulo e segno spreca un valore, inoltre il calcolatore avrebbe bisogno di un circuito per effettuare la somma ed un altro per effettuare la sottrazione.
 
 La \alert{notazione in complemento alla base} risolve questi limiti: con $N$ bit ci permette di rappresentare $2^N$ valori, precisamente da $-2^{N-1}$ a $+2^{N-1}-1$.
 
@@ -400,10 +439,11 @@ Notare che msb \alert{non è il segno}: cambiandolo non si ottiene il numero opp
 \end{frame}
 
 \begin{frame}{Proprietà cpl2}
+    \small
 Rappresentiamo un numero negativo $-x = -5$ con $N=4$ bit:\\ $-x \rightarrow (2^N-|-x|)_2 = 10000_2 - x_2 = 1111_2+1_2-x_2$
 
 \pause
-$1111-x$ possiamo ottenerlo semplicemente invertendo tutti i bit di $x$:
+$1111-x$ possiamo ottenerlo semplicemente invertendo tutti i bit di $x$:\\
 \begin{tabular}{r|l}
 1111 & - \\
 0101 & = \\
@@ -451,7 +491,7 @@ Se vogliamo convertire un numero positivo lo possiamo semplicemente convertire i
 
 \pause
 Se vogliamo convertire un numero negativo dobbiamo passare all'opposto e convertirlo in cpl2 (come sopra).
-Infine dovremo complementare il risultato e sommare uno. 
+Infine dovremo complementare il risultato e sommare uno.
 Il padding verrà fatto con degli uni:
 \[ -15_{10} = -(8+4+2+1)_{10} = -(1111_2) = -(01111_{cpl2}) = 10001_{cpl2} = 1110001_{cpl2} \]
 \end{frame}
@@ -462,7 +502,7 @@ Se vale zero abbiamo un numero positivo e lo convertiamo come se fossimo in bina
 \[ 010110_{cpl2} = 2+4+16 = 22_{10} \]
 
 \pause
-Se il primo bit vale uno abbiamo invece un numero negativo, dobbiamo quindi passare all'opposto (complementando e sommando uno) e convertire in base 10 per po i passare di nuovo all'opposto:
+Se il primo bit vale uno abbiamo invece un numero negativo, dobbiamo quindi passare all'opposto (complementando e sommando uno) e convertire in base 10 per poi passare di nuovo all'opposto:
 \[1001001_{cpl2} = -(0110111_{cpl2}) = -(1+2+4+16+32) = -55_{10}\]
 \end{frame}
 
@@ -477,6 +517,7 @@ Dati due numeri in base 10 da sommare algebricamente, dobbiamo innanzitutto cont
 \end{frame}
 
 \begin{frame}{Somma senza riporto ne overflow}
+    \footnotesize
 Calcoliamo $-7 + 2 = -5$ con $N=4$ bit.
 
 \pause
@@ -513,7 +554,7 @@ Calcoliamo $7 - 2 = 7 + (-2) = +5$ con $N=4$ bit.
 $-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti sia per gli operandi che per il risultato.
 
 $+7 = 0111_2 = 0111_{cpl2}$\\
-$-2 \rightarrow 2_{10} = 010_2 \rightarrow 110_{cpl2} = 1110_{cpl2} = -2$ 
+$-2 \rightarrow 2_{10} = 010_2 \rightarrow 110_{cpl2} = 1110_{cpl2} = -2$
 
 \begin{tabular}{c|c}
 $0111$ & + \\
@@ -530,14 +571,15 @@ Il risultato è corretto. Quando eseguiamo operazioni in cpl2 dobbiamo sempre ig
 \end{frame}
 
 \begin{frame}{Somma senza riporto ma con overflow}
+    \small
 Calcoliamo $7 + 2 = +9$ con $N=4$ bit.
 
 $-2^{N-1} = -8 \wedge 2^{N-1}-1 = +7 \rightarrow$ i bit sono sufficienti per gli operandi, ma non per il risultato: ci aspettiamo una situazione di overflow.
 
 $+7 = 0111_2 = 0111_{cpl2}$\\
 $+2 = 0010_2 = 0010_{cpl2}$
-
 \pause
+\hspace{3cm}
 \begin{tabular}{c|c}
 $0111$ & + \\
 $0010$ & = \\
@@ -580,16 +622,16 @@ Operandi concordi ma risultato discorde indicano che siamo in una condizione di 
 \begin{frame}{Esercizio completo - TdE 10/09/2018}
 \begin{enumerate}
 	\item Si dica quale dei seguenti cinque numeri è il maggiore motivando la risposta:
-	\begin{itemize}
+    \begin{enumerate}
 		\item 34 in base 8;
 		\item 34 in base 10;
 		\item 0A1 in base 16;
 		\item 1111111 in Complemento a 2;
 		\item 0011011 in Complemento a 2.
-	\end{itemize}
-	
+	\end{enumerate}
+
 	\item Si indichi quindi il numero n di bit che permette di codificare tutti i numeri A - E in Complemento a 2 e li si codifichi tutti in Complemento a 2 usando n bit, riportando i passaggi fondamentali dei calcoli.
-	
+
 	\item Si eseguano (riportando i calcoli) le seguenti operazioni utilizzando n bit e si indichino eventuali bit di carry (riporto) e overflow:
 	\begin{itemize}
 		\item A - B;
@@ -709,7 +751,7 @@ $324_{10} = 101000100_2 = 0101000100_{cpl2}        = 0101000100_{cpl2}$
 \end{tabular}
 
 \pause
-Risultati discordi non danno overflow.
+Operandi discordi non danno overflow.
 
 \pause
 $1110100111_{cpl2} = -(0001011001_{cpl2}) = -(1+8+16+64)_{10} = -89_{10} = 324-413$
@@ -750,22 +792,22 @@ Infatti, se converto $01110011$ ottengo $1+2+16+32+64 = 115$ (nota che $115+141=
 
 
 \begin{frame}[allowframebreaks]{TdE 26 Giugno 2017}
-Si  dica  e  si  motivi  qual  è  il  minimo  numero  di  bit  che  permette  di  rappresentare  in  
-complemento  a  due  (CP2)  tutti  i  numeri  seguenti:  
+Si  dica  e  si  motivi  qual  è  il  minimo  numero  di  bit  che  permette  di  rappresentare  in
+complemento  a  due  (CP2)  tutti  i  numeri  seguenti:
 \begin{enumerate}
-	\item A  =  +  255  
-	\item B  =  -­  42  
-	\item C  =  +  7  
-	\item D  =  -­  257  
+	\item A  =  +  255
+	\item B  =  -­  42
+	\item C  =  +  7
+	\item D  =  -­  257
 \end{enumerate}
 
 \framebreak
-Se  si  volessero  eseguire  tutte  le  possibili  somme  e  sottrazioni  tra  le  coppie  di  numeri  A,  B,  
-C,  D,  qual  è  il  minimo  numero  di  bit  in  cui  dovrebbero  essere  rappresentati  i  numeri?  Si  
+Se  si  volessero  eseguire  tutte  le  possibili  somme  e  sottrazioni  tra  le  coppie  di  numeri  A,  B,
+C,  D,  qual  è  il  minimo  numero  di  bit  in  cui  dovrebbero  essere  rappresentati  i  numeri?  Si
 motivi  la  risposta
 
-Si  calcoli  il  risultato  dell’operazione  7  -­  255  utilizzando  la  rappresentazione  in  CP2  con  il  
-numero  di  bit  stabilito  nel  punto  (a).  Si  mostrino  tutti  i  passaggi  eseguiti  e  si  indichino  i  bit  di  
+Si  calcoli  il  risultato  dell’operazione  7  -­  255  utilizzando  la  rappresentazione  in  CP2  con  il
+numero  di  bit  stabilito  nel  punto  (a).  Si  mostrino  tutti  i  passaggi  eseguiti  e  si  indichino  i  bit  di
 carry  e  di  overflow.
 \end{frame}
 
@@ -799,7 +841,7 @@ Converto +7 in CPL2. Inizio a convertirlo in base 2:
 7 & 1\\
 3 & 1\\
 1 & 1\\
-0 & 
+0 &
 \end{tabular}\\
 La rappresentazione è dunque 111. Essendo un numero positivo la notazione in CPL2 è 0111. Dovendo usare 10 bit aggiungo degli zeri a sinistra: 0000000111
 
@@ -814,7 +856,7 @@ Inizio a convertire +255 in base 2:
 7 & 1\\
 3 & 1\\
 1 & 1\\
-0 & 
+0 &
 \end{tabular}\\
 La rappresentazione di +255 è dunque 11111111. Aggiungo uno 0 a sinistra per avere la rappresentazione in CPL2: 011111111. Noi siamo interessati a -255, dunque copiamo da sx verso dx fino al primo 1 compreso, poi complementiamo: 100000001 e aggiungiamo degli 1 a sinistra per ottenere 10 bit: 1100000001
 

@@ -7,7 +7,7 @@ interi e li salvi in una matrice M di dimensioni note R × C . */
 
 typedef int matrice[R][C];
 
-int main(){
+void main(){
     matrice M;
     int i,j;
 

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo $1
-echo $2
 
 xrdb ~/.Xdefaults_light
 

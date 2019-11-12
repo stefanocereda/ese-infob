@@ -12,3 +12,4 @@
 *.toc
 *.bbl
 *.blg
+*tmp*

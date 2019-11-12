@@ -12,7 +12,7 @@ void main(){
     printf("Inserisci un vettore:\n");
     for (i=0; i<N; i++)
         scanf("%d", &valori[i]);
-    
+
     /* Bubble sort */
     scambio = true;
     j = N-1;
@@ -33,9 +33,9 @@ void main(){
                 scambio = true;
             }
         }
-	j--;
+	    j--;
     }
-    
+
     /* Stampiamo l'array ordinato */
     printf("Ecco l'array ordinato:\n");
     for (i=0; i<N; i++)

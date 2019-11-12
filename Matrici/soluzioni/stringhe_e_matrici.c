@@ -22,7 +22,7 @@ typedef char Stringa[MAX_LEN_STR];
 typedef Stringa Matrice[N][N];
 typedef enum {false, true} bool;
 
-int main(){
+void main(){
     Matrice m;
     int i, j;
     int lunghezza_tot = 0;

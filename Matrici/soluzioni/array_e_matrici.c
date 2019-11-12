@@ -19,14 +19,14 @@ essa il massimo e minimo e se ne stampino i valori.
 
 typedef enum{false, true} bool;
 
-int main(){
+void main(){
     /* Non sapendo quali saranno le effettive dimensioni di v ed m possiamo solo definire quelle massime */
     int v[MAX_V];
     int m[MAX_V][MAX_V];
-    
+
     /* Qui salveremo le dimensioni vere (chieste all'utente) */
     int dim,r,c;
-    
+
     int i,j;
     int min, max;
 
@@ -38,7 +38,7 @@ int main(){
         /* La scanf non vuole \n*/
         /* Il %d vuole & (l'unica eccezione è %s) */
     }
-    
+
     /* Acquisisco il vettore (array) v*/
     for (i=0; i < dim; i++){
         printf("Inserisci l'elemento in posizione %d: ", i);
@@ -52,7 +52,7 @@ int main(){
 
     if (r*c <= dim){
         /* Posso popolare la matrice*/
-        
+
         /* Per ogni riga */
         for (i = 0; i < r; i++){
             /* Per ogni colonna */
@@ -82,7 +82,7 @@ int main(){
         /* Stampiamo la matrice e cerchiamo min e max */
         /* L'algoritmo di ricerca di massimi e minimi in una matrice o in un array funziona sempre allo stesso modo.
          * Creo due variabili max e min e le pongo uguali al primo elemento, poi faccio passare tutta la struttura dati
-         * e mantengo aggiornate le variabili max e min. NON tentate di fare soluzioni astruse basate sul confronto di elementi consecutivi */
+         * e mantengo aggiornate le variabili max e min.  */
         min = m[0][0];
         max = m[0][0];
         for (i=0; i < r; i++){
@@ -94,7 +94,7 @@ int main(){
                 if (m[i][j] > max){
                     max = m[i][j];
                 }
-                
+
                 /* Aggiorno min */
                 if (m[i][j] < min){
                     min = m[i][j];

@@ -5,7 +5,8 @@ scriva il codice per calcolare e visualizzare la trasposta di M. */
 #define D 3
 
 typedef int matrice[D][D];
-int main(){
+
+void main(){
     matrice M1, M2;
     int i,j;
 

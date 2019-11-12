@@ -1,12 +1,12 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169, handout]{beamer}
+\documentclass[aspectratio=169, handout]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{multicol}
 
-\usetheme{metropolis}
+\usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
 
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
@@ -17,9 +17,9 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{13/11/2018}
-\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
-	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+\date{12/11/2019}
+\institute[PoliMi]{Politecnico Milano}
+\logo{\includegraphics[width=10mm]{../logopolimi}}
 
 \setbeamercovered{invisible}
 
@@ -30,21 +30,34 @@
 	\maketitle
 \end{frame}
 
-\begin{frame}<handout:0>{Conclusione esercizi struct}
-Completare gli esercizi sulle struct in C (anagrafe)
-\end{frame}
+%\begin{frame}<handout:0>{Conclusione esercizi struct}
+%Completare gli esercizi sulle struct in C (anagrafe)
+%\end{frame}
 
+
+\begin{frame}{Matlab/Octave}
+    \begin{itemize}
+        \item Installate Matlab il prima possibile: \url{https://www.software.polimi.it/}
+        \item In alternativa, potete utilizzare Octave: \url{https://www.gnu.org/software/octave/}
+        \item I due software hanno interfacce simili, con esplora directory, editor di testo, finestra comandi e
+            workspace.
+        \item Matlab contiene funzionalità aggiuntive che userete in altri corsi.
+    \end{itemize}
+\end{frame}
 
 \begin{frame}{Costrutto if: equazioni di secondo grado}
-Scaricare e installare Matlab/Octave
-
-Script: commenti(nome e descrizione; data e autori; def variabili), input, calcolo, output.
-
 Si chieda l’inserimento dei tre coefficienti di una equazione di secondo grado: $ax^2+bx+c=0$ e si stampi il valore delle radici reali.
-\end{frame}
 
-\begin{frame}{Grafici: equazioni di secondo grado}
-Si chieda l’inserimento dei tre coefficienti di una equazione di secondo grado: $ax^2+bx+c=0$ e si dia una rappresentazione della curva.
+%Script: commenti(nome e descrizione; data e autori; def variabili), input, calcolo, output.
+
+\pause
+Cosa succede se chiediamo di trovare radici complesse?
+
+\pause
+Cosa cambia fra scrivere uno script ed inserire direttamente i comandi?
+
+\pause
+Come funziona il debugger di Matlab?
 \end{frame}
 
 \begin{frame}{Costrutto while: fattoriale}
@@ -52,13 +65,34 @@ Si scriva uno script che chieda l'inserimento di un numero $n$ e ne calcoli e vi
 \end{frame}
 
 \begin{frame}{Matrice triangolare}
-Scrivere uno script in Matlab/Octave che svolga le seguenti operazioni:
+Scrivere uno script che svolga le seguenti operazioni:
 \begin{enumerate}
 	\item Definire una matrice quadrata di interi di dimensione $N\times N$, con $N=5$.
-	\item Acquisire da tastiera una sequenza di valori interi da memorizzare nella porzione triangolare superiore della matrice. La parte triangolare superiore della matrice è costituita dalle celle poste sulla diagonale principale e al di sopra di tale diagonale.
+	\item Acquisire da tastiera una sequenza di valori interi da memorizzare nella porzione triangolare superiore della
+        matrice. La parte triangolare superiore della matrice è costituita dalle celle poste sulla diagonale principale
+        e al di sopra di tale diagonale.
 	\item Copiare in un array di dimensioni opportune tutti i valori della porzione triangolare di matrice che sono maggiori di -10.
 	\item Stampare il contenuto dell'array.
 \end{enumerate}
 \end{frame}
 
+\begin{frame}{Grafici: equazioni di secondo grado}
+Si chieda l’inserimento dei tre coefficienti di una equazione di secondo grado: $ax^2+bx+c=0$ e si dia una rappresentazione della curva.
+\end{frame}
+
+\begin{frame}{Rotazione di matrice}
+Sc scriva una script in Matlab/Octave che data una matrice $a$ di dimensioni $N\times N$ crea una nuova matrice $b$ ruotata di 90 gradi in senso antiorario rispetto ad $a$.
+
+Si consideri $N=4$ e la matrice $a$ inizializzata con i valori:
+
+\centering
+\begin{tabular}{|cccc|}
+	\hline
+	1&2&3&4\\
+	2&3&4&5\\
+	6&7&8&9\\
+	0&0&0&0\\
+	\hline
+\end{tabular}
+\end{frame}
 \end{document}

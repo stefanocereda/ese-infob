@@ -29,21 +29,17 @@ void main(){
             caratteri[j] += 'A' - 'a';
     }
 
-    j = 0;
-    while(j < n_inseriti){
+    for (j = 0; j < n_inseriti; j++){
         if (caratteri[j] == '.' ||
                 caratteri[j] == ',' ||
                 caratteri[j] == ':' ||
                 caratteri[j] == ';' ||
                 caratteri[j] == '?')
             caratteri[j] = ' ';
-        j++;
     }
 
-    j = 0;
-    while(j < n_inseriti){
+    for (j = 0; j < n_inseriti; j++){
         printf("%c", caratteri[j]);
-        j++;
     }
     printf("\n");
 }

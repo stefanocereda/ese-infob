@@ -1,15 +1,12 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[format=169, handout]{beamer}
+\documentclass[aspectratio=169, handout]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{multicol}
 
-\usetheme{metropolis}
-
-\usepackage{mathtools}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
 
 \title{Esercitazioni di Informatica B}
 \subtitle{Matrici}
@@ -17,9 +14,9 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{23/10/2018}
-\institute[PoliMi]{\vspace{0.5cm}\centering Politecnico di Milano \\ \vspace{0.2cm}
-	\includegraphics[width=0.2\textwidth]{../logopolimi}}
+\date{27/10/2019}
+\institute[PoliMi]{Politecnico Milano}
+\logo{\includegraphics[width=10mm]{../logopolimi}}
 
 \setbeamercovered{invisible}
 
@@ -28,49 +25,25 @@
 \begin{document}
 	\begin{frame}
 	\maketitle
-	\end{frame}
+    \end{frame}
 
-\begin{frame}<handout:0>{Ricerca e ordinamento}
-Completare gli esercizi sugli array: ricerca per bisezione e ordinamento a bolle.
-\end{frame}
+%\begin{frame}<handout:0>{Ricerca e ordinamento}
+%Completare gli esercizi sugli array: ricerca per bisezione e ordinamento a bolle.
+%\end{frame}
 
 \begin{frame}{Creazione di una matrice identità}
 Scrivere un programma che crei e visualizzi una matrice identità di dimensioni note $N \times N$.
 
-Si modifichi il programma per consentire all'utente di scegliere le dimensioni della matrice, con il vincolo che le dimensioni sia inferiori ad $N \times N$.
-\end{frame}
-
-\begin{frame}{Matrice in valore assoluto}
-Scrivere un programma che, ricevuta in ingresso una matrice di interi $A$, calcoli e visualizzi una seconda matrice $B$ tale che:
-\[ B_{ij} = |A_{ij}| \]
+Si modifichi il programma per consentire all'utente di scegliere le dimensioni della matrice, con il vincolo che le
+    dimensioni siano inferiori ad $N \times N$.
 \end{frame}
 
 \begin{frame}{Matrice trasposta}
 Data una matrice quadrata intera $M$, di dimensioni $D \times D$, si scriva il codice per calcolare e visualizzare la trasposta. (le righe diventano colonne e viceversa).
 \end{frame}
 
-\begin{frame}{Rotazione di 90 gradi}
-Data una matrice intera $A$, di dimensioni $R \times C$, la si ruoti in senso orario di 90 gradi. (Si noti che il risultato è diverso dalla trasposta).
-\end{frame}
-
-\begin{frame}{Da array a matrice}
-Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salvi in una matrice $M$ di dimensioni note $R \times C$. Si stampi poi la matrice in formato tabellare.
-\end{frame}
-
-
-\begin{frame}{Prodotto fra matrici - già fatto a lezione}
-Date due matrici intere $A, B$ si scriva un programma che ne calcoli il prodotto $C=A\times B$
-
-Si ricorda che il prodotto di due matrici $A$ e $B$ (di dimensioni $m \times n, n \times p$) è una matrice $C$ (di dimensioni $m \times p$) i cui elementi $C_{ij}$ sono dati da:
-\[ c_{ij} = \sum_{r=1}^n  a_{ir}b_{rj} \]
-\end{frame}
-
-
-
 \begin{frame}[allowframebreaks]{Array e matrici}
-Questo esercizio e il successivo non sono stati svolti durante l'esercitazione sulle matrici.
-
-Si scriva un programma che riceva in input un numero $dim<MAX\_V$ ($MAX\_V=100$) e chieda poi $dim$ interi in modo da popolare un vettore $v$. 
+Si scriva un programma che riceva in input un numero $dim<MAX\_V$ ($MAX\_V=100$) e chieda poi $dim$ interi in modo da popolare un vettore $v$.
 
 Il programma richiede all’utente altri due numeri, $r$ e $c$ rappresentanti le dimensioni di una matrice $m$.
 Il programma deve usare i primi $r*c$ valori di $v$ per riempire la matrice $m$.
@@ -85,6 +58,33 @@ Il programma deve usare i primi $r*c$ valori di $v$ per riempire la matrice $m$.
 Nei casi in cui la matrice viene popolata si ricerchi all’interno di essa il massimo e minimo e se ne
 stampino i valori.
 \end{frame}
+
+\begin{frame}
+    \alert{I seguenti esericizi non sono stati svolti in aula}
+\end{frame}
+
+\begin{frame}{Matrice in valore assoluto}
+Scrivere un programma che, ricevuta in ingresso una matrice di interi $A$, calcoli e visualizzi una seconda matrice $B$ tale che:
+\[ B_{ij} = |A_{ij}| \]
+\end{frame}
+
+%\begin{frame}{Rotazione di 90 gradi}
+%    \alert{Già fatto a lezione}
+%Data una matrice intera $A$, di dimensioni $R \times C$, la si ruoti in senso orario di 90 gradi. (Si noti che il risultato è diverso dalla trasposta).
+%\end{frame}
+
+\begin{frame}{Da array a matrice}
+Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salvi in una matrice $M$ di dimensioni note $R \times C$. Si stampi poi la matrice in formato tabellare.
+\end{frame}
+
+
+%\begin{frame}{Prodotto fra matrici}
+%    \alert{Già fatto a lezione}
+%Date due matrici intere $A, B$ si scriva un programma che ne calcoli il prodotto $C=A\times B$
+%
+%Si ricorda che il prodotto di due matrici $A$ e $B$ (di dimensioni $m \times n, n \times p$) è una matrice $C$ (di dimensioni $m \times p$) i cui elementi $C_{ij}$ sono dati da:
+%\[ c_{ij} = \sum_{r=1}^n  a_{ir}b_{rj} \]
+%\end{frame}
 
 \begin{frame}{Stringhe e matrici}
 Si definisca la struttura dati composta da una matrice di stringhe (NxN).

@@ -25,7 +25,7 @@ int main(){
     /* Acquisiamo l'array */
     i = 0;
     while (i < MAX_N){
-        printf("Inserisci l'elemento in posizione %d: ", i);
+        printf("Inserisci l'elemento in indice %d: ", i);
         scanf("%d", &V[i]);
         i++;
     }
@@ -44,5 +44,5 @@ int main(){
     if (i == MAX_N)
         printf("Elemento non trovato\n");
     else
-        printf("Elemento trovato in posizione %d\n", i);
+        printf("Elemento trovato in indice %d\n", i);
 }

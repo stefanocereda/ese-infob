@@ -18,7 +18,7 @@ void main(){
 
     /* Leggo il vettore */
     for (i=0; i < MAX_N; i++){
-        printf("Inserisci l'elemento nella posizione %d: ", i);
+        printf("Inserisci l'elemento nell'indice %d: ", i);
         scanf("%d", &V[i]);
     }
 
