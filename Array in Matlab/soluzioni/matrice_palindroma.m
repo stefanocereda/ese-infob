@@ -1,12 +1,13 @@
-dim = size(m); % dimensione matrice  
-res = 1; % risultato di partenza  
-for i = 1:floor(dim(1)/2) % faccio controlli solo su metà delle righe  
+dim = size(m); % dimensione matrice
+res = 1; % risultato di partenza
+for i = 1:floor(dim(1)/2) % faccio controlli solo su metà delle righe
     % controllo che riga attuale e la corrispettiva dal fondo
     % siano uguali tramite comparazione tra vettori logici
-     if any(m(i,:) ~= m(end-i+1,:))  
+     if any(m(i,:) ~= m(end-i+1,:))
          res = 0;
      end
 end
 res
 
-m = rot90(m')
+% Alternativa furba, una matrice palindroma è uguale alla rotazione della sua trasposta
+all(all(m == rot90(m')))

@@ -16,5 +16,3 @@ if ~StazioneMI.bloccata && treniInCoda >= 1
     StazioneMI.codaTreni(1).stato = 'inIngresso';
     StazioneMI.codaTreni = StazioneMI.codaTreni(2:end);
 end
-
-    

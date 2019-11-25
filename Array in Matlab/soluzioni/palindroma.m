@@ -1,10 +1,9 @@
-%%
 N=4;
 x=1;
 palindrome=1;
 
 while(x<=N)
-    a(x)=input('Inserisci un intero: ');   
+    a(x)=input('Inserisci un intero: ');
     x=x+1;
 end
 
@@ -20,8 +19,8 @@ while(x<=N && palindrome == 1)
         %       2.2 Cercare tilde in google (o in mappa caratteri) e fare copia incolla
         %       2.3 Scrivere != (come in C) e lasciare che matlab vi segnali l'errore per poi sfruttare la sua correzione
         % (Notate come l'indentazione segua l'if sulla presenza del tastierino numerico)
-        
-       palindrome=0; 
+
+       palindrome=0;
     end
     x=x+1;
 end
