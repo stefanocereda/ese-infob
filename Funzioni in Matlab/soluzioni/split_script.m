@@ -6,4 +6,4 @@ n = m[m<0]
 v1 = m[m>=x]
 v2 = m[m<x]
 
-% se nel workspace chiamante avevo delle variabili p, n, v1 o v2, le ho sovrascritte irrimediabilmente
+% se nel workspace chiamante ho delle variabili p, n, v1 o v2, le ho sovrascritte irrimediabilmente

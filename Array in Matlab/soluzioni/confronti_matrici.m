@@ -11,7 +11,7 @@ while(x<=r)
     x=x+1;
 end
 
-media=somma/(r*c); %oppure media = sum(sum(m)) / (r*c) saltando i due while precedenti
+media=somma/(r*c); %oppure media = sum(sum(m)) / (r*c) saltando i due while precedenti oppure media = sum(m(:))/(r*c) oppure semplicemente media=mean(a(:))
 
 % per ogni elemento della matrice controllo la condizione e scrivo il valore corretto nella posizione corrispondenete della nuova matrice
 x=1;

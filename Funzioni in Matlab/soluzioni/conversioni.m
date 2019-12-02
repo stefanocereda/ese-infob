@@ -1,4 +1,4 @@
-function [c] = conversioni(a,b)
+function [c] = conversioni(a, b)
     if (a == 0)
         c = 0;
     else

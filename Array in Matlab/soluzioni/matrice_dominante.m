@@ -10,7 +10,7 @@ else
 end
 res
 
-%versione meno bella
+%versione meno bella, suppongo sia giusta e cerco il controesempio
 dim = size(m);
 if dim(1) ~= dim(2)
     ris = -1;
@@ -25,4 +25,3 @@ else
     end
 end
 ris
-
