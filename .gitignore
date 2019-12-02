@@ -13,3 +13,5 @@
 *.bbl
 *.blg
 *tmp*
+*stampa.pdf
+*stampa.tex
