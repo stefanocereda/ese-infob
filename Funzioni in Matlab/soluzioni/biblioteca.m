@@ -13,7 +13,7 @@ while azione>0
     switch(azione)
         case 1
             num_tessera=input('Inserisci nuovo numero di tessera: ');
-            soci=inserisciTessera(soci,num_tessera);
+            soci=biblioteca_inserisciTessera(soci,num_tessera);
         case 2
             %disp(soci);
             l=length(soci);
@@ -22,7 +22,7 @@ while azione>0
             end
         case 3
             num_tessera=input('Inserisci numero di tessera da cercare: ');
-            socio=cercaTessera(soci,num_tessera);
+            socio=biblioteca_cercaTessera(soci,num_tessera);
             %if(socio>0)
             %   disp(['Trovato socio ' num2str(socio)]); 
             %end

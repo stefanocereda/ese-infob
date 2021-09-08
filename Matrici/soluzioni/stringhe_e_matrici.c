@@ -25,7 +25,7 @@ typedef enum {false, true} bool;
 void main(){
     Matrice m;
     int i, j;
-    int lunghezza_tot = 0;
+    float lunghezza_tot = 0;
     Stringa diagonale[N];
     Stringa ricerca;
     bool trovato;
@@ -39,7 +39,7 @@ void main(){
         }
     }
 
-    printf("la lunghezza media è %f, i caratteri inseriti sono %d\n", (float) lunghezza_tot/(N*N), lunghezza_tot);
+    printf("la lunghezza media è %f, i caratteri inseriti sono %f\n", lunghezza_tot/(N*N), lunghezza_tot);
 
     for (i=0; i < N; i++){
         strcpy(diagonale[i], m[i][i]);
@@ -67,4 +67,3 @@ void main(){
         printf("-1\n");
     }
 }
-

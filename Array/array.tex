@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[aspectratio=169, ]{beamer}
+\documentclass[aspectratio=169,]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -17,7 +17,7 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{08/10/2019}
+\date{13/10/2020}
 \logo{\includegraphics[width=15mm]{../logopolimi}}
 
 \setbeamercovered{invisible}
@@ -29,32 +29,38 @@
     \maketitle
 \end{frame}
 
+	\begin{frame}<handout:0>{}
+        \begin{itemize}
+            \item riprendere esercizio separazione in cifre
+            \item Esempio scanf
+        \end{itemize}
+	\end{frame}
 
 \begin{frame}{Copia Array}
 Scrivere un programma che, ricevuto un array $A$ di interi (con lunghezza nota $N$), copi il valore assoluto di ogni elemento di $A$ in un nuovo array $B$.
 \end{frame}
 
-\begin{frame}{Conversione in maiuscolo}
-Scrivere un programma che legga una sequenza di caratteri terminata dal carattere '0' e trasformi tutte le lettere
-    alfabetiche minuscole nelle corrispondenti lettere maiuscole.
+%\begin{frame}{Conversione in maiuscolo}
+%Scrivere un programma che legga una sequenza di caratteri terminata dal carattere '0' e trasformi tutte le lettere
+%    alfabetiche minuscole nelle corrispondenti lettere maiuscole.
+%
+%Si modifichi il programma per leggere una sequenza di caratteri terminata dal carattere '0' e lunga al massimo $N$
+%    caratteri.
+%Il programma prima legge tutti i caratteri e li memorizza in un array, in seguito trasforma tutte le lettere alfabetiche
+%    minuscole nelle corrispondenti lettere maiuscole.
+%
+%Si ricordi che la codifica ASCII mette in corrispondenza i caratteri con dei numeri.
+%
+%In seguito, si modifichi il programma in modo da sostituire tutti i caratteri punto, virgola, due punti, punto e virgola e punto di domanda in spazi.
+%\end{frame}
 
-Si modifichi il programma per leggere una sequenza di caratteri terminata dal carattere '0' e lunga al massimo $N$
-    caratteri.
-Il programma prima legge tutti i caratteri e li memorizza in un array, in seguito trasforma tutte le lettere alfabetiche
-    minuscole nelle corrispondenti lettere maiuscole.
-
-Si ricordi che la codifica ASCII mette in corrispondenza i caratteri con dei numeri.
-
-In seguito, si modifichi il programma in modo da sostituire tutti i caratteri punto, virgola, due punti, punto e virgola e punto di domanda in spazi.
-\end{frame}
-
-\begin{frame}{Ricerca prima occorrenza - esempio da lezione}
+\begin{frame}{Ricerca prima occorrenza}
 Scrivere un programma che legga un vettore di interi $V$ ed un numero intero $n$ per poi stampare l'indice di $V$ corrispondente al primo elemento uguale ad $n$.
 \end{frame}
 
 \begin{frame}{Ricerca prima occorrenza - estensioni}
 \footnotesize
-Dato un vettore ordinato di interi $V$ ed un numero $n$, si scriva la porzione di codice per implementare un algoritmo di ricerca e stampare l'indice del primo elemento di $V$ uguale ad $n$. (Esercizio precedente)
+Dato un vettore di interi $V$ ed un numero $n$, si scriva la porzione di codice per implementare un algoritmo di ricerca e stampare l'indice del primo elemento di $V$ uguale ad $n$. (Esercizio precedente)
 
 Si modifichi il programma per trovare più occorrenze dello stesso numero (stampandone tutti gli indici).
 
@@ -71,7 +77,7 @@ E non:
 \end{frame}
 
 \begin{frame}{Conversione binaria}
-    \alert{Da fare dopo aver visto il binario}
+    %\alert{Da fare dopo aver visto il binario}
 
 Si scriva un programma che consenta di trasformare un numero da base 10 a base 2 usando l'algoritmo delle divisioni ripetute. Si stampi il risultato nell'ordine corretto. Si effettui la conversione con un numero massimo di bit $N$.
 \end{frame}
@@ -82,13 +88,14 @@ Si controlli che l'utente non inserisca numeri negativi, nel caso si chiede di e
 Il programma memorizza in un array le radici quadrate dei numeri inseriti.
 \end{frame}
 
-\begin{frame}{Ricerca per bisezione}
-Si scriva un programma che riceva in ingresso un vettore ordinato ed un valore.
-Il programma deve cercare il valore all'interno dell'array usando l'algoritmo di ricerca per bisezione.
-\end{frame}
+%\begin{frame}{Ricerca per bisezione}
+%Si scriva un programma che riceva in ingresso un vettore ordinato ed un valore.
+%Il programma deve cercare il valore all'interno dell'array usando l'algoritmo di ricerca per bisezione.
+%\end{frame}
+%
+%\begin{frame}{Ordinamento a bolle}
+%Si scriva un programma che riceva in ingresso un vettore di numeri interi.
+%Il programma deve ordinare il vettore usando l'algoritmo dell'ordinamento a bolle e stampare il risultato.
+%\end{frame}
 
-\begin{frame}{Ordinamento a bolle}
-Si scriva un programma che riceva in ingresso un vettore di numeri interi.
-Il programma deve ordinare il vettore usando l'algoritmo dell'ordinamento a bolle e stampare il risultato.
-\end{frame}
 \end{document}

@@ -45,4 +45,6 @@ int main(){
         printf("Elemento non trovato\n");
     else
         printf("Elemento trovato in indice %d\n", i);
+
+    /* Perché non va bene usare if (V[i] == n) ? */
 }

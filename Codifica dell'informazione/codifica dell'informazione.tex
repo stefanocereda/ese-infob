@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[aspectratio=169, ]{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -17,7 +17,7 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{14/10/2019 e 15/10/2019}
+\date{15/09/2020}
 \institute[PoliMi]{Politecnico Milano}
 \logo{\includegraphics[width=10mm]{../logopolimi}}
 
@@ -90,7 +90,7 @@ Possiamo indicare la base della codifica mettendola a pedice di un numero.
 Utilizzando come basi i valori 2, 8 e 16 otteniamo tre codifiche molto utilizzate in ambito informatico.
 Utilizzando la formula precedente è semplice ricavare il valore nella base 10:
 
-\[1234_{10} = 1\cdot0^3 + 2\cdot10^2 + 3\cdot10^1 + 4\cdot10^0 = 1234_{10}\]
+\[1234_{10} = 1\cdot10^3 + 2\cdot10^2 + 3\cdot10^1 + 4\cdot10^0 = 1234_{10}\]
 \pause
 \[1010_{2}  = 1\cdot2^3  + 0\cdot2^2  + 1\cdot2^1  + 0\cdot2^0 = 10_{10}\]
 \pause
@@ -361,7 +361,8 @@ Convertiamo le somme in base 10 per trovare eventuali errori:
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Esercizi C}
+
+\begin{frame}{Esercizi C - Da fare in futuro}
     Realizzare due programmi in C:
     \begin{enumerate}
         \item ricevuto un numero $n$ in base 10 ed una nuova base $b$, rappresentare $n$ nella nuova base (stampando le

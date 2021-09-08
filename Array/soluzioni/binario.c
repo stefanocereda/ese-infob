@@ -23,7 +23,7 @@ void main(){
      * i controlla il bit che stiamo considerando
      */
     i = 0;
-    while (i >= 0){
+    while (num > 0){
         bin[i] = num % 2;
         num /= 2;
         i++;
@@ -40,4 +40,3 @@ void main(){
     }
     printf("\n");
 }
-

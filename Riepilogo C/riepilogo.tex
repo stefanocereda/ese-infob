@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[aspectratio=169, handout]{beamer}
+\documentclass[aspectratio=169,]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -15,7 +15,7 @@
 \author{Stefano Cereda\\
 stefano.cereda@polimi.it
 }
-\date{28/10/2018}
+\date{27/10/2020}
 \institute[PoliMi]{Politecnico Milano}
 \logo{\includegraphics[width=10mm]{../logopolimi}}
 
@@ -24,47 +24,16 @@ stefano.cereda@polimi.it
 
 \makeindex
 
+%struct, do_while, bubble sort, switch
 
 \begin{document}
 \begin{frame}
     \maketitle
 \end{frame}
 
-\begin{frame}{Anagrafe}
-    Si vuole gestire l’anagrafe della motorizzazione e dei proprietari di auto. Un veicolo è identificato da:
-    \begin{itemize}
-        \item Targa
-        \item Modello
-        \item Proprietario (si suppone che ogni auto abbia un unico proprietario)
-    \end{itemize}
-
-    I proprietari di auto sono identificati dai campi:
-    \begin{itemize}
-        \item Cognome
-        \item Nome
-        \item Un insieme di indirizzi di recapito (max 3).
-    \end{itemize}
-
-    Un recapito è composto da: via, numero civico e CAP. L’anagrafe contiene al max N veicoli.
+\begin{frame}{TODO}
+    Finire slide lezione >= 25
 \end{frame}
-
-{
-    \small
-    \begin{frame}{Anagrafe}
-        Definire in C la struttura dati che permette di rappresentare la situazione descritta.
-
-        Scrivere il programma C che chiede all’utente di inserire i dati degli N veicoli da memorizzare
-        nell’anagrafe. Per ogni veicolo il programma deve acquisire anche le informazioni relative al
-        proprietario, inclusi i suoi recapiti. In una prima versione del programma si inseriscano esattamente
-        tre recapiti per proprietario, in una seconda versione si consenta all’utente di inserire un numero di
-        recapiti minore o uguale a tre.
-
-        Finita la fase di inserimento il programma stampa il contenuto della struttura nel formato:\\
-        VEICOLO Targa XXXXX \\
-        PROPRIETARIO Cognome XXXXXXXXX \\
-        RECAPITI CAP XXXXXXXXX ... XXXXXXXXX \\
-    \end{frame}
-}
 
 \begin{frame}[allowframebreaks]{Archivio reperti da TdE 26 Giugno 2017 - vedere pdf esame}
     Un’organizzazione che si occupa di archeologia sottomarina vuole sviluppare un software in linguaggio C
@@ -125,8 +94,73 @@ stefano.cereda@polimi.it
             \end{itemize}
             Si dichiarino anche tutte le variabili necessarie allo scopo che non sono state dichiarate nei punti precedenti.
     \end{enumerate}
-
 \end{frame}
+
+\begin{frame}{Ordinamento a bolle}
+    Si scriva un programma che riceva in ingresso un vettore di numeri interi.
+    Il programma deve ordinare il vettore usando l'algoritmo dell'ordinamento a bolle e stampare il risultato.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Binario - TdE 29 Gennaio 2018}
+    Un cardiopatico ha uno smartwatch con 48 byte di memoria liberi e vorrebbe tenere in memoria l’ECG relativo alla sua attività cardiaca durante la notte.
+    Il singolo dato è rappresentato dalla differenza di potenziale generata dal battito cardiaco (in Volt) ogni ora, e può essere un intero in intervallo [-1000 +2000] (estremi compresi).
+    Si assuma che lo smartwatch utilizzi una codifica in Complemento a 2 e si risponda alle seguenti domande:
+    \begin{enumerate}
+        \item  Quale è il numero B di bit necessari per registrare ogni singolo dato corrispondente a un’ora di attività cardiaca?
+        \item Quante ore è possibile registrare ancora nella memoria libera, supponendo che ciascuna cella di memoria possa contenere esattamente B bit? Quanta memoria è necessaria per tenere in memoria 128 ore?
+        \item Supponiamo ora che siano state registrate le differenze di potenziale generate dal battito cardiaco delle prime 2 ore della notte, e che queste siano [-135, -978]. Si codifichino questi numeri in Complemento a 2 con B bit e si calcoli la loro somma (in Complemento a 2), indicando se questa può essere registrata nello smartwatch, ovvero in B bit.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Soluzione a Binario - TdE 29 Gennaio 2018}
+    \begin{enumerate}
+        \item $2^{10} = 1024 < 2000 < 2048 = 2^{11}$
+            Con B = 12 bit si riesce a coprire l’intervallo $[-2^{11}, 2^{11} - 1]$ e quindi si riesce a registrare l’attività cardiaca di un’ora.
+        \item Essendo la memoria disponibile pari a 48 byte = 48 * 8 bit = 384 bit e poiché per ogni ora sono necessari 12 bit per tenere in memoria la rappresentazione della differenza di potenziale generata dal battito cardiaco, si possono tenere in memoria ancora al massimo 48 * 8 / 12 = 32 ore. Se si quadruplicasse la memoria (i.e. 48 * 4 = 192 byte) otterrei spazio sufficiente per 32 * 4 = 128 ore
+        \item  Tramite l’algoritmo delle divisioni successive $135_{10} = 10000111_2$, quindi il numero decimale $-135_{10}$ in codifica Complemento a 2 con B = 12 bit è $-135_{10} = 111101111001_{CP2}$. Dato che $978_{10} = 1111010010_2$, poichè -978 è negativo, devo cambiare  il valore di tutti i bit ottenuti e sommare 1 per trasformare tale codifica in un numero negativo in Complemento a 2 con B = 12 bit, ovvero $-978_{10} = 110000101110_{CP2}$. La somma di tali due valori rimane nell’intervallo di valori ammissibili con 12 bit, dunque è possibile registrare la somma delle differenze di potenziale generate dal battito cardiaco delle prime 2 ore della notte nello smartwatch.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \alert{Esercizi non svolti}
+\end{frame}
+
+
+\begin{frame}{Anagrafe}
+    Si vuole gestire l’anagrafe della motorizzazione e dei proprietari di auto. Un veicolo è identificato da:
+    \begin{itemize}
+        \item Targa
+        \item Modello
+        \item Proprietario (si suppone che ogni auto abbia un unico proprietario)
+    \end{itemize}
+
+    I proprietari di auto sono identificati dai campi:
+    \begin{itemize}
+        \item Cognome
+        \item Nome
+        \item Un insieme di indirizzi di recapito (max 3).
+    \end{itemize}
+
+    Un recapito è composto da: via, numero civico e CAP. L’anagrafe contiene al max N veicoli.
+\end{frame}
+
+{
+    \small
+    \begin{frame}{Anagrafe}
+        Definire in C la struttura dati che permette di rappresentare la situazione descritta.
+
+        Scrivere il programma C che chiede all’utente di inserire i dati degli N veicoli da memorizzare
+        nell’anagrafe. Per ogni veicolo il programma deve acquisire anche le informazioni relative al
+        proprietario, inclusi i suoi recapiti. In una prima versione del programma si inseriscano esattamente
+        tre recapiti per proprietario, in una seconda versione si consenta all’utente di inserire un numero di
+        recapiti minore o uguale a tre.
+
+        Finita la fase di inserimento il programma stampa il contenuto della struttura nel formato:\\
+        VEICOLO Targa XXXXX \\
+        PROPRIETARIO Cognome XXXXXXXXX \\
+        RECAPITI CAP XXXXXXXXX ... XXXXXXXXX \\
+    \end{frame}
+}
 
 \begin{frame}[allowframebreaks, fragile]{Stazione ferroviaria - TdE 29 Gennaio 2018}
     Si consideri il sistema di gestione dei treni in una stazione.
@@ -181,9 +215,6 @@ stefano.cereda@polimi.it
     \end{itemize}
 \end{frame}
 
-
-
-\iffalse
 \begin{frame}{Processi - Tde 16 Febbraio 2018}
     Si assuma di avere un sistema operativo con un quanto di tempo di 25 ms e un processo P1 che riesce a decodificare 80 byte di segnale audio per ogni millisecondo di esecuzione.
 
@@ -198,27 +229,6 @@ stefano.cereda@polimi.it
     \begin{enumerate}
         \item  Se P1 è l’unico attivo, avrà l’intera CPU per se, quindi potrà decodificare 80 * 8 * 1000 bit/s = 640 kbit/s; quindi può rispettare la velocità di codifica richiesta.
         \item Se sono attivi altri 3 processi, P1 non avrà l’intero tempo a disposizione, ma solo una parte di esso. In ogni secondo ci sono 1000 ms/(25+1) ms = 38 quanti di tempo circa che devono essere divisi tra i quattro processi. Se tutti hanno la stessa priorità e proseguono la loro esecuzione senza attendere dati dalle periferiche, ogni processo ha a disposizione 38/4=9 quanti di tempo circa. Quindi il nostro processo in un secondo decodificherà: 80 * 8 * 9 *25 bit/s = 144000 bit/s = 144 kbit/s, una quantità maggiore di quella minima richiesta. Di conseguenza, il nostro processo riuscirà a riprodurre correttamente l’audio.
-    \end{enumerate}
-\end{frame}
-\fi
-
-\begin{frame}[allowframebreaks]{Binario - TdE 29 Gennaio 2018}
-    Un cardiopatico ha uno smartwatch con 48 byte di memoria liberi e vorrebbe tenere in memoria l’ECG relativo alla sua attività cardiaca durante la notte.
-    Il singolo dato è rappresentato dalla differenza di potenziale generata dal battito cardiaco (in Volt) ogni ora, e può essere un intero in intervallo [-1000 +2000] (estremi compresi).
-    Si assuma che lo smartwatch utilizzi una codifica in Complemento a 2 e si risponda alle seguenti domande:
-    \begin{enumerate}
-        \item  Quale è il numero B di bit necessari per registrare ogni singolo dato corrispondente a un’ora di attività cardiaca?
-        \item Quante ore è possibile registrare ancora nella memoria libera, supponendo che ciascuna cella di memoria possa contenere esattamente B bit? Quanta memoria è necessaria per tenere in memoria 128 ore?
-        \item Supponiamo ora che siano state registrate le differenze di potenziale generate dal battito cardiaco delle prime 2 ore della notte, e che queste siano [-135, -978]. Si codifichino questi numeri in Complemento a 2 con B bit e si calcoli la loro somma (in Complemento a 2), indicando se questa può essere registrata nello smartwatch, ovvero in B bit.
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}[allowframebreaks]{Soluzione a Binario - TdE 29 Gennaio 2018}
-    \begin{enumerate}
-        \item $2^{10} = 1024 < 2000 < 2048 = 2^{11}$
-            Con B = 12 bit si riesce a coprire l’intervallo $[-2^{11}, 2^{11} - 1]$ e quindi si riesce a registrare l’attività cardiaca di un’ora.
-        \item Essendo la memoria disponibile pari a 48 byte = 48 * 8 bit = 384 bit e poiché per ogni ora sono necessari 12 bit per tenere in memoria la rappresentazione della differenza di potenziale generata dal battito cardiaco, si possono tenere in memoria ancora al massimo 48 * 8 / 12 = 32 ore. Se si quadruplicasse la memoria (i.e. 48 * 4 = 192 byte) otterrei spazio sufficiente per 32 * 4 = 128 ore
-        \item  Tramite l’algoritmo delle divisioni successive $135_{10} = 10000111_2$, quindi il numero decimale $-135_{10}$ in codifica Complemento a 2 con B = 12 bit è $-135_{10} = 111101111001_{CP2}$. Dato che $978_{10} = 1111010010_2$, poichè -978 è negativo, devo cambiare  il valore di tutti i bit ottenuti e sommare 1 per trasformare tale codifica in un numero negativo in Complemento a 2 con B = 12 bit, ovvero $-978_{10} = 110000101110_{CP2}$. La somma di tali due valori rimane nell’intervallo di valori ammissibili con 12 bit, dunque è possibile registrare la somma delle differenze di potenziale generate dal battito cardiaco delle prime 2 ore della notte nello smartwatch.
     \end{enumerate}
 \end{frame}
 

@@ -1,0 +1,187 @@
+% !TeX spellcheck = it_IT
+
+\documentclass[aspectratio=169,]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{enumerate}
+
+\usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
+
+\input{../c-setup.tex}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Riepilogo finale}
+
+\author{Stefano Cereda\\
+stefano.cereda@polimi.it
+}
+\date{22/12/2020}
+\institute[PoliMi]{Politecnico Milano}
+\logo{\includegraphics[width=10mm]{../logopolimi}}
+
+%\setbeamercovered{invisible}
+
+
+\makeindex
+
+\begin{document}
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Espressioni Logiche}
+    Si consideri il seguente frammento di codice, supponendo che tutte le variabili utilizzate siano di tipo intero:
+    \begin{lstlisting}[style=CStyle, basicstyle=\tiny]
+    if ((b<10 && a>3) && (c == 2)){
+        if (c > 3){
+            r = 1;
+        }else{
+            r=2;
+        }
+        if (a == 4) {
+            r = 3
+        }
+        else if (a == 2){
+            r = 4;
+        }
+    }
+    if (a+b>c) {
+        if (a+c>b) {
+            r = 5;
+        }
+        else
+            r = 6;
+        }
+    \end{lstlisting}
+
+    Si indichino le condizioni logiche che devono essere verificate perché la variabile r assuma, rispettivamente, il
+    valore 1, 2, 3, 4, 5 o 6.
+\end{frame}
+
+\begin{frame}{Soluzione}
+    \begin{enumerate}
+        \item impossibile per c
+        \item (a > 3) and (b < 10) and (c == 2)
+        \item (a == 4) and (b < 10) and (c == 2)
+        \item impossibile per a
+        \item (a+b > c) and (a+c > b)
+        \item (a+b > c) and (a+c <= b)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Espressioni Logiche - TdE 2 Luglio 2018}
+    Si considerino le seguenti frasi che esprimono due condizioni per cui si può entrare al cinema gratis:
+    \begin{enumerate}
+        \item Sei il millesimo cliente E sei il cliente più paffutello della sala, OPPURE non hai mai visto il film in programma
+        \item Hai già visto il film in programma E almeno una delle seguenti condizioni è vera:
+            \begin{itemize}
+                \item non sei il millesimo cliente
+                \item c’è qualche cliente in sala paffutello almeno quanto te
+            \end{itemize}
+    \end{enumerate}
+
+    \begin{itemize}
+        \item Si identifichino, a partire dalle due frasi, tre affermazioni A, B, C che ci permettano di tradurre le due
+            frasi in espressioni booleane definite nei termini di queste affermazioni.
+        \item Si definiscano, a partire da A, B, e C, le espressioni booleane che rappresentano le due frasi.
+        \item Si spieghi se le espressioni sono equivalenti oppure no. Si giustifichila risposta.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Soluzione}
+    \begin{itemize}
+        \item A = 'Sei il millesimo cliente' \\
+            B = 'Sei il cliente più paffutello della sala' \\
+            C = 'Non hai mai visto il film in programma'
+        \item 1 = (A and B) OR C \\
+            2 = not C and (not A OR not B)
+        \item No, quando C è vero la prima frase è sempre vera e la seconda sempre falsa.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linguaggio C - TdE 29 Gennaio 2018 - Porto}
+    \href{https://beep.metid.polimi.it/documents/3344342/8fb18de1-9394-4d6c-8d6f-6fd71aaa8070}{Link beep}
+\end{frame}
+
+\begin{frame}{Linguaggio C - TdE 25 Novembre 2015 - Expo}
+    \href{https://beep.metid.polimi.it/documents/3344342/6f860c60-d096-4001-9dbe-454325e5f1fc}{Link beep}
+\end{frame}
+
+\begin{frame}{MATLAB - Notazione scientifica}
+    Scrivere una funzione che dato un numero reale positivo lo traduca in notazione scientifica.
+    Ad esempio, 123.456 = 1.23456E2
+\end{frame}
+
+\begin{frame}{MATLAB - TdE 24 Gennaio 2019 - Cricca}
+    \href{https://beep.metid.polimi.it/documents/3344342/a4de0b73-df3b-447c-8fd6-c7a7c8676e79}{Link beep}
+\end{frame}
+
+%\begin{frame}{Linguaggio C - TdE 23 Novembre 2016 - Albergo}
+% fatto a laboratorio
+%    \href{https://beep.metid.polimi.it/documents/3344342/99072cf6-63ed-49d6-801e-6c89f76a4a51}{Link beep}.
+%
+%    Si consideri il seguente problema: il gestore di un albergo con 500 stanze vuole aumentare il livello di automazione dell’impianto di climatizzazione.
+%    Egli quindi dota ciascuna stanza di un numero variabile di  sensori  di  temperatura  (da  zero  fino  ad  un  massimo  di  sei)  e  di  un  attuatore,  il  quale  controlla l’accensione e lo spegnimento dell’impianto di climatizzazione.
+%
+%    \framebreak
+%    Si considerino le seguenti strutture in linguaggio C che modellano la situazione sopra descritta:
+%
+%    \begin{lstlisting}[style=CStyle, basicstyle=\small]
+%    #define NSENSORI 6
+%    typedef enum {spento, acceso} StatoAttuatore;
+%    typedef struct {
+%        float datiSensori[NSENSORI];
+%        int nSensori;
+%        StatoAttuatore attuatore;
+%    } Stanza;
+%    \end{lstlisting}
+%
+%    dove  l’array datiSensori contiene  l’ultimo  valore  di  temperatura  (in  gradi  centigradi)  misurato  da ciascun  sensore  di  temperatura  della  stanza, nSensori indica  il  numero  di  sensori  effettivamente presenti in datiSensori, e attuatore rappresenta lo stato dell’attuatore nella stanza.
+%    Si risponda alle seguenti domande utilizzando il linguaggio di programmazione C:
+%    \begin{enumerate}
+%        \item Si  definisca il tipo Albergo atto a contenere  esattamente  500  stanze,  e  si  dichiari  la variabile smartHotel che rappresenta un albergo
+%        \item Si assuma che la variabile smartHotel sia stata dichiarata e opportunamente riempita, per tutte le 500 stanze dell’albergo, con i valori relativi al numero di sensori presenti in ogni stanza e alle loro misurazioni di temperatura.
+%            Si scriva quindi un frammento di programma che, per ogni stanza dell’albergo, calcoli la temperatura
+%            media fornita dai sensori presenti e
+%            \begin{itemize}
+%                \item se questa è compresa tra 18 e 21 gradi centigradi (estremi inclusi), assegni all’attuatore della stanza il valore spento;
+%                \item nel caso contrario, assegni all’attuatore della stanza il valore acceso.
+%            \end{itemize}
+%        \item Si  dichiari  un’opportuna  variabile stanzeAccese per  contenere  tutte  le  stanze  aventi l’attuatore  con  stato  acceso,  e  si  scriva  un  frammento  di  codice  per  popolare  (senza  lasciare buchi) la variabile stanzeAccese a partire dalla variabile smartHotel.
+%        \item Si definisca un nuovo tipo Appartamento composto da un numero variabile di stanze (fino a un massimo di 5) e da un campo alfanumerico che definisce il cognome del proprietario.
+%    \end{enumerate}
+%
+%    Nota: per ogni punto si dichiarino tutte le variabili necessarie a sviluppare il codice richiesto. Non è necessario scrivere un singolo programma che risponda alle richieste di tutti i punti, ma solamente delle porzioni di codice che soddisfino ognuna le singole richieste
+%\end{frame}
+
+\begin{frame}{Binario}
+    Si considerino i seguenti numeri:
+    \begin{enumerate}
+        \item $A=126_{10}$
+        \item $B=-A2_{16}$
+        \item $C=136_8$
+    \end{enumerate}
+
+    \begin{itemize}
+        \item Quale è il numero minimo di bit necessari per rappresentarli tutti in complemento a 2?
+        \item Si eseguano e controllino le somme B+C, B-A e B+B
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Soluzione}
+    \begin{itemize}
+        \item A=126, B=-(10*16+2)=-162, C=(1*8*8+3*8+6)=94
+        \item $2^8 = 256$ quindi con $N=9$ bit posso rappresentare da -256 a +255
+        \item $A=001111010_{cpl2}$ facendo le divisioni
+        \item $B=-(-B)=-(1010 0010)=-(010100010)=101011110_{cpl2}$
+        \item $C=(001 011 110) = 001011110_{cpl2}$
+        \item $B+C = 110111100_{cpl2} = -(001000100_{cpl2}) = -(4+64) = -68 = -162+94$ operandi discordi non danno overflow
+        \item $B-A = B+(-A)$ $-A = 110000110_{cpl2}$
+        \item $B+(-A) = 011100100_{cpl2}$ operandi discordi dal risultato indicano overflow
+        \item $B+B = 010111100_{cpl2}$ operandi discordi dal risultato indicano overflow
+    \end{itemize}
+\end{frame}
+
+
+\end{document}

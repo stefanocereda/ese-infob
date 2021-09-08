@@ -1,10 +1,12 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[aspectratio=169, handout]{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{multicol}
+
+\input{../m-setup.tex}
 
 \usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
 
@@ -17,7 +19,7 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{12/11/2019}
+\date{17/11/2019}
 \institute[PoliMi]{Politecnico Milano}
 \logo{\includegraphics[width=10mm]{../logopolimi}}
 
@@ -41,7 +43,7 @@
         \item In alternativa, potete utilizzare Octave: \url{https://www.gnu.org/software/octave/}
         \item I due software hanno interfacce simili, con esplora directory, editor di testo, finestra comandi e
             workspace.
-        \item Matlab contiene funzionalità aggiuntive che userete in altri corsi.
+        %\item Matlab contiene funzionalità aggiuntive che userete in altri corsi.
     \end{itemize}
 \end{frame}
 
@@ -81,7 +83,7 @@ Si chieda l’inserimento dei tre coefficienti di una equazione di secondo grado
 \end{frame}
 
 \begin{frame}{Rotazione di matrice}
-Sc scriva una script in Matlab/Octave che data una matrice $a$ di dimensioni $N\times N$ crea una nuova matrice $b$ ruotata di 90 gradi in senso antiorario rispetto ad $a$.
+Si scriva una script in Matlab/Octave che data una matrice $a$ di dimensioni $N\times N$ crea una nuova matrice $b$ ruotata di 90 gradi in senso antiorario rispetto ad $a$.
 
 Si consideri $N=4$ e la matrice $a$ inizializzata con i valori:
 
@@ -95,4 +97,46 @@ Si consideri $N=4$ e la matrice $a$ inizializzata con i valori:
 	\hline
 \end{tabular}
 \end{frame}
+
+\begin{frame}{Operazioni su matrici}
+Date le seguenti matrici $a$ e $b$ si dica cosa stampano le seguenti istruzioni.
+
+$a$ =
+\begin{tabular}{|ccc|}
+	\hline
+	1&2&3\\
+	4&5&6\\
+	7&8&9\\
+	\hline
+\end{tabular}
+\hspace{1cm}
+$b$ =
+\begin{tabular}{|ccc|}
+	\hline
+	9&8&7\\
+	6&5&4\\
+	3&2&1\\
+	\hline
+\end{tabular}
+
+\begin{enumerate}
+	\item a(3,1)
+	\item a(8)
+	\item mod(a,b)
+	\item {[r c]}=size(mod(a,b))
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{Sequenza palindroma}
+Si scriva uno script che chieda l’inserimento di una sequenza di N numeri e alla fine dica se la sequenza è palindroma o no.
+
+Si ricordi che una sequenza è palindroma se risulta uguale letta da sinistra verso destra o da destra verso sinistra
+\end{frame}
+
+\begin{frame}[fragile]{Funzioni utili per array}
+    \lstinputlisting[style=matlab, basicstyle=\tiny]{./soluzioni/esempio_lezione.m}
+\end{frame}
+
 \end{document}

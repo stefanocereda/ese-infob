@@ -7,6 +7,6 @@ function [atletiOver, atletiUnder] = atleti_dividiMatrice(atletiTot, velocitaM, 
 	% -­ titoliUnder include le righe di atletiTot corrispondenti agli elementi di velocitaM
 	% con valore minore di soglia.
 
-	atletiOver = atletiTot(velocitaM >= soglia, :);;
-	atletiUnder = atletiTot(velocitaM < soglia, :);;
+	atletiOver = atletiTot(velocitaM >= soglia, :);
+	atletiUnder = atletiTot(velocitaM < soglia, :);
 end

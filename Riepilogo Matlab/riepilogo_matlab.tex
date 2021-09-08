@@ -1,8 +1,111 @@
+% !TeX spellcheck = it_IT
 
-\begin{frame}{Acquisizione dati da fogli di calcolo}
-    La funzione \emph{xlsread} consente di aprire in MATLAB file .xls creati con Microsoft Excel.
+\documentclass[aspectratio=169, ]{beamer}
 
-    Proviamo ad usarla.
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{hyperref}
+\usetheme[titleformat=smallcaps, numbering=fraction, background=light, progressbar=frametitle]{metropolis}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Esercitazioni di Informatica B}
+\subtitle{Riepilogo MATLAB}
+
+\author{Stefano Cereda\\
+	stefano.cereda@polimi.it
+}
+\date{15/12/2020}
+\institute[PoliMi]{Politecnico Milano}
+\logo{\includegraphics[width=10mm]{../logopolimi}}
+
+\setbeamercovered{invisible}
+
+\input{../m-setup.tex}
+
+\begin{document}
+\begin{frame}
+    \maketitle
+\end{frame}
+
+%\begin{frame}{Acquisizione dati da fogli di calcolo}
+%    La funzione \emph{xlsread} consente di aprire in MATLAB file .xls creati con Microsoft Excel.
+%
+%    Proviamo ad usarla.
+%\end{frame}
+
+\begin{frame}{Paghe}
+    Data la seguente tabella:
+
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        & op1 & op2 & op3 & op4 & op5 \\
+        \hline
+        Paga oraria & 5 & 5.5 & 6.5 & 5 & 6.25 \\
+        \hline
+        Ore settimanali & 40 & 43 & 37 & 50 & 45 \\
+        \hline
+        Pezzi prodotti & 1000 & 1100 & 1000 & 1200 & 1100 \\
+        \hline
+    \end{tabular}
+
+    Scrivere uno script Matlab che organizzi la tabella in un array di dati strutturati e risponda alle seguenti domande:
+    \begin{enumerate}
+        \item Quanto guadagna ogni operaio?
+        \item Qual è il salario totale di tutti gli impiegati?
+        \item Quanti pezzi vengono prodotti?
+        \item Qual è il costo medio di un pezzo?
+        \item Quante ore occorrono in media per un pezzo?
+        \item Qual è l’operaio più efficiente?
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Archivio mammiferi}
+
+    Si vogliono rappresentare informazioni relative ai mammiferi ospitati in un
+    parco protetto.
+
+    In particolare, per ogni mammifero si rappresentano i seguenti dati:\\
+    NOME TIPO, TIPO ALIMENTAZIONE, PESO MEDIO, insieme di ESEMPLARI
+
+    Dove ogni esemplare è caratterizzato da:\\
+    CODICE ESEMPLARE, ANNO DI NASCITA, NUMERO CUCCIOLI
+
+    \begin{enumerate}
+        \item Si crei una variabile mammifero che contenga le informazioni del
+            seguente mammifero:\\
+            NOME TIPO: Elefante\\
+            TIPO ALIMENTAZIONE: Erbivoro\\
+            PESO MEDIO: 2500\\
+            ESEMPLARE 1: (Codice: 3, Anno: 1985, Cuccioli: 3)\\
+            ESEMPLARE 2: (Codice: 5, Anno: 1989, Cuccioli: 0)\\
+            ESEMPLARE 3: (Codice: 8, Anno: 1982, Cuccioli: 0)\\
+
+        \item Chieda all'utente se vuole inserire ulteriori elefanti
+        \item Si scriva il codice che costruisce, a partire dalla variabile creata al punto
+            precedente, l'archivio degli esemplari di elefante sterili sapendo che un
+            elefante si dice sterile se è nato prima del 1990 e non ha concepito
+            nessun cucciolo.
+    \end{enumerate}
+
+    Si stampi su schermo l'elenco dei codici degli elefanti sterili.
+\end{frame}
+
+\begin{frame}{Matrice dominante - TdE 20 Luglio 2018}
+Una matrice quadrata è definita diagonalmente dominante se il valore assoluto di ciascun elemento sulla
+diagonale principale è maggiore della somma dei valori assoluti degli altri elementi sulla stessa riga.
+
+Per esempio, la seguente matrice è diagonalmente dominante:
+\begin{tabular}{ccccc}
+	20 & 2 & 3 & 4 & 5 \\
+	3 & -25 & 5 & 6 & 7 \\
+	2 & 3 & 23 & 5 & 6 \\
+	8 & 7 & 6 & -30 & 4 \\
+	2 & 3 & 4 & 5 & 20 \\
+\end{tabular}
+
+Si scriva uno script MATLAB che, ricevuta una matrice $m$, stampi -1 se $m$ non è quadrata, 0 se quadrata ma non diagonalmente dominante, 1 se quadrata e diagonalmente dominante.
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Trading - TdE 16 Febbraio 2018}
@@ -56,7 +159,8 @@
 
         \item Si scriva inoltre uno script in linguaggio MATLAB che acquisisca da tastiera la dimensione desiderata N e il numero di partenza P, invochi la funzione \textbf{cornici} con gli opportuni parametri e infine stampi a video la matrice risultante.
 
-        \item Si implementi la funzione \alert{ricorsiva} \textbf{corniciRic} in modo che presenti lo stesso comportamento della funzione \textbf{cornici}
+        %\item Si implementi la funzione \alert{ricorsiva} \textbf{corniciRic} in modo che presenti lo stesso comportamento della funzione \textbf{cornici}
+        \item Nel TdE c'è un terzo punto che riguarda le funzioni ricorsive
     \end{enumerate}
 \end{frame}
 
@@ -67,8 +171,8 @@
     esempio ‘0101001’)  corrispondente  ad  un  numero  codificato  in  CP2  e  restituisce  due
     valori:
     \begin{enumerate}
-        \item par  che  vale  true  se  il  numero  è  pari  e  false  altrimenti
-        \item    pos  che  vale  true  se  il  numero  è  positivo  e  false  altrimenti
+        \item \emph{par}  che  vale  true  se  il  numero  è  pari  e  false  altrimenti
+        \item \emph{pos}  che  vale  true  se  il  numero  è  positivo  e  false  altrimenti
     \end{enumerate}
     (L’esecuzione  della  funzione  nel  caso  dell’esempio  darebbe  par = false  e  pos =
     true)
@@ -78,17 +182,16 @@
 
     La funzione matlab deve semplicemente controllare il bit a sinistra per sapere se il numero è positivo, ed il bit a destra per sapere se è pari (ragionate sul perché un numero positivo pari mantiene il primo bit=0 quando passo al negativo).
     \begin{lstlisting}[style=matlab]
-    function [par, pos] = controllaCP2(stringa)
-    if stringa(1) == '0'
+function [par, pos] = controllaCP2(stringa)
+if stringa(1) == '0'
     pos = true;
-    else
+else
     pos = false;
-    end
-    % versione equivalente:
-    % pos = stringa(1) == '0';
-
-    par = stringa(end) == '0';
-    end
+end
+% versione equivalente:
+% pos = stringa(1) == '0';
+% par = stringa(end) == '0';
+% end
     \end{lstlisting}
 
 
@@ -146,3 +249,5 @@
     Un modo semplice per fattorizzare un numero consiste nel dividerlo ripetutamente per tutti i numeri che gli sono inferiori fino ad ottenere 1.
 \end{frame}
 \fi
+
+\end{document}

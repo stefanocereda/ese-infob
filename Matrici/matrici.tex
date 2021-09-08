@@ -1,6 +1,6 @@
 % !TeX spellcheck = it_IT
 
-\documentclass[aspectratio=169, handout]{beamer}
+\documentclass[aspectratio=169, ]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
@@ -14,7 +14,7 @@
 \author{Stefano Cereda\\
 	stefano.cereda@polimi.it
 }
-\date{27/10/2019}
+\date{20/10/2019}
 \institute[PoliMi]{Politecnico Milano}
 \logo{\includegraphics[width=10mm]{../logopolimi}}
 
@@ -34,6 +34,7 @@
 \begin{frame}{Creazione di una matrice identità}
 Scrivere un programma che crei e visualizzi una matrice identità di dimensioni note $N \times N$.
 
+\pause
 Si modifichi il programma per consentire all'utente di scegliere le dimensioni della matrice, con il vincolo che le
     dimensioni siano inferiori ad $N \times N$.
 \end{frame}
@@ -42,40 +43,48 @@ Si modifichi il programma per consentire all'utente di scegliere le dimensioni d
 Data una matrice quadrata intera $M$, di dimensioni $D \times D$, si scriva il codice per calcolare e visualizzare la trasposta. (le righe diventano colonne e viceversa).
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Array e matrici}
-Si scriva un programma che riceva in input un numero $dim<MAX\_V$ ($MAX\_V=100$) e chieda poi $dim$ interi in modo da popolare un vettore $v$.
+\begin{frame}{Ricerca minimi e massimi}
+    Scrivere un programma che, dopo aver chiesto all'utente di inserire una matrice $N \times M$, calcola e visualizza
+    il minimo e il massimo numero inserito.
 
-Il programma richiede all’utente altri due numeri, $r$ e $c$ rappresentanti le dimensioni di una matrice $m$.
-Il programma deve usare i primi $r*c$ valori di $v$ per riempire la matrice $m$.
-
-\begin{itemize}
-	\item Se $r*c > dim$ il programma termina scrivendo un messaggio di errore.
-	\item Se $r*c < dim$ il programma riempie $m$ e stampa i valori di $v$ che sono stati esclusi
-	dalla matrice.
-	\item Se $r*c = dim$ il programma stampa un messaggio di successo.
-\end{itemize}
-
-Nei casi in cui la matrice viene popolata si ricerchi all’interno di essa il massimo e minimo e se ne
-stampino i valori.
+    \pause
+    Modificare il programma per stampare il minimo per ogni riga e per ogni colonna.
 \end{frame}
 
-\begin{frame}
-    \alert{I seguenti esericizi non sono stati svolti in aula}
-\end{frame}
+%\begin{frame}[allowframebreaks]{Array e matrici}
+%Si scriva un programma che riceva in input un numero $dim<MAX\_V$ ($MAX\_V=100$) e chieda poi $dim$ interi in modo da popolare un vettore $v$.
 
-\begin{frame}{Matrice in valore assoluto}
-Scrivere un programma che, ricevuta in ingresso una matrice di interi $A$, calcoli e visualizzi una seconda matrice $B$ tale che:
-\[ B_{ij} = |A_{ij}| \]
-\end{frame}
+%Il programma richiede all’utente altri due numeri, $r$ e $c$ rappresentanti le dimensioni di una matrice $m$.
+%Il programma deve usare i primi $r*c$ valori di $v$ per riempire la matrice $m$.
+
+%\begin{itemize}
+%	\item Se $r*c > dim$ il programma termina scrivendo un messaggio di errore.
+%	\item Se $r*c < dim$ il programma riempie $m$ e stampa i valori di $v$ che sono stati esclusi
+%	dalla matrice.
+%	\item Se $r*c = dim$ il programma stampa un messaggio di successo.
+%\end{itemize}
+
+%Nei casi in cui la matrice viene popolata si ricerchi all’interno di essa il massimo e minimo e se ne
+%stampino i valori.
+%\end{frame}
+
+%\begin{frame}
+%    \alert{I seguenti esericizi non sono stati svolti in aula}
+%\end{frame}
+
+%\begin{frame}{Matrice in valore assoluto}
+%Scrivere un programma che, ricevuta in ingresso una matrice di interi $A$, calcoli e visualizzi una seconda matrice $B$ tale che:
+%\[ B_{ij} = |A_{ij}| \]
+%\end{frame}
 
 %\begin{frame}{Rotazione di 90 gradi}
 %    \alert{Già fatto a lezione}
 %Data una matrice intera $A$, di dimensioni $R \times C$, la si ruoti in senso orario di 90 gradi. (Si noti che il risultato è diverso dalla trasposta).
 %\end{frame}
 
-\begin{frame}{Da array a matrice}
-Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salvi in una matrice $M$ di dimensioni note $R \times C$. Si stampi poi la matrice in formato tabellare.
-\end{frame}
+%\begin{frame}{Da array a matrice}
+%Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salvi in una matrice $M$ di dimensioni note $R \times C$. Si stampi poi la matrice in formato tabellare.
+%\end{frame}
 
 
 %\begin{frame}{Prodotto fra matrici}
@@ -85,6 +94,34 @@ Scrivere un programma che riceva un numero noto $N=R\cdot C$ di interi e li salv
 %Si ricorda che il prodotto di due matrici $A$ e $B$ (di dimensioni $m \times n, n \times p$) è una matrice $C$ (di dimensioni $m \times p$) i cui elementi $C_{ij}$ sono dati da:
 %\[ c_{ij} = \sum_{r=1}^n  a_{ir}b_{rj} \]
 %\end{frame}
+
+\begin{frame}{La libreria string.h}
+La libreria string.h vi offre alcune funzioni per eseguire operazioni comuni sulle stringhe. Ad esempio:
+\begin{itemize}
+	\item Ottenere la lunghezza di una stringa
+	\item Confrontare due stringhe
+	\item Concatenare due stringhe
+	\item Cercare un carattere in una stringa
+	\item Cercare una stringa in un'altra
+	\item Copiare una stringa in un'altra
+\end{itemize}
+\end{frame}
+
+%\begin{frame}{La libreria string.h - Vedere il codice per gli esempi}
+%\begin{itemize}
+%	\item \texttt{int strlen(char* str);} $\rightarrow$ numero di caratteri in \texttt{str} senza contare il terminatore
+%	\item \texttt{int strcmp(char* str1, char* str2);} $\rightarrow$ $<$0 se \texttt{str1} precede lessicograficamente \texttt{str2}, $>$0 per il viceversa, =0 se sono uguali
+%	\item \texttt{char* strcat(char* dest, char* src);} $\rightarrow$ appende \texttt{str} in coda a \texttt{dest}
+%	\item \texttt{char* strchr(char* str, int car);} $\rightarrow$ cerca \texttt{car} all'interno di \texttt{str} e restituisce la porzione di \texttt{str} successiva alla prima occorrenza di \texttt{car} (incluso) oppure \texttt{NULL}
+%	\item \texttt{char* strstr(char* str, char* sub);} $\rightarrow$ cerca \texttt{sub} all'interno di \texttt{str} e restituisce la porzione di \texttt{str} successiva alla prima occorrenza di \texttt{sub} (inclusa) oppure \texttt{NULL}
+%	\item \texttt{char* strcpy(char* dest, char* src)} $\rightarrow$ copia \texttt{src} in \texttt{dest e restituisce \texttt{dest}}
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}{Stringhe e array}
+    Scrivere un programma che chiede all'utente di inserire una frase sotto forma di array di stringhe.
+    In seguito, il programma trasforma i caratteri finali di ogni parola in caratteri maiuscoli e li stampa.
+\end{frame}
 
 \begin{frame}{Stringhe e matrici}
 Si definisca la struttura dati composta da una matrice di stringhe (NxN).
